@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Empresa" representedClassName="Empresa" syncable="YES" codeGenerationType="class">
+        <attribute name="cif" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ciudad" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="color" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="cpostal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="direccion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="telefono" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="proyectos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Proyecto" inverseName="cliente" inverseEntity="Proyecto" syncable="YES"/>
+    </entity>
+    <entity name="Proyecto" representedClassName="Proyecto" syncable="YES" codeGenerationType="class">
+        <attribute name="empresa" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="facturadoHoras" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="fechaFinal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fechaInicio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="horasEstimadas" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="precioHora" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tipoFacturacion" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="cliente" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Empresa" inverseName="proyectos" inverseEntity="Empresa" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Empresa" positionX="-387" positionY="-423" width="128" height="178"/>
+        <element name="Proyecto" positionX="-180" positionY="-306" width="128" height="178"/>
+    </elements>
 </model>
