@@ -160,9 +160,6 @@ class IME_ProyectosTVC: UITableViewController {
         
         let borrarAction = UITableViewRowAction(style: .destructive, title: "Borrar") { (action, indexPath) in
             
-            print("Section: \(indexPath.section)")
-            print("row: \(indexPath.row)")
-            
             let proyecto = self.diccionario[self.empresas[indexPath.section]]?[indexPath.row]
             self.diccionario[self.empresas[indexPath.section]]?.remove(at: indexPath.row)
             
@@ -171,13 +168,10 @@ class IME_ProyectosTVC: UITableViewController {
                 self.empresas.remove(at: indexPath.section)
             }
             
-            print(self.diccionario)
-            
             self.servicioProyecto?.eliminarProyecto(by: (proyecto?.objectID)!)
             self.appDel.saveContext()
             
             self.tableView.reloadData()
-            
         }
         
         return [borrarAction]

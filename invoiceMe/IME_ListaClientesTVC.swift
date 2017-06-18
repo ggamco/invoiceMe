@@ -177,8 +177,6 @@ class IME_ListaClientesTVC: UITableViewController {
         
         seccionSeleccionada = indexPath.section
         empresaSeleccionada = indexPath.row
-        print(seccionSeleccionada)
-        print(empresaSeleccionada)
         nombreCliente = diccionario[indexOfNumbers[seccionSeleccionada]]?[empresaSeleccionada].nombre
         tableView.reloadData()
         

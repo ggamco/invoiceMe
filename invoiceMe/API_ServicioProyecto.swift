@@ -20,12 +20,13 @@ class API_ServicioProyecto: NSObject {
     }
     
     //MARK: - Crear Proyecto
-    func crearProyecto(nombre: String, empresa: String, tipoFacturacion: Int16, facturadoHoras: Bool, horasEstimadas: String, precioHora: String, fechaInicio: String, fechaFinal: String) -> Proyecto {
+    func crearProyecto(nombre: String, empresa: String, tipoFacturacion: Int16, facturadoHoras: Bool, horasEstimadas: String, precioHora: String, fechaInicio: String, fechaFinal: String, descripcionCorta: String) -> Proyecto {
         
         let nuevoProyecto = NSEntityDescription.insertNewObject(forEntityName: "Proyecto", into: contexto) as! Proyecto
         
         nuevoProyecto.nombre = nombre
         nuevoProyecto.empresa = empresa
+        nuevoProyecto.descripcionCorta = descripcionCorta
         nuevoProyecto.tipoFacturacion = Int16(tipoFacturacion)
         nuevoProyecto.facturadoHoras = facturadoHoras
         
@@ -91,6 +92,7 @@ class API_ServicioProyecto: NSObject {
         if let proyecto = buscarProyecto(by: proyectoActualizado.objectID) {
             proyecto.nombre = proyectoActualizado.nombre
             proyecto.empresa = proyectoActualizado.empresa
+            proyecto.descripcionCorta = proyectoActualizado.descripcionCorta
             proyecto.tipoFacturacion = proyectoActualizado.tipoFacturacion
             proyecto.facturadoHoras = proyectoActualizado.facturadoHoras
             proyecto.horasEstimadas = proyectoActualizado.horasEstimadas

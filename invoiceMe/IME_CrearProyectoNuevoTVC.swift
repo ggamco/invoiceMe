@@ -42,6 +42,7 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
     @IBOutlet weak var mySalvarBTN: UIBarButtonItem!
     @IBOutlet weak var myNombreCliente: UILabel!
     @IBOutlet weak var myNombreProyecto: UITextField!
+    @IBOutlet weak var myDescripcion: UITextView!
     @IBOutlet weak var myFechaInicio: UITextField!
     @IBOutlet weak var myFechaFin: UITextField!
     @IBOutlet weak var myInicioSW: UISwitch!
@@ -67,7 +68,7 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
                                                                horasEstimadas: myHorasEstimadas.text!,
                                                                precioHora: myPrecioHora.text!,
                                                                fechaInicio: myFechaInicio.text!,
-                                                               fechaFinal: myFechaFin.text!)
+                                                               fechaFinal: myFechaFin.text!, descripcionCorta: myDescripcion.text!)
                     
                     //Relación entre proyecto y cliente
                     proyecto?.cliente = empresa
@@ -134,6 +135,7 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
         if proyecto != nil {
             myNombreProyecto.text = proyecto?.nombre
             myNombreCliente.text = proyecto?.cliente?.nombre
+            myDescripcion.text = proyecto?.descripcionCorta
             
             if let pos = empresas.index(of: (proyecto?.cliente)!){
                 empresaSelecionada = pos
@@ -185,6 +187,7 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
         proyecto?.horasEstimadas = Double(myHorasEstimadas.text!)!
         proyecto?.precioHora = Double(myPrecioHora.text!)!
         proyecto?.cliente = empresa
+        proyecto?.descripcionCorta = myDescripcion.text
         
         servicioProyecto?.actualizarProyecto(proyectoActualizado: proyecto!)
         
