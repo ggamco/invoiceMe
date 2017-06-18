@@ -20,11 +20,11 @@ class IME_PrimeraVentanaTBC: UITabBarController {
     //MARKS: - LIFE VC
     override func viewDidLoad() {
         super.viewDidLoad()
-        UINavigationBar.appearance().barTintColor = CONSTANTES.COLORES.PRIMARY_COLOR
-        self.tabBar.barStyle = .black
-        self.tabBar.barTintColor = CONSTANTES.COLORES.PRIMARY_COLOR
-        self.tabBar.unselectedItemTintColor = CONSTANTES.COLORES.FIRST_TEXT_COLOR
-        self.tabBar.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT
+        //UINavigationBar.appearance().barTintColor = CONSTANTES.COLORES.PRIMARY_COLOR
+        //self.tabBar.barStyle = .black
+        //self.tabBar.barTintColor = CONSTANTES.COLORES.PRIMARY_COLOR
+        //self.tabBar.unselectedItemTintColor = CONSTANTES.COLORES.FIRST_TEXT_COLOR
+        //self.tabBar.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT
     }
     
     override func viewDidAppear(_ animated: Bool) {

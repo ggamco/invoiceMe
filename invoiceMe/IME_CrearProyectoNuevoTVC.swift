@@ -36,9 +36,9 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
     var empresas: [Empresa] = []
     var empresaSelecionada = 0
     var esActualizacion = false
+    var desactivarGuardar = false
     
     //MARK: - IBOutlets
-    @IBOutlet weak var myCancelarBTN: UIBarButtonItem!
     @IBOutlet weak var mySalvarBTN: UIBarButtonItem!
     @IBOutlet weak var myNombreCliente: UILabel!
     @IBOutlet weak var myNombreProyecto: UITextField!
@@ -50,48 +50,44 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
     @IBOutlet weak var myTipoFacturacion: UISegmentedControl!
     @IBOutlet weak var myHorasEstimadas: UITextField!
     @IBOutlet weak var myPrecioHora: UITextField!
+    @IBOutlet var myGuardarBTN: UIBarButtonItem!
     
     //MARK: - IBActions
-    @IBAction func cancelarAction(_ sender: Any) {
-        self.dismiss(animated: true, completion:nil)
-    }
-    
     @IBAction func salvarDatosAction(_ sender: Any) {
         
         if esActualizacion {
-            
-            proyecto?.nombre = myNombreProyecto.text
-            proyecto?.empresa = myNombreCliente.text
-            proyecto?.tipoFacturacion = Int16(myTipoFacturacion.selectedSegmentIndex)
-            proyecto?.facturadoHoras = myFacturarHoras.isOn
-            proyecto?.horasEstimadas = Double(myHorasEstimadas.text!)!
-            proyecto?.precioHora = Double(myPrecioHora.text!)!
-            proyecto?.cliente = empresa
-            
-            servicioProyecto?.actualizarProyecto(proyectoActualizado: proyecto!)
-            
+            guardarCambios()
         } else {
-            
-            if myNombreProyecto.text!.characters.count > 0 && myNombreCliente.text!.characters.count > 0{
-                
-                proyecto = servicioProyecto?.crearProyecto(nombre: myNombreProyecto.text!,
-                                                           empresa: myNombreCliente.text!,
-                                                           tipoFacturacion: Int16(myTipoFacturacion.selectedSegmentIndex),
-                                                           facturadoHoras: myFacturarHoras.isOn,
-                                                           horasEstimadas: myHorasEstimadas.text!,
-                                                           precioHora: myPrecioHora.text!,
-                                                           fechaInicio: myFechaInicio.text!,
-                                                           fechaFinal: myFechaFin.text!)
-                
-                //Relación entre proyecto y cliente
-                proyecto?.cliente = empresa
+            if myNombreProyecto.text!.characters.count > 0 {
+                if empresa != nil {
+                    proyecto = servicioProyecto?.crearProyecto(nombre: myNombreProyecto.text!,
+                                                               empresa: myNombreCliente.text!,
+                                                               tipoFacturacion: Int16(myTipoFacturacion.selectedSegmentIndex),
+                                                               facturadoHoras: myFacturarHoras.isOn,
+                                                               horasEstimadas: myHorasEstimadas.text!,
+                                                               precioHora: myPrecioHora.text!,
+                                                               fechaInicio: myFechaInicio.text!,
+                                                               fechaFinal: myFechaFin.text!)
+                    
+                    //Relación entre proyecto y cliente
+                    proyecto?.cliente = empresa
+                    
+                    appDel.saveContext()
+                    esActualizacion = false
+                    
+                    let _ = navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    let alert = muestraAlertVC(titulo: "Atención!", mensaje: "No has añadido ningun Cliente. Selecciona uno de la lista o crea uno nuevo.")
+                    self.present(alert, animated: true, completion: nil)
+                }
+            } else {
+                let alert = muestraAlertVC(titulo: "Atención!", mensaje: "No has introducido un nombre válido al proyecto.")
+                self.present(alert, animated: true, completion: nil)
             }
         }
         
-        appDel.saveContext()
-        esActualizacion = false
         
-        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -105,11 +101,6 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
         format.dateStyle = DateFormatter.Style.long
         myFechaInicio.delegate = self
         myFechaFin.delegate = self
-        
-        //Mejoras estéticas del navigation controller
-        myCancelarBTN.setTitleTextAttributes([NSFontAttributeName: font!], for:UIControlState.normal)
-        mySalvarBTN.setTitleTextAttributes([NSFontAttributeName: font!], for:UIControlState.normal)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT]
         
         //CONFIGURAMOS LA CARGA DEL DATAPICKER
         datapicker.datePickerMode = UIDatePickerMode.date
@@ -126,9 +117,11 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("viewWillAppear: \(esActualizacion)")
         
         empresas = (servicioEmpresa?.recuperarEmpresas())!
-        empresas.sort{$0.nombre! < $1.nombre!}
+        //empresas.sort{$0.nombre! < $1.nombre!}
+        empresas.sort{$0.nombre!.localizedCompare($1.nombre!) == .orderedAscending}
         
         if empresas.count > 0 {
             empresa = empresas[0]
@@ -142,6 +135,11 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
         if proyecto != nil {
             myNombreProyecto.text = proyecto?.nombre
             myNombreCliente.text = proyecto?.cliente?.nombre
+            
+            if let pos = empresas.index(of: (proyecto?.cliente)!){
+                empresaSelecionada = pos
+            }
+            
             myTipoFacturacion.selectedSegmentIndex = Int((proyecto?.tipoFacturacion)!)
             
             if (proyecto?.facturadoHoras)! {
@@ -174,7 +172,34 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        /*
+        if esActualizacion {
+            guardarCambios()
+        }
+        */
+    }
+    
     //MARK: - Funciones Propias
+    
+    func guardarCambios(){
+        proyecto?.nombre = myNombreProyecto.text
+        proyecto?.empresa = myNombreCliente.text
+        proyecto?.tipoFacturacion = Int16(myTipoFacturacion.selectedSegmentIndex)
+        proyecto?.facturadoHoras = myFacturarHoras.isOn
+        proyecto?.horasEstimadas = Double(myHorasEstimadas.text!)!
+        proyecto?.precioHora = Double(myPrecioHora.text!)!
+        proyecto?.cliente = empresa
+        
+        servicioProyecto?.actualizarProyecto(proyectoActualizado: proyecto!)
+        
+        appDel.saveContext()
+        esActualizacion = false
+        
+        let _ = navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func ocultarTeclado(){
         self.tableView.endEditing(true)
@@ -262,16 +287,10 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
     
     // MARK: - Navegación SEGUE
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backButton = UIBarButtonItem()
-        backButton.title = self.navigationController?.navigationItem.title
-        backButton.setTitleTextAttributes([NSFontAttributeName: font!], for:UIControlState.normal)
-        navigationController?.navigationBar.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT
-        navigationItem.backBarButtonItem = backButton
-        
         let destinationVC = segue.destination as? IME_ListaClientesTVC
         destinationVC?.empresaSeleccionada = empresaSelecionada
+        destinationVC?.nombreCliente = proyecto?.cliente?.nombre
     }
-    
 
 }
 

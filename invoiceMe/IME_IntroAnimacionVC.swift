@@ -44,9 +44,9 @@ class IME_IntroAnimacionVC: UIViewController {
         //marcamos el punto central del circulo
         let center = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height / 2)
         //creamos el path de inicio
-        let startPath = UIBezierPath(arcCenter: center, radius: 0.0, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true).cgPath
+        let startPath = UIBezierPath(arcCenter: center, radius: 0.0, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true).cgPath
         //creamos el path final
-        let endPath = UIBezierPath(arcCenter: center, radius: 15.0, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true).cgPath
+        let endPath = UIBezierPath(arcCenter: center, radius: 15.0, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true).cgPath
         //añadimos el path inicial
         circleShape.path = startPath
         
@@ -92,8 +92,5 @@ class IME_IntroAnimacionVC: UIViewController {
         dashboardVC.modalTransitionStyle = .coverVertical
         present(dashboardVC, animated: true, completion: nil)
     }
-    
-    
-    
 
 }

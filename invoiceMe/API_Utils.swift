@@ -24,7 +24,27 @@ struct Colores {
     let FIRST_TEXT_COLOR = #colorLiteral(red: 0.1294117647, green: 0.1294117647, blue: 0.1294117647, alpha: 1)
     let SECOND_TEXT_COLOR = #colorLiteral(red: 0.4588235294, green: 0.4588235294, blue: 0.4588235294, alpha: 1)
     let DIVIDER_COLOR = #colorLiteral(red: 0.7411764706, green: 0.7411764706, blue: 0.7411764706, alpha: 1)
+}
 
+func personalizaBackBTN(_ title: String) -> UIBarButtonItem{
+    //Personalizando el boton back
+    let backButton = UIBarButtonItem()
+    
+    backButton.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT
+    backButton.style = .plain
+    backButton.title = title
+    backButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 16.0)!], for:.normal)
+    
+    return backButton
+}
+
+func muestraAlertVC (titulo: String, mensaje: String) -> UIAlertController{
+    
+    let alertVC = UIAlertController(title: titulo, message: mensaje, preferredStyle: .alert)
+    let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+    alertVC.addAction(alertAction)
+    
+    return alertVC
     
 }
 

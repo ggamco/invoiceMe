@@ -17,16 +17,27 @@ class IME_ProyectosTVC: UITableViewController {
     var servicioProyecto: API_ServicioProyecto?
     var servicioEmpresa: API_ServicioEmpresa?
     
-    // MARK: - Variables Locales
+    //MARK: - Variables Locales
     
     var proyectos: [Proyecto] = []
     var empresas: [String] = []
-    
     var diccionario: [String : [Proyecto]] = [:]
     
-    // MARK: - IBOutlets
+    //MARK: - IBActions
+    @IBAction func crearProyecto(_ sender: UIBarButtonItem) {
+        let destinoVC = storyboard?.instantiateViewController(withIdentifier: "CrearProyectoNuevoTVC") as! IME_CrearProyectoNuevoTVC
+        
+        destinoVC.esActualizacion = false
+        
+        let navigationController = UINavigationController(rootViewController: destinoVC)
+        navigationController.navigationBar.isTranslucent = false
+        navigationController.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "Cancelar", style: .plain, target: self, action: #selector(cerrarVentana))
+        
+        self.navigationController?.modalPresentationStyle = .currentContext
+        self.present(navigationController, animated: true, completion: nil)
+    }
     
-    // MARK: - LIFE VC
+    //MARK: - LIFE VC
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,12 +63,13 @@ class IME_ProyectosTVC: UITableViewController {
             listaEmpresas.append(proyecto.empresa!)
         }
         
-        listaEmpresas = Array(Set(listaEmpresas)).sorted()
+        listaEmpresas.sort{$0.localizedCompare($1) == .orderedAscending}
         return listaEmpresas
     }
     
     func ordenarProyectosPorEmpresa() {
         
+        diccionario.removeAll(keepingCapacity: false)
         empresas = recuperarEmpresasDeProyectos()
         
         for empresa in empresas {
@@ -69,10 +81,9 @@ class IME_ProyectosTVC: UITableViewController {
             diccionario[empresa] = listaProyectos
             
         }
-        
     }
     
-    // MARK: - Table view data source
+    //MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return diccionario.count
     }
@@ -113,7 +124,6 @@ class IME_ProyectosTVC: UITableViewController {
             
             return cell
         }
-        
         
     }
     
@@ -179,44 +189,14 @@ class IME_ProyectosTVC: UITableViewController {
         
         destinoVC.proyecto = diccionario[empresas[indexPath.section]]?[indexPath.row]
         destinoVC.esActualizacion = true
+        destinoVC.title = "Editar Proyecto"
         
-        let navigationController = UINavigationController(rootViewController: destinoVC)
-        navigationController.navigationBar.isTranslucent = false
-        //self.navigationController?.pushViewController(destinoVC, animated: true)
-        self.navigationController?.modalPresentationStyle = .currentContext
-        self.present(navigationController, animated: true, completion: nil)
-        
-    }
+        self.navigationController?.pushViewController(destinoVC, animated: true)
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if indexPath.section == 0{
-            if editingStyle == .delete {
-                // Delete the row from the data source
-                proyectos.remove(at: indexPath.row)
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-        } else {
-            if editingStyle == .delete {
-                // Delete the row from the data source
-                datosDos.remove(at: indexPath.row)
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-        }
-        
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func cerrarVentana() {
+        dismiss(animated: true, completion: nil)
     }
-    */
 
 }

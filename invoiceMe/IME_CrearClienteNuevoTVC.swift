@@ -36,53 +36,34 @@ class IME_CrearClienteNuevoTVC: UITableViewController {
     @IBOutlet weak var myCifCliente: UITextField!
     @IBOutlet weak var myEmailCliente: UITextField!
     @IBOutlet weak var myTelefonoCliente: PhoneNumberTextField!
+    @IBOutlet var myGuardarBTN: UIBarButtonItem!
     
     //MARK: - IBActions
     @IBAction func guardarCliente(_ sender: Any) {
-        if esActualizacion {
-            
-            cliente?.nombre = myNombreCliente.text
-            cliente?.color = Int16(selectedColor)
-            cliente?.direccion = myDireccionCliente.text
-            cliente?.cpostal = myCpostalCliente.text
-            cliente?.ciudad = myCiudadCliente.text
-            cliente?.cif = myCifCliente.text
-            cliente?.email = myEmailCliente.text
-            cliente?.telefono = myTelefonoCliente.text
-            
-            servicioEmpresa?.actualizarEmpresa(empresaActualizada: cliente!)
-            
-        } else {
-            
-            if myNombreCliente.text!.characters.count != 0 {
+        if myNombreCliente.text!.characters.count != 0 {
                 
-                cliente = servicioEmpresa?.crearEmpresa(nombre: myNombreCliente.text!,
-                                              color: Int16(selectedColor),
-                                              direccion: myDireccionCliente.text!,
-                                              cpostal: myCpostalCliente.text!,
-                                              ciudad: myCiudadCliente.text!,
-                                              cif: myCifCliente.text!,
-                                              email: myEmailCliente.text!,
-                                              telefono: myTelefonoCliente.text!)
-                
-                
-                
-                
-                
-            }
+            cliente = servicioEmpresa?.crearEmpresa(nombre: myNombreCliente.text!,
+                                                    color: Int16(selectedColor),
+                                                    direccion: myDireccionCliente.text!,
+                                                    cpostal: myCpostalCliente.text!,
+                                                    ciudad: myCiudadCliente.text!,
+                                                    cif: myCifCliente.text!,
+                                                    email: myEmailCliente.text!,
+                                                    telefono: myTelefonoCliente.text!)
         }
         
         appDel.saveContext()
         esActualizacion = false
+        
         let _ = navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     //MARK: - LIFE VC
     override func viewDidLoad() {
         super.viewDidLoad()
-        servicioEmpresa = API_ServicioEmpresa(contexto: contexto)
         
-        mySalvarCambiosBTN.setTitleTextAttributes([NSFontAttributeName: font!], for: UIControlState.normal)
+        servicioEmpresa = API_ServicioEmpresa(contexto: contexto)
         
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
@@ -92,7 +73,6 @@ class IME_CrearClienteNuevoTVC: UITableViewController {
         //let _ = phoneNumberKit.countries(withCode: 34)
         //let _ = phoneNumberKit.countryCode(for: "ES")
         //let _ = PartialFormatter().formatPartial(myTelefonoCliente.text!)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,13 +90,44 @@ class IME_CrearClienteNuevoTVC: UITableViewController {
             myCollectionView.reloadData()
             
         }
+        
+        //si la vista nace de una actualización ocultamos el boton guardar
+        if esActualizacion {
+            self.navigationItem.rightBarButtonItem = nil
+        } else {
+            self.navigationItem.rightBarButtonItem = self.myGuardarBTN
+        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //si la vista nace de una edición, cuando volvamos atrás
+        //almacenaremos los cambios
+        if esActualizacion {
+            guardarCambios()
+        }
     }
     
     //MARK: - Funciones Propias
     func formatearTelefono() {
-        
         myTelefonoCliente.text?.append("+34")
+    }
+    
+    func guardarCambios(){
+        cliente?.nombre = myNombreCliente.text
+        cliente?.color = Int16(selectedColor)
+        cliente?.direccion = myDireccionCliente.text
+        cliente?.cpostal = myCpostalCliente.text
+        cliente?.ciudad = myCiudadCliente.text
+        cliente?.cif = myCifCliente.text
+        cliente?.email = myEmailCliente.text
+        cliente?.telefono = myTelefonoCliente.text
         
+        servicioEmpresa?.actualizarEmpresa(empresaActualizada: cliente!)
+        
+        appDel.saveContext()
+        esActualizacion = false
     }
     
     // MARK: - TableView DATASOURCE

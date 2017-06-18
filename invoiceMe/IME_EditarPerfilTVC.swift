@@ -15,8 +15,8 @@ class IME_EditarPerfilTVC: UITableViewController {
     @IBOutlet weak var myNombreCompletoTF: UITextField!
     @IBOutlet weak var myEmailTF: UITextField!
     @IBOutlet weak var myZonaHorariaLB: UILabel!
-    
-    
+    @IBOutlet weak var myCancelarBTN: UIBarButtonItem!
+    @IBOutlet weak var myGuardarBTN: UIBarButtonItem!
     
     //MARK: - IBActions
     @IBAction func cancelarAction(_ sender: Any) {
@@ -27,8 +27,6 @@ class IME_EditarPerfilTVC: UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
-    
     //MARK: - LIFE TVC
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +34,9 @@ class IME_EditarPerfilTVC: UITableViewController {
         myImagenPerfil.layer.cornerRadius = myImagenPerfil.frame.width / 2
         myImagenPerfil.layer.borderWidth = 2
         myImagenPerfil.layer.borderColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1).cgColor
+        
+        myGuardarBTN.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT
+        myCancelarBTN.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT
         
     }
 

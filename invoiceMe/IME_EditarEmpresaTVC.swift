@@ -13,7 +13,8 @@ class IME_EditarEmpresaTVC: UITableViewController {
     //MARK: - IBOutlets
     @IBOutlet weak var myNombreEmpresaTF: UITextField!
     @IBOutlet weak var myMonedaLB: UILabel!
-    
+    @IBOutlet weak var myGuardarBTN: UIBarButtonItem!
+    @IBOutlet weak var myCancelarBTN: UIBarButtonItem!
     
     
     //MARK: - IBActions
@@ -30,7 +31,9 @@ class IME_EditarEmpresaTVC: UITableViewController {
     //MARK: - LIFE TVC
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        myGuardarBTN.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT
+        myCancelarBTN.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT
         
     }
 

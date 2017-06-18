@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC23745D1EF45C4500F658D6 /* IME_ListaClientesPrincipalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23745C1EF45C4500F658D6 /* IME_ListaClientesPrincipalTVC.swift */; };
 		CC3BD3581E75C63E000C5A1D /* API_ServicioEmpresa.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BD3571E75C63E000C5A1D /* API_ServicioEmpresa.swift */; };
 		CC3BD35A1E760DBB000C5A1D /* API_ServicioProyecto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BD3591E760DBB000C5A1D /* API_ServicioProyecto.swift */; };
 		CC68BD561E717DFF005CC8E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68BD551E717DFF005CC8E3 /* AppDelegate.swift */; };
 		CC68BD5E1E717DFF005CC8E3 /* invoiceMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC68BD5C1E717DFF005CC8E3 /* invoiceMe.xcdatamodeld */; };
 		CC68BD631E717DFF005CC8E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC68BD611E717DFF005CC8E3 /* LaunchScreen.storyboard */; };
 		CC68BD6B1E717EC8005CC8E3 /* API_Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68BD6A1E717EC8005CC8E3 /* API_Utils.swift */; };
-		CC68BD6E1E717EE7005CC8E3 /* Proyectos.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68BD6C1E717EE7005CC8E3 /* Proyectos.swift */; };
-		CC68BD6F1E717EE7005CC8E3 /* Cliente.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68BD6D1E717EE7005CC8E3 /* Cliente.swift */; };
 		CC68BD721E717EF0005CC8E3 /* IME_ProjectBasicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68BD701E717EF0005CC8E3 /* IME_ProjectBasicCell.swift */; };
 		CC68BD731E717EF0005CC8E3 /* IME_ProjectBudgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68BD711E717EF0005CC8E3 /* IME_ProjectBudgeCell.swift */; };
 		CC68BD771E717EF9005CC8E3 /* IME_PrimeraVentanaTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68BD741E717EF9005CC8E3 /* IME_PrimeraVentanaTBC.swift */; };
@@ -42,6 +41,7 @@
 		66A177C2C5AD8418A97ADB29 /* Pods_invoiceMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_invoiceMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A8D12782F6E96162A1B5E3 /* Pods-invoiceMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-invoiceMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-invoiceMe/Pods-invoiceMe.debug.xcconfig"; sourceTree = "<group>"; };
 		B5C10125A2879F48CCB5DDF9 /* Pods-invoiceMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-invoiceMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-invoiceMe/Pods-invoiceMe.release.xcconfig"; sourceTree = "<group>"; };
+		CC23745C1EF45C4500F658D6 /* IME_ListaClientesPrincipalTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_ListaClientesPrincipalTVC.swift; sourceTree = "<group>"; };
 		CC3BD3571E75C63E000C5A1D /* API_ServicioEmpresa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_ServicioEmpresa.swift; sourceTree = "<group>"; };
 		CC3BD3591E760DBB000C5A1D /* API_ServicioProyecto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_ServicioProyecto.swift; sourceTree = "<group>"; };
 		CC68BD521E717DFF005CC8E3 /* invoiceMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = invoiceMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,8 +50,6 @@
 		CC68BD621E717DFF005CC8E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC68BD641E717DFF005CC8E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC68BD6A1E717EC8005CC8E3 /* API_Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_Utils.swift; sourceTree = "<group>"; };
-		CC68BD6C1E717EE7005CC8E3 /* Proyectos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Proyectos.swift; sourceTree = "<group>"; };
-		CC68BD6D1E717EE7005CC8E3 /* Cliente.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cliente.swift; sourceTree = "<group>"; };
 		CC68BD701E717EF0005CC8E3 /* IME_ProjectBasicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_ProjectBasicCell.swift; sourceTree = "<group>"; };
 		CC68BD711E717EF0005CC8E3 /* IME_ProjectBudgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_ProjectBudgeCell.swift; sourceTree = "<group>"; };
 		CC68BD741E717EF9005CC8E3 /* IME_PrimeraVentanaTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_PrimeraVentanaTBC.swift; sourceTree = "<group>"; };
@@ -98,16 +96,47 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		CC3BD3541E74B16C000C5A1D /* VIEWS_PROYECTOS */ = {
+		CC23745A1EF45B6300F658D6 /* INTRO|LOGIN|REGISTRO */ = {
+			isa = PBXGroup;
+			children = (
+				CC68BD751E717EF9005CC8E3 /* IME_IntroAnimacionVC.swift */,
+			);
+			name = "INTRO|LOGIN|REGISTRO";
+			sourceTree = "<group>";
+		};
+		CC23745B1EF45BA400F658D6 /* VISTAS PRINCIPALES */ = {
+			isa = PBXGroup;
+			children = (
+				CC68BD741E717EF9005CC8E3 /* IME_PrimeraVentanaTBC.swift */,
+				CC68BD761E717EF9005CC8E3 /* IME_HorasTVC.swift */,
+				CC23745C1EF45C4500F658D6 /* IME_ListaClientesPrincipalTVC.swift */,
+				CC3BD3541E74B16C000C5A1D /* PROYECTOS */,
+				CC68BD7D1E717F03005CC8E3 /* IME_CrearClienteNuevoTVC.swift */,
+				CC23745E1EF45C6300F658D6 /* OPCIONES */,
+			);
+			name = "VISTAS PRINCIPALES";
+			sourceTree = "<group>";
+		};
+		CC23745E1EF45C6300F658D6 /* OPCIONES */ = {
+			isa = PBXGroup;
+			children = (
+				CC68BD841E717F0E005CC8E3 /* IME_OpcionesTVC.swift */,
+				CC68BD851E717F0E005CC8E3 /* IME_EditarPerfilTVC.swift */,
+				CC68BD861E717F0E005CC8E3 /* IME_NotificacionesTVC.swift */,
+				CC68BD871E717F0E005CC8E3 /* IME_EditarEmpresaTVC.swift */,
+			);
+			name = OPCIONES;
+			sourceTree = "<group>";
+		};
+		CC3BD3541E74B16C000C5A1D /* PROYECTOS */ = {
 			isa = PBXGroup;
 			children = (
 				CC68BD7A1E717F03005CC8E3 /* IME_ProyectosTVC.swift */,
 				CC68BD931E718309005CC8E3 /* CUSTOM_CELLS */,
 				CC68BD7B1E717F03005CC8E3 /* IME_CrearProyectoNuevoTVC.swift */,
 				CC68BD7C1E717F03005CC8E3 /* IME_ListaClientesTVC.swift */,
-				CC68BD7D1E717F03005CC8E3 /* IME_CrearClienteNuevoTVC.swift */,
 			);
-			name = VIEWS_PROYECTOS;
+			name = PROYECTOS;
 			sourceTree = "<group>";
 		};
 		CC68BD491E717DFF005CC8E3 = {
@@ -134,15 +163,8 @@
 			children = (
 				CC68BD551E717DFF005CC8E3 /* AppDelegate.swift */,
 				CCBE72FE1E718E9B00BA8F28 /* APIS */,
-				CC68BD921E7182FB005CC8E3 /* MODELOS */,
-				CC68BD751E717EF9005CC8E3 /* IME_IntroAnimacionVC.swift */,
-				CC68BD741E717EF9005CC8E3 /* IME_PrimeraVentanaTBC.swift */,
-				CC68BD761E717EF9005CC8E3 /* IME_HorasTVC.swift */,
-				CC3BD3541E74B16C000C5A1D /* VIEWS_PROYECTOS */,
-				CC68BD841E717F0E005CC8E3 /* IME_OpcionesTVC.swift */,
-				CC68BD851E717F0E005CC8E3 /* IME_EditarPerfilTVC.swift */,
-				CC68BD861E717F0E005CC8E3 /* IME_NotificacionesTVC.swift */,
-				CC68BD871E717F0E005CC8E3 /* IME_EditarEmpresaTVC.swift */,
+				CC23745A1EF45B6300F658D6 /* INTRO|LOGIN|REGISTRO */,
+				CC23745B1EF45BA400F658D6 /* VISTAS PRINCIPALES */,
 				CC68BD901E717F8F005CC8E3 /* Assets.xcassets */,
 				CC68BD8E1E717F35005CC8E3 /* Main.storyboard */,
 				CC68BD611E717DFF005CC8E3 /* LaunchScreen.storyboard */,
@@ -150,15 +172,6 @@
 				CC68BD5C1E717DFF005CC8E3 /* invoiceMe.xcdatamodeld */,
 			);
 			path = invoiceMe;
-			sourceTree = "<group>";
-		};
-		CC68BD921E7182FB005CC8E3 /* MODELOS */ = {
-			isa = PBXGroup;
-			children = (
-				CC68BD6C1E717EE7005CC8E3 /* Proyectos.swift */,
-				CC68BD6D1E717EE7005CC8E3 /* Cliente.swift */,
-			);
-			name = MODELOS;
 			sourceTree = "<group>";
 		};
 		CC68BD931E718309005CC8E3 /* CUSTOM_CELLS */ = {
@@ -326,14 +339,13 @@
 				CC68BD5E1E717DFF005CC8E3 /* invoiceMe.xcdatamodeld in Sources */,
 				CC68BD801E717F03005CC8E3 /* IME_CrearProyectoNuevoTVC.swift in Sources */,
 				CC68BD891E717F0E005CC8E3 /* IME_OpcionesTVC.swift in Sources */,
-				CC68BD6E1E717EE7005CC8E3 /* Proyectos.swift in Sources */,
 				CC68BD6B1E717EC8005CC8E3 /* API_Utils.swift in Sources */,
-				CC68BD6F1E717EE7005CC8E3 /* Cliente.swift in Sources */,
 				CC68BD8B1E717F0E005CC8E3 /* IME_NotificacionesTVC.swift in Sources */,
 				CC68BD771E717EF9005CC8E3 /* IME_PrimeraVentanaTBC.swift in Sources */,
 				CC68BD811E717F03005CC8E3 /* IME_ListaClientesTVC.swift in Sources */,
 				CC3BD35A1E760DBB000C5A1D /* API_ServicioProyecto.swift in Sources */,
 				CC3BD3581E75C63E000C5A1D /* API_ServicioEmpresa.swift in Sources */,
+				CC23745D1EF45C4500F658D6 /* IME_ListaClientesPrincipalTVC.swift in Sources */,
 				CC68BD8A1E717F0E005CC8E3 /* IME_EditarPerfilTVC.swift in Sources */,
 				CC68BD7F1E717F03005CC8E3 /* IME_ProyectosTVC.swift in Sources */,
 				CC68BD731E717EF0005CC8E3 /* IME_ProjectBudgeCell.swift in Sources */,

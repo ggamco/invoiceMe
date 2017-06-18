@@ -17,9 +17,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //personalizar ui
+        personalizaUI()
+        
         return true
     }
+    
+    func personalizaUI(){
+        let font = UIFont(name: "HelveticaNeue", size: 16.0)
+        let navBar = UINavigationBar.appearance()
+        let tabBar = UITabBar.appearance()
+        let toolBar = UIToolbar.appearance()
+        let buttonItem = UIBarButtonItem.appearance()
+        
+        navBar.barTintColor = CONSTANTES.COLORES.PRIMARY_COLOR
+        navBar.isTranslucent = false
+        navBar.barStyle = .black
+        navBar.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT
+        navBar.titleTextAttributes = [NSForegroundColorAttributeName : CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT, NSFontAttributeName: font!]
 
+        tabBar.barTintColor = CONSTANTES.COLORES.PRIMARY_COLOR
+        tabBar.barStyle = .black
+        tabBar.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT
+        tabBar.unselectedItemTintColor = CONSTANTES.COLORES.FIRST_TEXT_COLOR
+        
+        toolBar.barTintColor = CONSTANTES.COLORES.PRIMARY_COLOR
+        toolBar.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT
+        
+        buttonItem.setTitleTextAttributes([NSFontAttributeName: font!], for: .normal)
+        
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

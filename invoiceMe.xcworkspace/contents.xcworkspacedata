@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <Group
-      location = "container:"
-      name = "COREDATA_MODELS">
-      <FileRef
-         location = "group:Empresa+CoreDataClass.swift">
-      </FileRef>
-      <FileRef
-         location = "group:Empresa+CoreDataProperties.swift">
-      </FileRef>
-      <FileRef
-         location = "group:Proyecto+CoreDataClass.swift">
-      </FileRef>
-      <FileRef
-         location = "group:Proyecto+CoreDataProperties.swift">
-      </FileRef>
-   </Group>
    <FileRef
       location = "group:invoiceMe.xcodeproj">
    </FileRef>
