@@ -117,7 +117,6 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWillAppear: \(esActualizacion)")
         
         empresas = (servicioEmpresa?.recuperarEmpresas())!
         //empresas.sort{$0.nombre! < $1.nombre!}
@@ -174,11 +173,6 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        /*
-        if esActualizacion {
-            guardarCambios()
-        }
-        */
     }
     
     //MARK: - Funciones Propias

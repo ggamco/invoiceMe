@@ -56,9 +56,6 @@ class IME_ListaClientesPrincipalTVC: UITableViewController {
         cargarEmpresasCD()
         //Recargamos la tabla con los últimos datos
         self.tableView.reloadData()
-        
-        //Asignamos el delegate
-        navigationController?.delegate = self as? UINavigationControllerDelegate
     }
     
     //MARK: - FUNCIONES PROPIAS
@@ -154,22 +151,3 @@ class IME_ListaClientesPrincipalTVC: UITableViewController {
     }
 
 }
-
-//MARK: - Extensión de UINavigationControllerDelegate
-//USADO PARA DEVOLVER DATOS AL VIEWCONTROLLER ANTERIOR
-/*
-extension IME_ListaClientesPrincipalTVC: UINavigationControllerDelegate {
-    
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        
-        if let destinationVC = viewController as? IME_CrearClienteNuevo {
-            if empresas?.count != 0 {
-                destinationVC.myNombreCliente.text = empresas?[empresaSeleccionada].nombre
-                destinationVC.empresa = empresas?[empresaSeleccionada]
-                destinationVC.empresaSelecionada = empresaSeleccionada
-            }
-        }
-    }
-    
-}
-*/
