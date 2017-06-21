@@ -142,8 +142,17 @@ class IME_ListaClientesTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let borrarAction = UITableViewRowAction(style: .default, title: "Borrar") { (action, indexPath) in
-            //TODO: - Al borrar una empresa avisar que se eliminaran todos los proyectos asociados
             let empresa = self.diccionario[self.indexOfNumbers[indexPath.section]]?[indexPath.row]
+            
+            //TODO: - Al borrar una empresa avisar que se eliminaran todos los proyectos asociados
+
+            let servicio = API_ServicioProyecto(contexto: self.contexto)
+            let proyectos = servicio.buscarProyecto(byQuery: NSPredicate(format: "cliente == %@", empresa!))
+            
+            if proyectos.count > 0{
+                //TODO: - avisar al usuario que se eliminaran los proyectos relacionados
+            }
+            
             self.contexto.delete(empresa!)
             self.appDel.saveContext()
             
