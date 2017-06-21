@@ -5,6 +5,7 @@
         <attribute name="ciudad" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="color" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="cpostal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descripcionCorta" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="direccion" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
@@ -24,7 +25,7 @@
         <relationship name="cliente" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Empresa" inverseName="proyectos" inverseEntity="Empresa" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Empresa" positionX="-387" positionY="-423" width="128" height="178"/>
+        <element name="Empresa" positionX="-387" positionY="-423" width="128" height="195"/>
         <element name="Proyecto" positionX="-180" positionY="-306" width="128" height="195"/>
     </elements>
 </model>

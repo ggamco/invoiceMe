@@ -34,7 +34,8 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
     var servicioEmpresa: API_ServicioEmpresa?
     
     var empresas: [Empresa] = []
-    var empresaSelecionada = 0
+    var empresaSeleccionada = 0
+    var seccionSeleccionada = 0
     var esActualizacion = false
     var desactivarGuardar = false
     
@@ -138,8 +139,10 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
             myDescripcion.text = proyecto?.descripcionCorta
             
             if let pos = empresas.index(of: (proyecto?.cliente)!){
-                empresaSelecionada = pos
+                empresaSeleccionada = pos
             }
+            
+            
             
             myTipoFacturacion.selectedSegmentIndex = Int((proyecto?.tipoFacturacion)!)
             
@@ -285,8 +288,16 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
     // MARK: - Navegación SEGUE
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as? IME_ListaClientesTVC
-        destinationVC?.empresaSeleccionada = empresaSelecionada
-        destinationVC?.nombreCliente = proyecto?.cliente?.nombre
+        
+        destinationVC?.empresaSeleccionada = empresaSeleccionada
+        destinationVC?.seccionSeleccionada = seccionSeleccionada
+        
+        if let nombre = proyecto?.cliente?.nombre {
+            destinationVC?.nombreCliente = nombre
+        } else {
+            destinationVC?.nombreCliente = empresa?.nombre
+        }
+        
     }
 
 }

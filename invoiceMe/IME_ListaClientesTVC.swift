@@ -119,15 +119,17 @@ class IME_ListaClientesTVC: UITableViewController {
         let empresaNombre = diccionario[indexOfNumbers[indexPath.section]]?[indexPath.row].nombre
         
         cell.textLabel?.text = empresaNombre
-        
+
         if nombreCliente == empresaNombre {
             cell.accessoryType = .checkmark
             cell.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_DARK
-            
+        } else if seccionSeleccionada != 0 && empresaSeleccionada != 0{
+            if indexPath.section == seccionSeleccionada && indexPath.row == empresaSeleccionada {
+                cell.accessoryType = .checkmark
+                cell.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_DARK
+            }
         } else {
-            
             cell.accessoryType = .none
-            
         }
 
         return cell
@@ -140,16 +142,28 @@ class IME_ListaClientesTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let borrarAction = UITableViewRowAction(style: .default, title: "Borrar") { (action, indexPath) in
-            
-            let empresa = self.empresas?[indexPath.row]
+            //TODO: - Al borrar una empresa avisar que se eliminaran todos los proyectos asociados
+            let empresa = self.diccionario[self.indexOfNumbers[indexPath.section]]?[indexPath.row]
             self.contexto.delete(empresa!)
             self.appDel.saveContext()
             
-            self.empresas?.remove(at: indexPath.row)
+            self.diccionario[self.indexOfNumbers[indexPath.section]]?.remove(at: indexPath.row)
             
-            if self.empresaSeleccionada != 0 {
-                self.empresaSeleccionada = self.empresaSeleccionada - 1
+            if indexPath.row != 0 {
+                self.empresaSeleccionada = indexPath.row - 1
+                self.seccionSeleccionada = indexPath.section
+            } else if indexPath.row == 0 && indexPath.section != 0{
+                if let rows = (self.diccionario[self.indexOfNumbers[indexPath.section - 1]]?.count){
+                    if rows - 1 >= 0{
+                        self.seccionSeleccionada = indexPath.section - 1
+                        self.empresaSeleccionada = indexPath.row - 1
+                    }
+                } else {
+                    self.seccionSeleccionada = 0
+                    self.empresaSeleccionada = 0
+                }
             } else {
+                self.seccionSeleccionada = 0
                 self.empresaSeleccionada = 0
             }
             
@@ -160,8 +174,9 @@ class IME_ListaClientesTVC: UITableViewController {
         let editarAction = UITableViewRowAction(style: .normal, title: "Editar") { (action, indexPath) in
             
             let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "CrearClienteNuevoTVC") as! IME_CrearClienteNuevoTVC
-                
-            destinationVC.cliente = self.empresas?[indexPath.row]
+            
+            //TODO: - corregir la edición pasando el dato del diccionario, no del array
+            destinationVC.cliente = self.diccionario[self.indexOfNumbers[indexPath.section]]?[indexPath.row]
             destinationVC.esActualizacion = true
             destinationVC.title = "Editar Cliente"
                 
@@ -193,9 +208,12 @@ extension IME_ListaClientesTVC: UINavigationControllerDelegate {
         
         if let destinationVC = viewController as? IME_CrearProyectoNuevoTVC {
             if empresas?.count != 0 {
-                destinationVC.myNombreCliente.text = diccionario[indexOfNumbers[seccionSeleccionada]]?[empresaSeleccionada].nombre
-                destinationVC.empresa = diccionario[indexOfNumbers[seccionSeleccionada]]?[empresaSeleccionada]
-                destinationVC.empresaSelecionada = empresaSeleccionada
+                if seccionSeleccionada != 0 && empresaSeleccionada != 0 {
+                    destinationVC.myNombreCliente.text = diccionario[indexOfNumbers[seccionSeleccionada]]?[empresaSeleccionada].nombre
+                    destinationVC.empresa = diccionario[indexOfNumbers[seccionSeleccionada]]?[empresaSeleccionada]
+                }
+                destinationVC.empresaSeleccionada = empresaSeleccionada
+                destinationVC.seccionSeleccionada = seccionSeleccionada
             }
         }
     }
