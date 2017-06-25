@@ -10,7 +10,7 @@ import UIKit
 
 class IME_RegistroVC: UIViewController {
 
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var myNombrePerfil: UITextField!
     @IBOutlet weak var myBarraNombre: UIView!
     @IBOutlet weak var myCorreo: UITextField!
@@ -19,20 +19,33 @@ class IME_RegistroVC: UIViewController {
     @IBOutlet weak var myBarraPassword: UIView!
     @IBOutlet weak var myBotonRegistro: UIButton!
     
-    //MARK: - IBActions
+    // MARK: - IBActions
     @IBAction func registrarUsuario(_ sender: UIButton) {
-        //TODO: - Funcion para registrar usuario en parse
+        // TODO: - Funcion para registrar usuario en parse
     }
     
-    //MARK: - LIFE VC
+    // MARK: - LIFE VC
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Personaliza boton
+        myBotonRegistro.layer.cornerRadius = 5
+        
+        //Delegado de UITextfield
+        myNombrePerfil.delegate = self
+        myCorreo.delegate = self
+        myPassword.delegate = self
+        
+        //Personalizacion del boton back del navigationController
         self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "arrow2")
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow2mask")
         self.navigationController?.navigationBar.backItem?.title = ""
     }
     
+    // MARK: - Funciones de Utilidades
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
     /*
     // MARK: - Navigation
@@ -44,9 +57,9 @@ class IME_RegistroVC: UIViewController {
     }
     */
 
-}//MARK: - Fin de la clase
+}// MARK: - Fin de la clase
 
-//MARK: - Extension del delegado UITextField
+// MARK: - Extension del delegado UITextField
 extension IME_RegistroVC : UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

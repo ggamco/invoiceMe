@@ -10,20 +10,20 @@ import UIKit
 
 class IME_LoginVC: UIViewController {
 
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var myCorreo: UITextField!
     @IBOutlet weak var myBarraCorreo: UIView!
     @IBOutlet weak var myPassword: UITextField!
     @IBOutlet weak var myBarraPassword: UIView!
     @IBOutlet weak var myBotonLogin: UIButton!
     
-    //MARK: - IBActions
+    // MARK: - IBActions
     @IBAction func loginUsuario(_ sender: UIButton) {
-        //TODO: - Funcior para hacer login en parse
+        // TODO: - Funcior para hacer login en parse
     }
     
     
-    //MARK: - LIFE VC
+    // MARK: - LIFE VC
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,14 +36,14 @@ class IME_LoginVC: UIViewController {
         
     }
 
-    //MARK: - Funciones de Utilidades
+    // MARK: - Funciones de Utilidades
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
 
-}//MARK: - Fin de la clase
+}// MARK: - Fin de la clase
 
-//MARK: - Extension del delegado UITextField
+// MARK: - Extension del delegado UITextField
 extension IME_LoginVC : UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

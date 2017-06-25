@@ -11,6 +11,10 @@
 		5EA6D3C21EFFC0D70015C69F /* InteractiveSideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA6D3C11EFFC0D70015C69F /* InteractiveSideMenu.framework */; };
 		5EA6D3C41EFFC26E0015C69F /* IME_RegistroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6D3C31EFFC26E0015C69F /* IME_RegistroVC.swift */; };
 		5EA6D3C61EFFC3490015C69F /* Pods_invoiceMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA6D3C51EFFC3490015C69F /* Pods_invoiceMe.framework */; };
+		5EE423821F0026C50010A556 /* IME_HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE423811F0026C50010A556 /* IME_HostViewController.swift */; };
+		5EE423841F0027000010A556 /* IME_MenuTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE423831F0027000010A556 /* IME_MenuTVC.swift */; };
+		5EE4238A1F005E190010A556 /* IME_PortadaNVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE423891F005E190010A556 /* IME_PortadaNVC.swift */; };
+		5EE4238C1F0063070010A556 /* IME_MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE4238B1F0063070010A556 /* IME_MenuItemCell.swift */; };
 		CC23745D1EF45C4500F658D6 /* IME_ListaClientesPrincipalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23745C1EF45C4500F658D6 /* IME_ListaClientesPrincipalTVC.swift */; };
 		CC3BD3581E75C63E000C5A1D /* API_ServicioEmpresa.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BD3571E75C63E000C5A1D /* API_ServicioEmpresa.swift */; };
 		CC3BD35A1E760DBB000C5A1D /* API_ServicioProyecto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BD3591E760DBB000C5A1D /* API_ServicioProyecto.swift */; };
@@ -45,6 +49,10 @@
 		5EA6D3C11EFFC0D70015C69F /* InteractiveSideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InteractiveSideMenu.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-gmadscsvlyqjzlgjqoxfxeumshgf/Build/Products/Debug-iphonesimulator/InteractiveSideMenu/InteractiveSideMenu.framework"; sourceTree = "<group>"; };
 		5EA6D3C31EFFC26E0015C69F /* IME_RegistroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_RegistroVC.swift; sourceTree = "<group>"; };
 		5EA6D3C51EFFC3490015C69F /* Pods_invoiceMe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_invoiceMe.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-gmadscsvlyqjzlgjqoxfxeumshgf/Build/Products/Debug-iphonesimulator/Pods_invoiceMe.framework"; sourceTree = "<group>"; };
+		5EE423811F0026C50010A556 /* IME_HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_HostViewController.swift; sourceTree = "<group>"; };
+		5EE423831F0027000010A556 /* IME_MenuTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_MenuTVC.swift; sourceTree = "<group>"; };
+		5EE423891F005E190010A556 /* IME_PortadaNVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_PortadaNVC.swift; sourceTree = "<group>"; };
+		5EE4238B1F0063070010A556 /* IME_MenuItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_MenuItemCell.swift; sourceTree = "<group>"; };
 		66A177C2C5AD8418A97ADB29 /* Pods_invoiceMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_invoiceMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A8D12782F6E96162A1B5E3 /* Pods-invoiceMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-invoiceMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-invoiceMe/Pods-invoiceMe.debug.xcconfig"; sourceTree = "<group>"; };
 		B5C10125A2879F48CCB5DDF9 /* Pods-invoiceMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-invoiceMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-invoiceMe/Pods-invoiceMe.release.xcconfig"; sourceTree = "<group>"; };
@@ -95,6 +103,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5EE423881F005DB30010A556 /* MENU */ = {
+			isa = PBXGroup;
+			children = (
+				5EE423811F0026C50010A556 /* IME_HostViewController.swift */,
+				5EE423831F0027000010A556 /* IME_MenuTVC.swift */,
+				5EE4238B1F0063070010A556 /* IME_MenuItemCell.swift */,
+				5EE423891F005E190010A556 /* IME_PortadaNVC.swift */,
+			);
+			name = MENU;
+			sourceTree = "<group>";
+		};
 		AD72E7291F434B48007C976B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +192,7 @@
 			children = (
 				CC68BD551E717DFF005CC8E3 /* AppDelegate.swift */,
 				CCBE72FE1E718E9B00BA8F28 /* APIS */,
+				5EE423881F005DB30010A556 /* MENU */,
 				CC23745A1EF45B6300F658D6 /* INTRO|LOGIN|REGISTRO */,
 				CC23745B1EF45BA400F658D6 /* VISTAS PRINCIPALES */,
 				CC68BD901E717F8F005CC8E3 /* Assets.xcassets */,
@@ -346,14 +366,18 @@
 				CC68BD8C1E717F0E005CC8E3 /* IME_EditarEmpresaTVC.swift in Sources */,
 				CC68BD791E717EF9005CC8E3 /* IME_HorasTVC.swift in Sources */,
 				CC68BD821E717F03005CC8E3 /* IME_CrearClienteNuevoTVC.swift in Sources */,
+				5EE4238A1F005E190010A556 /* IME_PortadaNVC.swift in Sources */,
 				5EA6D3C01EFFBAB70015C69F /* IME_LoginVC.swift in Sources */,
 				CC68BD561E717DFF005CC8E3 /* AppDelegate.swift in Sources */,
 				CC68BD831E717F03005CC8E3 /* IME_ColorCorporativoCCCell.swift in Sources */,
 				CC68BD5E1E717DFF005CC8E3 /* invoiceMe.xcdatamodeld in Sources */,
+				5EE423841F0027000010A556 /* IME_MenuTVC.swift in Sources */,
 				CC68BD801E717F03005CC8E3 /* IME_CrearProyectoNuevoTVC.swift in Sources */,
+				5EE423821F0026C50010A556 /* IME_HostViewController.swift in Sources */,
 				CC68BD891E717F0E005CC8E3 /* IME_OpcionesTVC.swift in Sources */,
 				CC68BD6B1E717EC8005CC8E3 /* API_Utils.swift in Sources */,
 				5EA6D3C41EFFC26E0015C69F /* IME_RegistroVC.swift in Sources */,
+				5EE4238C1F0063070010A556 /* IME_MenuItemCell.swift in Sources */,
 				CC68BD8B1E717F0E005CC8E3 /* IME_NotificacionesTVC.swift in Sources */,
 				CC68BD771E717EF9005CC8E3 /* IME_PrimeraVentanaTBC.swift in Sources */,
 				CC68BD811E717F03005CC8E3 /* IME_ListaClientesTVC.swift in Sources */,
