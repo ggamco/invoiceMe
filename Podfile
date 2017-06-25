@@ -6,4 +6,5 @@ target 'invoiceMe' do
     pod 'SwiftyJSON'
     pod 'Alamofire'
     pod 'PhoneNumberKit'
+    pod 'InteractiveSideMenu'
 end

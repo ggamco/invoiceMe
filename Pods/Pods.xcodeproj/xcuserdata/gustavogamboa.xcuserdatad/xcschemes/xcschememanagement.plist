@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>InteractiveSideMenu.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>PhoneNumberKit.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -37,12 +42,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>7D6343047585E859A1BEE8D1C74D87E7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7D742D30C64D2B615B627BF430DF9273</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>8C5BD10883BD185426DD737247F56DEC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DA4CFEBC7883D4CE7E6AE34914B98587</key>
 		<dict>
 			<key>primary</key>
 			<true/>

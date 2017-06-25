@@ -1,23 +1,26 @@
 PODS:
-  - Alamofire (4.4.0)
-  - PhoneNumberKit (1.2.2):
-    - PhoneNumberKit/PhoneNumberKitCore (= 1.2.2)
-    - PhoneNumberKit/UIKit (= 1.2.2)
-  - PhoneNumberKit/PhoneNumberKitCore (1.2.2)
-  - PhoneNumberKit/UIKit (1.2.2):
+  - Alamofire (4.5.0)
+  - InteractiveSideMenu (2.0)
+  - PhoneNumberKit (1.2.3):
+    - PhoneNumberKit/PhoneNumberKitCore (= 1.2.3)
+    - PhoneNumberKit/UIKit (= 1.2.3)
+  - PhoneNumberKit/PhoneNumberKitCore (1.2.3)
+  - PhoneNumberKit/UIKit (1.2.3):
     - PhoneNumberKit/PhoneNumberKitCore
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire
+  - InteractiveSideMenu
   - PhoneNumberKit
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  PhoneNumberKit: ffae8f18fb78c1425c7af973711b0b0fd4f4104f
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  InteractiveSideMenu: 337f6d95a3f6543c517a888893531430e18553b3
+  PhoneNumberKit: 1e5cca669113fc361a8c82ec1ee559c62b8cd0f7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 0e39844bea394112e2a24b4298fd95ac5adbfa6a
+PODFILE CHECKSUM: 48c62a70cc911a58a3ae477d5783201a409b7c37
 
-COCOAPODS: 1.2.0.rc.1
+COCOAPODS: 1.2.0
