@@ -47,6 +47,8 @@ class IME_ListaClientesTVC: UITableViewController {
         
         let indexNumbers = "A B C D E F G H I J K L M N Ñ O P Q R S T U V W X Y Z #"
         indexOfNumbers = indexNumbers.components(separatedBy: " ")
+        
+        self.navigationController?.navigationBar.topItem?.title = ""
     }
     
     //Usamos este metodo propio del ciclo de vida del VC para cargar datos siempre que vuelva a visualizarse
@@ -60,6 +62,7 @@ class IME_ListaClientesTVC: UITableViewController {
         
         //Asignamos el delegate
         navigationController?.delegate = self
+        self.navigationController?.navigationBar.topItem?.title = ""
     }
 
     //MARK: - FUNCIONES PROPIAS
@@ -112,7 +115,6 @@ class IME_ListaClientesTVC: UITableViewController {
         
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "clienteCell", for: indexPath)
 
@@ -217,10 +219,15 @@ extension IME_ListaClientesTVC: UINavigationControllerDelegate {
         
         if let destinationVC = viewController as? IME_CrearProyectoNuevoTVC {
             if empresas?.count != 0 {
-                if seccionSeleccionada != 0 && empresaSeleccionada != 0 {
-                    destinationVC.myNombreCliente.text = diccionario[indexOfNumbers[seccionSeleccionada]]?[empresaSeleccionada].nombre
-                    destinationVC.empresa = diccionario[indexOfNumbers[seccionSeleccionada]]?[empresaSeleccionada]
-                }
+                destinationVC.myNombreCliente.text = diccionario[indexOfNumbers[seccionSeleccionada]]?[empresaSeleccionada].nombre
+                destinationVC.empresa = diccionario[indexOfNumbers[seccionSeleccionada]]?[empresaSeleccionada]
+                destinationVC.empresaSeleccionada = empresaSeleccionada
+                destinationVC.seccionSeleccionada = seccionSeleccionada
+            }
+        } else if let destinationVC = viewController as? IME_CrearDocumentoTVC {
+            if empresas?.count != 0 {
+                destinationVC.myNombreReceptor.text = diccionario[indexOfNumbers[seccionSeleccionada]]?[empresaSeleccionada].nombre
+                destinationVC.receptor = diccionario[indexOfNumbers[seccionSeleccionada]]?[empresaSeleccionada]
                 destinationVC.empresaSeleccionada = empresaSeleccionada
                 destinationVC.seccionSeleccionada = seccionSeleccionada
             }

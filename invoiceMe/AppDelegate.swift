@@ -37,8 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navBar.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT
         navBar.titleTextAttributes = [NSForegroundColorAttributeName : CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT, NSFontAttributeName: font!]
         
-        //navBar.backIndicatorImage = UIImage(named: "arrow2")
-        //navBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow2mask")
+        navBar.backIndicatorImage = UIImage(named: "arrow2")
+        navBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow2mask")
 
         tabBar.barTintColor = CONSTANTES.COLORES.PRIMARY_COLOR
         tabBar.barStyle = .black

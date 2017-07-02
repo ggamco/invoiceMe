@@ -7,6 +7,14 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Alamofire
+import WebKit
+import InteractiveSideMenu
+
+class IME_ProyectosNAV: UINavigationController, SideMenuItemContent {
+    
+}
 
 class IME_ProyectosTVC: UITableViewController {
 
@@ -24,6 +32,12 @@ class IME_ProyectosTVC: UITableViewController {
     var diccionario: [String : [Proyecto]] = [:]
     
     //MARK: - IBActions
+    @IBAction func openMenu(_ sender: Any) {
+        if let navigationViewController = self.navigationController as? SideMenuItemContent {
+            navigationViewController.showSideMenu()
+        }
+    }
+    
     @IBAction func crearProyecto(_ sender: UIBarButtonItem) {
         let destinoVC = storyboard?.instantiateViewController(withIdentifier: "CrearProyectoNuevoTVC") as! IME_CrearProyectoNuevoTVC
         
@@ -52,7 +66,36 @@ class IME_ProyectosTVC: UITableViewController {
         proyectos = (servicioProyecto?.recuperarProyectos())!
         ordenarProyectosPorEmpresa()
         tableView.reloadData()
-
+        
+        if proyectos.count != 0 {
+            
+            let parameter = proyectos[0].toJSON()
+            
+            print(parameter)
+            
+            let url = URL(string: "http://localhost:8080/PDFCreator/PDF")
+            /*
+            Alamofire.download(url!, method: .post, parameters: parameter, encoding: JSONEncoding.default).response(completionHandler: { (data) in
+                print(data)
+            })
+            */
+            let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
+            print("destino: \(String(describing: pdfUrl()))")
+            
+            Alamofire.download(
+                url!,
+                method: .post,
+                parameters: parameter,
+                encoding: JSONEncoding.default,
+                headers: nil,
+                to: destination).downloadProgress(closure: { (progress) in
+                    //progress closure
+                    print("Progress: \(progress)")
+                }).responseData(completionHandler: { (data) in
+                    
+                })
+        
+        }
     }
 
     //MARK: - Recupera empresas

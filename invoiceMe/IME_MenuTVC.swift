@@ -11,9 +11,11 @@ import InteractiveSideMenu
 
 class IME_MenuTVC: MenuViewController {
 
-    var listado : [Int : [String]] = [:]
+    //var listado : [Int : [String]] = [:]
+    var listado : [String] = []
     var lastSectionSelected = 0
     var lastRowSelected = 0
+    var contadorTag: Int!
     
     // MARK: - IBOutlets
     @IBOutlet weak var myImagenPerfil: UIImageView!
@@ -32,14 +34,27 @@ class IME_MenuTVC: MenuViewController {
         myCerrarSesionBTN.layer.cornerRadius = 5
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     // MARK: - Funciones privadas
-    private func cargarListado() -> [Int : [String]] {
+    private func cargarListado() -> [String] {
+        /*
         var list : [Int : [String]] = [:]
         list[0] = ["Inicio"]
         list[1] = ["Proyectos", "Facturas", "Presupuestos"]
-        list[2] = ["Clientes", "Conceptos", "Gastos"]
+        list[2] = ["Clientes", "Productos", "Gastos"]
         list[3] = ["Informes"]
         list[4] = ["Opciones", "Ayuda", "Enviar Comentarios"]
+        return list
+         */
+        let list : [String] = ["Inicio", "Proyectos",
+                               "Facturas", "Presupuestos",
+                               "Clientes", "Productos",
+                               "Gastos", "Informes",
+                               "Opciones", "Ayuda",
+                               "Enviar Comentarios"]
         return list
     }
 
@@ -49,16 +64,20 @@ class IME_MenuTVC: MenuViewController {
 extension IME_MenuTVC : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return listado.count
+        //return listado.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (listado[section]?.count)!
+        //return (listado[section]?.count)!
+        return listado.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! IME_MenuItemCell
-        cell.myMenuItem.text = listado[indexPath.section]?[indexPath.row]
+        //cell.myMenuItem.text = listado[indexPath.section]?[indexPath.row]
+        cell.myMenuItem.text = listado[indexPath.row]
         
         if(lastSectionSelected == indexPath.section && lastRowSelected == indexPath.row){
             cell.mySelectedItem.isHidden = false
@@ -66,6 +85,7 @@ extension IME_MenuTVC : UITableViewDelegate, UITableViewDataSource {
         else {
             cell.mySelectedItem.isHidden = true
         }
+        
         return cell
     }
     
@@ -78,9 +98,8 @@ extension IME_MenuTVC : UITableViewDelegate, UITableViewDataSource {
         guard let menuContainerViewController = self.menuContainerViewController else {
             return
         }
-        
         // TODO: - Conseguir llamar al controlador correcto usando seccion y fila selecionada
-        menuContainerViewController.selectContentViewController(menuContainerViewController.contentViewControllers[0])
+        menuContainerViewController.selectContentViewController(menuContainerViewController.contentViewControllers[indexPath.row])
         
         lastSectionSelected = indexPath.section
         lastRowSelected = indexPath.row

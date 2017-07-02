@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Documento" representedClassName="Documento" syncable="YES" codeGenerationType="class">
+        <attribute name="localPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numeroDocumento" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tipoDocumento" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="emisor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Emisor" inverseName="documento" inverseEntity="Emisor" syncable="YES"/>
+        <relationship name="productos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Producto" inverseName="documento" inverseEntity="Producto" syncable="YES"/>
+        <relationship name="receptor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Empresa" inverseName="receptor" inverseEntity="Empresa" syncable="YES"/>
+    </entity>
+    <entity name="Emisor" representedClassName="Emisor" syncable="YES" codeGenerationType="class">
+        <attribute name="cif" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ciudad" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="direccion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fecha" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iban" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zipCode" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="documento" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Documento" inverseName="emisor" inverseEntity="Documento" syncable="YES"/>
+    </entity>
     <entity name="Empresa" representedClassName="Empresa" syncable="YES" codeGenerationType="class">
         <attribute name="cif" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ciudad" optional="YES" attributeType="String" syncable="YES"/>
@@ -11,6 +30,18 @@
         <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="telefono" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="proyectos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Proyecto" inverseName="cliente" inverseEntity="Proyecto" syncable="YES"/>
+        <relationship name="receptor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Documento" inverseName="receptor" inverseEntity="Documento" syncable="YES"/>
+    </entity>
+    <entity name="Producto" representedClassName="Producto" syncable="YES" codeGenerationType="class">
+        <attribute name="cantidad" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="codigo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descripcion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="exentoIrpf" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="exentoIva" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="irpf" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="iva" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="precio" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="documento" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Documento" inverseName="productos" inverseEntity="Documento" syncable="YES"/>
     </entity>
     <entity name="Proyecto" representedClassName="Proyecto" syncable="YES" codeGenerationType="class">
         <attribute name="descripcionCorta" optional="YES" attributeType="String" syncable="YES"/>
@@ -25,7 +56,10 @@
         <relationship name="cliente" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Empresa" inverseName="proyectos" inverseEntity="Empresa" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Empresa" positionX="-387" positionY="-423" width="128" height="195"/>
-        <element name="Proyecto" positionX="-180" positionY="-306" width="128" height="195"/>
+        <element name="Empresa" positionX="-470" positionY="-354" width="128" height="208"/>
+        <element name="Proyecto" positionX="-207" positionY="-387" width="128" height="195"/>
+        <element name="Emisor" positionX="-225" positionY="-63" width="128" height="165"/>
+        <element name="Producto" positionX="-702" positionY="-261" width="128" height="180"/>
+        <element name="Documento" positionX="-504" positionY="0" width="128" height="148"/>
     </elements>
 </model>

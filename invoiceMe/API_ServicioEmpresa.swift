@@ -6,10 +6,9 @@
 //  Copyright © 2017 gmbDesign. All rights reserved.
 //
 
-import UIKit
 import CoreData
 
-class API_ServicioEmpresa: NSObject {
+class API_ServicioEmpresa {
 
     //Contexto de la aplicación necesario para almacenar datos en CoreData
     var contexto: NSManagedObjectContext

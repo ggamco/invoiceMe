@@ -44,7 +44,8 @@ class IME_HostViewController: MenuContainerViewController {
     }
     
     private func contentControllers() -> [UIViewController] {
-        let controllersIdentifiers = ["Nav"]
+        let controllersIdentifiers = ["Inicio", "Proyectos",
+                                      "Clientes", "Opciones"]
         var contentList = [UIViewController]()
         
         // Cargamos las vistas usando sus identificadores

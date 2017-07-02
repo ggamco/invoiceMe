@@ -48,4 +48,13 @@ func muestraAlertVC (titulo: String, mensaje: String) -> UIAlertController{
     
 }
 
-
+func pdfUrl() -> URL? {
+    if let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first{
+        
+        let customUrl = URL(fileURLWithPath: documentDirectory)
+        return customUrl.appendingPathComponent("")
+        
+    } else {
+        return nil
+    }
+}

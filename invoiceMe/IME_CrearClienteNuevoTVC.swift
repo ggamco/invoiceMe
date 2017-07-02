@@ -70,9 +70,6 @@ class IME_CrearClienteNuevoTVC: UITableViewController {
         
         myTelefonoCliente.addTarget(self, action: #selector(formatearTelefono), for: UIControlEvents.editingDidBegin)
         
-        //let _ = phoneNumberKit.countries(withCode: 34)
-        //let _ = phoneNumberKit.countryCode(for: "ES")
-        //let _ = PartialFormatter().formatPartial(myTelefonoCliente.text!)
     }
     
     override func viewWillAppear(_ animated: Bool) {

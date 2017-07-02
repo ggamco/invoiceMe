@@ -9,14 +9,109 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "invoiceMe/IME_ListaClientesTVC.swift"
-            timestampString = "519774316.439759"
+            filePath = "invoiceMe/WEB.swift"
+            timestampString = "520727023.849259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "tableView(_:editActionsForRowAt:)"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "crearDoc()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "invoiceMe/IME_CrearDocumentoTVC.swift"
+            timestampString = "520727923.225131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "prepare(for:sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "invoiceMe/IME_ServicioWebVC.swift"
+            timestampString = "520729480.883801"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "crearDoc()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "invoiceMe/IME_ListaClientesTVC.swift"
+            timestampString = "520728916.461417"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "navigationController(_:willShow:animated:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "invoiceMe.IME_ListaClientesTVC.navigationController (__ObjC.UINavigationController, willShow : __ObjC.UIViewController, animated : Swift.Bool) -&gt; ()"
+                  moduleName = "invoiceMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gustavogamboa/XcodeProjects/invoiceMe/invoiceMe/IME_ListaClientesTVC.swift"
+                  timestampString = "520728936.46761"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
+                  offsetFromSymbolStart = "2032">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "invoiceMe.IME_ListaClientesTVC.navigationController (__ObjC.UINavigationController, willShow : __ObjC.UIViewController, animated : Swift.Bool) -&gt; ()"
+                  moduleName = "invoiceMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gustavogamboa/XcodeProjects/invoiceMe/invoiceMe/IME_ListaClientesTVC.swift"
+                  timestampString = "520728936.471564"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
+                  offsetFromSymbolStart = "2044">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "invoiceMe.IME_ListaClientesTVC.navigationController (__ObjC.UINavigationController, willShow : __ObjC.UIViewController, animated : Swift.Bool) -&gt; ()"
+                  moduleName = "invoiceMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gustavogamboa/XcodeProjects/invoiceMe/invoiceMe/IME_ListaClientesTVC.swift"
+                  timestampString = "520728936.475872"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
+                  offsetFromSymbolStart = "2152">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

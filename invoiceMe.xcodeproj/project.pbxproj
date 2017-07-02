@@ -15,6 +15,18 @@
 		5EE423841F0027000010A556 /* IME_MenuTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE423831F0027000010A556 /* IME_MenuTVC.swift */; };
 		5EE4238A1F005E190010A556 /* IME_PortadaNVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE423891F005E190010A556 /* IME_PortadaNVC.swift */; };
 		5EE4238C1F0063070010A556 /* IME_MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE4238B1F0063070010A556 /* IME_MenuItemCell.swift */; };
+		5EF2CCD81F06C0E0006184FE /* ProyectoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCD71F06C0E0006184FE /* ProyectoManager.swift */; };
+		5EF2CCDA1F06C351006184FE /* EmpresaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCD91F06C351006184FE /* EmpresaManager.swift */; };
+		5EF2CCDC1F06F370006184FE /* EmisorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCDB1F06F370006184FE /* EmisorManager.swift */; };
+		5EF2CCDE1F06F4F6006184FE /* ProductoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCDD1F06F4F6006184FE /* ProductoManager.swift */; };
+		5EF2CCE01F06F5F1006184FE /* DocumentoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCDF1F06F5F1006184FE /* DocumentoManager.swift */; };
+		5EF2CCE21F077E51006184FE /* API_ServicioDocumento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCE11F077E51006184FE /* API_ServicioDocumento.swift */; };
+		5EF2CCE51F079522006184FE /* WEB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCE41F079522006184FE /* WEB.swift */; };
+		5EF2CCE71F07EEF5006184FE /* API_ServicioProducto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCE61F07EEF5006184FE /* API_ServicioProducto.swift */; };
+		5EF2CCE91F07F390006184FE /* API_ServicioEmisor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCE81F07F390006184FE /* API_ServicioEmisor.swift */; };
+		5EF2CCED1F08F93C006184FE /* IME_CrearDocumentoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCEC1F08F93C006184FE /* IME_CrearDocumentoTVC.swift */; };
+		5EF2CCF01F09633E006184FE /* IME_EmisorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCEF1F09633E006184FE /* IME_EmisorTVC.swift */; };
+		5EF2CCF21F09AAB1006184FE /* IME_ServicioWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCF11F09AAB1006184FE /* IME_ServicioWebVC.swift */; };
 		CC23745D1EF45C4500F658D6 /* IME_ListaClientesPrincipalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23745C1EF45C4500F658D6 /* IME_ListaClientesPrincipalTVC.swift */; };
 		CC3BD3581E75C63E000C5A1D /* API_ServicioEmpresa.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BD3571E75C63E000C5A1D /* API_ServicioEmpresa.swift */; };
 		CC3BD35A1E760DBB000C5A1D /* API_ServicioProyecto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BD3591E760DBB000C5A1D /* API_ServicioProyecto.swift */; };
@@ -53,6 +65,18 @@
 		5EE423831F0027000010A556 /* IME_MenuTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_MenuTVC.swift; sourceTree = "<group>"; };
 		5EE423891F005E190010A556 /* IME_PortadaNVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_PortadaNVC.swift; sourceTree = "<group>"; };
 		5EE4238B1F0063070010A556 /* IME_MenuItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_MenuItemCell.swift; sourceTree = "<group>"; };
+		5EF2CCD71F06C0E0006184FE /* ProyectoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProyectoManager.swift; sourceTree = "<group>"; };
+		5EF2CCD91F06C351006184FE /* EmpresaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmpresaManager.swift; sourceTree = "<group>"; };
+		5EF2CCDB1F06F370006184FE /* EmisorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmisorManager.swift; sourceTree = "<group>"; };
+		5EF2CCDD1F06F4F6006184FE /* ProductoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductoManager.swift; sourceTree = "<group>"; };
+		5EF2CCDF1F06F5F1006184FE /* DocumentoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentoManager.swift; sourceTree = "<group>"; };
+		5EF2CCE11F077E51006184FE /* API_ServicioDocumento.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_ServicioDocumento.swift; sourceTree = "<group>"; };
+		5EF2CCE41F079522006184FE /* WEB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WEB.swift; sourceTree = "<group>"; };
+		5EF2CCE61F07EEF5006184FE /* API_ServicioProducto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_ServicioProducto.swift; sourceTree = "<group>"; };
+		5EF2CCE81F07F390006184FE /* API_ServicioEmisor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_ServicioEmisor.swift; sourceTree = "<group>"; };
+		5EF2CCEC1F08F93C006184FE /* IME_CrearDocumentoTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_CrearDocumentoTVC.swift; sourceTree = "<group>"; };
+		5EF2CCEF1F09633E006184FE /* IME_EmisorTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_EmisorTVC.swift; sourceTree = "<group>"; };
+		5EF2CCF11F09AAB1006184FE /* IME_ServicioWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_ServicioWebVC.swift; sourceTree = "<group>"; };
 		66A177C2C5AD8418A97ADB29 /* Pods_invoiceMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_invoiceMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A8D12782F6E96162A1B5E3 /* Pods-invoiceMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-invoiceMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-invoiceMe/Pods-invoiceMe.debug.xcconfig"; sourceTree = "<group>"; };
 		B5C10125A2879F48CCB5DDF9 /* Pods-invoiceMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-invoiceMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-invoiceMe/Pods-invoiceMe.release.xcconfig"; sourceTree = "<group>"; };
@@ -114,6 +138,44 @@
 			name = MENU;
 			sourceTree = "<group>";
 		};
+		5EF2CCE31F078297006184FE /* MODEL+MAPPING */ = {
+			isa = PBXGroup;
+			children = (
+				5EF2CCD71F06C0E0006184FE /* ProyectoManager.swift */,
+				5EF2CCD91F06C351006184FE /* EmpresaManager.swift */,
+				5EF2CCDB1F06F370006184FE /* EmisorManager.swift */,
+				5EF2CCDD1F06F4F6006184FE /* ProductoManager.swift */,
+				5EF2CCDF1F06F5F1006184FE /* DocumentoManager.swift */,
+			);
+			name = "MODEL+MAPPING";
+			sourceTree = "<group>";
+		};
+		5EF2CCEA1F08DA61006184FE /* CLIENTES */ = {
+			isa = PBXGroup;
+			children = (
+				CC23745C1EF45C4500F658D6 /* IME_ListaClientesPrincipalTVC.swift */,
+				CC68BD7D1E717F03005CC8E3 /* IME_CrearClienteNuevoTVC.swift */,
+			);
+			name = CLIENTES;
+			sourceTree = "<group>";
+		};
+		5EF2CCEB1F08DA6F006184FE /* HORAS */ = {
+			isa = PBXGroup;
+			children = (
+				CC68BD761E717EF9005CC8E3 /* IME_HorasTVC.swift */,
+			);
+			name = HORAS;
+			sourceTree = "<group>";
+		};
+		5EF2CCEE1F08F942006184FE /* CREAR DOCUMENTO */ = {
+			isa = PBXGroup;
+			children = (
+				5EF2CCEC1F08F93C006184FE /* IME_CrearDocumentoTVC.swift */,
+				5EF2CCEF1F09633E006184FE /* IME_EmisorTVC.swift */,
+			);
+			name = "CREAR DOCUMENTO";
+			sourceTree = "<group>";
+		};
 		AD72E7291F434B48007C976B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,11 +199,13 @@
 			isa = PBXGroup;
 			children = (
 				CC68BD741E717EF9005CC8E3 /* IME_PrimeraVentanaTBC.swift */,
-				CC68BD761E717EF9005CC8E3 /* IME_HorasTVC.swift */,
-				CC23745C1EF45C4500F658D6 /* IME_ListaClientesPrincipalTVC.swift */,
+				5EF2CCEB1F08DA6F006184FE /* HORAS */,
 				CC3BD3541E74B16C000C5A1D /* PROYECTOS */,
-				CC68BD7D1E717F03005CC8E3 /* IME_CrearClienteNuevoTVC.swift */,
+				5EF2CCEA1F08DA61006184FE /* CLIENTES */,
+				5EF2CCEE1F08F942006184FE /* CREAR DOCUMENTO */,
 				CC23745E1EF45C6300F658D6 /* OPCIONES */,
+				5EF2CCE41F079522006184FE /* WEB.swift */,
+				5EF2CCF11F09AAB1006184FE /* IME_ServicioWebVC.swift */,
 			);
 			name = "VISTAS PRINCIPALES";
 			sourceTree = "<group>";
@@ -191,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				CC68BD551E717DFF005CC8E3 /* AppDelegate.swift */,
+				5EF2CCE31F078297006184FE /* MODEL+MAPPING */,
 				CCBE72FE1E718E9B00BA8F28 /* APIS */,
 				5EE423881F005DB30010A556 /* MENU */,
 				CC23745A1EF45B6300F658D6 /* INTRO|LOGIN|REGISTRO */,
@@ -218,8 +283,11 @@
 			isa = PBXGroup;
 			children = (
 				CC68BD6A1E717EC8005CC8E3 /* API_Utils.swift */,
+				5EF2CCE11F077E51006184FE /* API_ServicioDocumento.swift */,
+				5EF2CCE81F07F390006184FE /* API_ServicioEmisor.swift */,
 				CC3BD3571E75C63E000C5A1D /* API_ServicioEmpresa.swift */,
 				CC3BD3591E760DBB000C5A1D /* API_ServicioProyecto.swift */,
+				5EF2CCE61F07EEF5006184FE /* API_ServicioProducto.swift */,
 			);
 			name = APIS;
 			sourceTree = "<group>";
@@ -362,19 +430,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EF2CCF01F09633E006184FE /* IME_EmisorTVC.swift in Sources */,
+				5EF2CCE71F07EEF5006184FE /* API_ServicioProducto.swift in Sources */,
 				CC68BD721E717EF0005CC8E3 /* IME_ProjectBasicCell.swift in Sources */,
+				5EF2CCE21F077E51006184FE /* API_ServicioDocumento.swift in Sources */,
+				5EF2CCDE1F06F4F6006184FE /* ProductoManager.swift in Sources */,
+				5EF2CCE91F07F390006184FE /* API_ServicioEmisor.swift in Sources */,
 				CC68BD8C1E717F0E005CC8E3 /* IME_EditarEmpresaTVC.swift in Sources */,
+				5EF2CCD81F06C0E0006184FE /* ProyectoManager.swift in Sources */,
 				CC68BD791E717EF9005CC8E3 /* IME_HorasTVC.swift in Sources */,
 				CC68BD821E717F03005CC8E3 /* IME_CrearClienteNuevoTVC.swift in Sources */,
 				5EE4238A1F005E190010A556 /* IME_PortadaNVC.swift in Sources */,
 				5EA6D3C01EFFBAB70015C69F /* IME_LoginVC.swift in Sources */,
+				5EF2CCDA1F06C351006184FE /* EmpresaManager.swift in Sources */,
 				CC68BD561E717DFF005CC8E3 /* AppDelegate.swift in Sources */,
 				CC68BD831E717F03005CC8E3 /* IME_ColorCorporativoCCCell.swift in Sources */,
 				CC68BD5E1E717DFF005CC8E3 /* invoiceMe.xcdatamodeld in Sources */,
+				5EF2CCE01F06F5F1006184FE /* DocumentoManager.swift in Sources */,
+				5EF2CCF21F09AAB1006184FE /* IME_ServicioWebVC.swift in Sources */,
 				5EE423841F0027000010A556 /* IME_MenuTVC.swift in Sources */,
 				CC68BD801E717F03005CC8E3 /* IME_CrearProyectoNuevoTVC.swift in Sources */,
+				5EF2CCE51F079522006184FE /* WEB.swift in Sources */,
 				5EE423821F0026C50010A556 /* IME_HostViewController.swift in Sources */,
+				5EF2CCED1F08F93C006184FE /* IME_CrearDocumentoTVC.swift in Sources */,
 				CC68BD891E717F0E005CC8E3 /* IME_OpcionesTVC.swift in Sources */,
+				5EF2CCDC1F06F370006184FE /* EmisorManager.swift in Sources */,
 				CC68BD6B1E717EC8005CC8E3 /* API_Utils.swift in Sources */,
 				5EA6D3C41EFFC26E0015C69F /* IME_RegistroVC.swift in Sources */,
 				5EE4238C1F0063070010A556 /* IME_MenuItemCell.swift in Sources */,

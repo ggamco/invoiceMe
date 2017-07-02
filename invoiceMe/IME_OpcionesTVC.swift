@@ -7,17 +7,27 @@
 //
 
 import UIKit
+import InteractiveSideMenu
+
+class IME_OpcionesNAV: UINavigationController, SideMenuItemContent {
+    
+}
 
 class IME_OpcionesTVC: UITableViewController {
 
     let mySwitch = UISwitch()
     
-    
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var myImagenPerfil: UIImageView!
     @IBOutlet weak var myPermitirPushCell: UITableViewCell!
     @IBOutlet weak var myPushOptionsCell: UITableViewCell!
     
+    // MARK: - IBActions
+    @IBAction func openMenu(_ sender: Any) {
+        if let navigationViewController = self.navigationController as? SideMenuItemContent {
+            navigationViewController.showSideMenu()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

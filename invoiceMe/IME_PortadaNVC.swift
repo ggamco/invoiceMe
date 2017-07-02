@@ -13,7 +13,7 @@ class IME_PortadaNVC: UINavigationController, SideMenuItemContent {
     
 }
 
-class InnerViewController: UIViewController {
+class IME_InnerPortadaVC: UIViewController {
     
     @IBAction func openMenu(_ sender: Any) {
         if let navigationViewController = self.navigationController as? SideMenuItemContent {
