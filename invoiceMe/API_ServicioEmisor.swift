@@ -20,22 +20,24 @@ class ServicioEmisor {
     
     //MARK: - Crear Emisor
     func crearEmisor(nombre: String,
-                     fecha: String,
+                     email: String,
                      direccion: String,
                      zipCode: Int,
                      ciudad: String,
                      cif: String,
-                     iban: String) -> Emisor {
+                     iban: String,
+                     telefono: String) -> Emisor {
         
         let nuevoEmisor = NSEntityDescription.insertNewObject(forEntityName: "Emisor", into: contexto) as! Emisor
         
         nuevoEmisor.nombre = nombre
-        nuevoEmisor.fecha = fecha
+        nuevoEmisor.email = email
         nuevoEmisor.direccion = direccion
         nuevoEmisor.zipCode = Int16(zipCode)
         nuevoEmisor.ciudad = ciudad
         nuevoEmisor.cif = cif
         nuevoEmisor.iban = iban
+        nuevoEmisor.telefono = telefono
         
         return nuevoEmisor
         
@@ -85,12 +87,13 @@ class ServicioEmisor {
         
         if let emisor = buscarEmisor(by: emisorActualizado.objectID) {
             emisor.nombre = emisorActualizado.nombre
-            emisor.fecha = emisorActualizado.fecha
+            emisor.email = emisorActualizado.email
             emisor.direccion = emisorActualizado.direccion
             emisor.zipCode = Int16(emisorActualizado.zipCode)
             emisor.ciudad = emisorActualizado.ciudad
             emisor.cif = emisorActualizado.cif
             emisor.iban = emisorActualizado.iban
+            emisor.telefono = emisorActualizado.telefono
         }
         
     }

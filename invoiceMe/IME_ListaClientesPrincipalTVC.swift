@@ -16,8 +16,7 @@ class IME_ListaClientesNAV: UINavigationController, SideMenuItemContent {
 class IME_ListaClientesPrincipalTVC: UITableViewController {
     
     //MARK: - Objetos propios COREDATA
-    let appDel = UIApplication.shared.delegate as! AppDelegate
-    let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let contexto = CoreDataStack.shared.persistentContainer.viewContext
     
     //MARK: - Variables Locales
     var empresas: [Empresa]?
@@ -130,7 +129,13 @@ class IME_ListaClientesPrincipalTVC: UITableViewController {
             
             let empresa = self.diccionario[self.indexOfNumbers[indexPath.section]]?[indexPath.row]
             self.contexto.delete(empresa!)
-            self.appDel.saveContext()
+            
+            do {
+                try self.contexto.save()
+            } catch let error {
+                print(error.localizedDescription)
+            }
+            
             
             //self.empresas?.remove(at: indexPath.row)
             self.diccionario[self.indexOfNumbers[indexPath.section]]!.remove(at: indexPath.row)

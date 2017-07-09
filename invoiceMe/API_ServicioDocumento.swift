@@ -21,13 +21,19 @@ class ServicioDocumento {
     //MARK: - Crear Documento
     func crearDocumento(tipoDocumento: Int,
                         numeroDocumento: Int,
+                        sujijo: String,
+                        fechaEmison: String,
+                        fechaValidez: String,
                         logo: String) -> Documento {
         
         let nuevoDocumento = NSEntityDescription.insertNewObject(forEntityName: "Documento", into: contexto) as! Documento
         
         nuevoDocumento.tipoDocumento = Int16(tipoDocumento)
-        nuevoDocumento.numeroDocumento = Int16(numeroDocumento)
+        nuevoDocumento.numeroDocumento = Int32(numeroDocumento)
+        nuevoDocumento.sufijoDocumento = sujijo
         nuevoDocumento.logo = logo
+        nuevoDocumento.fechaEmision = fechaEmison
+        nuevoDocumento.fechaValidez = fechaValidez
         
         return nuevoDocumento
         
@@ -68,7 +74,7 @@ class ServicioDocumento {
         var resultadoBusqueda: [Documento] = []
         
         resultadoBusqueda = buscarDocumento(byQuery: NSPredicate(value: true))
-        resultadoBusqueda.sort{ $0.numeroDocumento > $1.numeroDocumento}
+        //resultadoBusqueda.sort{ $0.numeroDocumento > $1.numeroDocumento}
         
         return resultadoBusqueda
     }
@@ -78,11 +84,14 @@ class ServicioDocumento {
         
         if let documento = buscarDocumento(by: documentoActualizado.objectID) {
             documento.tipoDocumento = Int16(documentoActualizado.tipoDocumento)
-            documento.numeroDocumento = Int16(documentoActualizado.numeroDocumento)
+            documento.numeroDocumento = Int32(documentoActualizado.numeroDocumento)
+            documento.sufijoDocumento = documentoActualizado.sufijoDocumento
             documento.logo = documentoActualizado.logo
             documento.emisor = documentoActualizado.emisor
             documento.receptor = documentoActualizado.receptor
             documento.productos = documentoActualizado.productos
+            documento.fechaEmision = documentoActualizado.fechaEmision
+            documento.fechaValidez = documentoActualizado.fechaValidez
         }
         
     }

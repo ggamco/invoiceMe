@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import InteractiveSideMenu
 
 class IME_CrearDocumentoNAV: UINavigationController, SideMenuItemContent {
@@ -15,6 +16,11 @@ class IME_CrearDocumentoNAV: UINavigationController, SideMenuItemContent {
 
 class IME_CrearDocumentoTVC: UITableViewController {
 
+    // MARK: - Objetos propios COREDATA
+    let contexto = CoreDataStack.shared.persistentContainer.viewContext
+    var servicioDocumento: ServicioDocumento?
+    var servicioEmisor: ServicioEmisor?
+    
     //MARK: - Elementos visuales Personalizados
     let font = UIFont(name: "HelveticaNeue", size: 16.0)
     let datapicker = UIDatePicker()
@@ -25,6 +31,7 @@ class IME_CrearDocumentoTVC: UITableViewController {
     var tomorrow: Date?
     var empresaSeleccionada = 0
     var seccionSeleccionada = 0
+    var documentoNuevo: Documento?
     var emisor: Emisor?
     var receptor: Empresa?
     var productos: [Producto]?
@@ -37,6 +44,8 @@ class IME_CrearDocumentoTVC: UITableViewController {
     @IBOutlet weak var mySufijoDocumento: UITextField!
     @IBOutlet weak var myFechaEmision: UITextField!
     @IBOutlet weak var myFechaValidez: UITextField!
+    @IBOutlet weak var mySwFechaEmision: UISwitch!
+    @IBOutlet weak var mySwFechaValidez: UISwitch!
 
     //MARK: - IBActions
     @IBAction func openMenu(_ sender: Any) {
@@ -73,6 +82,10 @@ class IME_CrearDocumentoTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //INICIAMOS SERVICIO COREDATA
+        servicioDocumento = ServicioDocumento(contexto: contexto)
+        servicioEmisor = ServicioEmisor(contexto: contexto)
+        
         //CONFIGURACIONES ESTETICAS VARIAS
         myNumeroDocumento.layer.cornerRadius = 5
         mySufijoDocumento.layer.cornerRadius = 5
@@ -120,6 +133,25 @@ class IME_CrearDocumentoTVC: UITableViewController {
 
     
     // MARK: - FUNCIONES PROPIAS
+    func crearDocumento() -> Documento? {
+        
+        let doc = servicioDocumento?.crearDocumento(tipoDocumento: myTipoDocumento.selectedSegmentIndex,
+                                                    numeroDocumento: Int(myNumeroDocumento.text!)!,
+                                                    sujijo: mySufijoDocumento.text!,
+                                                    fechaEmison: mySwFechaEmision.isOn ? myFechaEmision.text! : "",
+                                                    fechaValidez: mySwFechaValidez.isOn ? myFechaValidez.text! : "",
+                                                    logo: "")
+        doc?.emisor = emisor
+        doc?.receptor = receptor
+        
+        do {
+            try contexto.save()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        return servicioDocumento?.recuperarDocumentos().last
+    }
     
     func setFechasIniciales() {
         today = datapicker.date
@@ -145,7 +177,7 @@ class IME_CrearDocumentoTVC: UITableViewController {
         }
         
     }
-
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -155,25 +187,17 @@ class IME_CrearDocumentoTVC: UITableViewController {
             let destinationVC = segue.destination as? IME_EmisorTVC
             destinationVC?.fechaEmision = myFechaEmision.text!
             destinationVC?.emisor = emisor
-            destinationVC?.esActualizacion = true
+            
+            if servicioEmisor?.recuperarEmisores().count != 0 {
+                destinationVC?.esActualizacion = true
+            } else {
+                destinationVC?.esActualizacion = false
+            }
             
         } else if segue.identifier == "servicioPDF" {
-            print("entramos en el seque")
-            
-            let destinationVC = storyboard?.instantiateViewController(withIdentifier: "ServicioWebVC") as! IME_ServicioWebVC
-            
-            destinationVC.emisor = emisor
-            destinationVC.receptor = receptor
-            if mySufijoDocumento.text != "" {
-                //let numDoc = myNumeroDocumento.text! + "-" + mySufijoDocumento.text!
-                //destinationVC?.documento?.numeroDocumento = numDoc
-            } else {
-                destinationVC.numeroDocumento = Int(myNumeroDocumento.text!)
-            }
-            destinationVC.numeroDocumento = Int(myNumeroDocumento.text!)
-            destinationVC.tipoDocumento = myTipoDocumento.selectedSegmentIndex
-            
-            self.navigationController?.pushViewController(destinationVC, animated: true)
+
+            //Creamos el Documento con los datos obtenidos
+            documentoNuevo = crearDocumento()
             
         } else {
             

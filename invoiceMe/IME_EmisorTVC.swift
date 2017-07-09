@@ -16,8 +16,7 @@ class IME_EmisorTVC: UITableViewController {
     let font = UIFont(name: "HelveticaNeue", size: 16.0)
     
     //MARK: - Objetos propios COREDATA
-    let appDel = UIApplication.shared.delegate as! AppDelegate
-    let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let contexto = CoreDataStack.shared.persistentContainer.viewContext
     
     //MARK: - Variables Locales
     let phoneNumberKit = PhoneNumberKit()
@@ -42,17 +41,23 @@ class IME_EmisorTVC: UITableViewController {
     //MARK: - IBActions
     @IBAction func guardarCliente(_ sender: Any) {
         if myNombreEmisor.text!.characters.count != 0 {
-            
+            print(fechaEmision)
             emisor = servicioEmisor?.crearEmisor(nombre: myNombreEmisor.text!,
-                                                 fecha: fechaEmision,
+                                                 email: myEmailEmisor.text!,
                                                  direccion: myDireccionEmisor.text!,
                                                  zipCode: Int(myCpostalEmisor.text!)!,
                                                  ciudad: myCiudadEmisor.text!,
                                                  cif: myCifEmisor.text!,
-                                                 iban: myIbanEmisor.text!)
+                                                 iban: myIbanEmisor.text!,
+                                                 telefono: myTelefonoEmisor.text!)
         }
         
-        appDel.saveContext()
+        do {
+            try contexto.save()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
         esActualizacion = false
         
         let _ = navigationController?.popViewController(animated: true)
@@ -81,7 +86,8 @@ class IME_EmisorTVC: UITableViewController {
             myCiudadEmisor.text = emisorDes.ciudad
             myCifEmisor.text = emisorDes.ciudad
             myIbanEmisor.text = emisorDes.iban
-            
+            myEmailEmisor.text = emisorDes.email
+            myTelefonoEmisor.text = emisorDes.telefono
         }
         
         //si la vista nace de una actualización ocultamos el boton guardar
@@ -113,16 +119,21 @@ class IME_EmisorTVC: UITableViewController {
         emisor?.zipCode = Int16(myCpostalEmisor.text!)!
         emisor?.ciudad = myCiudadEmisor.text
         emisor?.cif = myCifEmisor.text
-        emisor?.fecha = fechaEmision
-        //emisor?.email = myEmailEmisor.text
-        //emisor?.telefono = myTelefonoEmisor.text
+        emisor?.iban = myIbanEmisor.text
+        emisor?.email = myEmailEmisor.text
+        emisor?.telefono = myTelefonoEmisor.text
         
         servicioEmisor?.actualizarEmisor(emisorActualizado: emisor!)
         
-        appDel.saveContext()
+        do {
+            try contexto.save()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
         esActualizacion = false
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

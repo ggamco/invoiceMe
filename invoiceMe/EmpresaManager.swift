@@ -14,7 +14,7 @@ extension Empresa {
         return [
             "nombre" : self.nombre!,
             "direccion" : self.direccion!,
-            "zipCode" : self.cpostal!,
+            "zipCode" : Int(self.cpostal!)!,
             "ciudad" : self.ciudad!,
             "cif" : self.cif!,
             "email" : self.email!

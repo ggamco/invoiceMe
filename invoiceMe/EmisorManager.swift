@@ -17,8 +17,9 @@ extension Emisor {
             "zipCode" : self.zipCode,
             "ciudad" : self.ciudad!,
             "cif" : self.cif!,
-            "fecha" : self.fecha!,
-            "iban" : self.iban!
+            "iban" : self.iban!,
+            "email": self.email!,
+            "telefono": self.telefono!
         ]
     }
     

@@ -17,8 +17,7 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
     let format = DateFormatter()
     
     //MARK: - Objetos propios COREDATA
-    let appDel = UIApplication.shared.delegate as! AppDelegate
-    let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let contexto = CoreDataStack.shared.persistentContainer.viewContext
     
     //MARK: - Variables Locales
     var celdasOcultas = true
@@ -74,7 +73,12 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
                     //Relación entre proyecto y cliente
                     proyecto?.cliente = empresa
                     
-                    appDel.saveContext()
+                    do {
+                        try contexto.save()
+                    } catch let error {
+                        print(error.localizedDescription)
+                    }
+                    
                     esActualizacion = false
                     
                     let _ = navigationController?.popViewController(animated: true)
@@ -194,7 +198,12 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
         
         servicioProyecto?.actualizarProyecto(proyectoActualizado: proyecto!)
         
-        appDel.saveContext()
+        do {
+            try contexto.save()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
         esActualizacion = false
         
         let _ = navigationController?.popViewController(animated: true)

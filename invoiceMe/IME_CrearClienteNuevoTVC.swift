@@ -16,8 +16,7 @@ class IME_CrearClienteNuevoTVC: UITableViewController {
     let font = UIFont(name: "HelveticaNeue", size: 16.0)
     
     //MARK: - Objetos propios COREDATA
-    let appDel = UIApplication.shared.delegate as! AppDelegate
-    let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let contexto = CoreDataStack.shared.persistentContainer.viewContext
     
     //MARK: - Variables Locales
     let phoneNumberKit = PhoneNumberKit()
@@ -52,7 +51,12 @@ class IME_CrearClienteNuevoTVC: UITableViewController {
                                                     telefono: myTelefonoCliente.text!)
         }
         
-        appDel.saveContext()
+        do {
+            try contexto.save()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
         esActualizacion = false
         
         let _ = navigationController?.popViewController(animated: true)
@@ -123,7 +127,12 @@ class IME_CrearClienteNuevoTVC: UITableViewController {
         
         servicioEmpresa?.actualizarEmpresa(empresaActualizada: cliente!)
         
-        appDel.saveContext()
+        do {
+            try contexto.save()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
         esActualizacion = false
     }
     

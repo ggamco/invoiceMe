@@ -15,8 +15,7 @@ class IME_ListaClientesTVC: UITableViewController {
     let font = UIFont(name: "HelveticaNeue", size: 16.0)
     
     //MARK: - Objetos propios COREDATA
-    let appDel = UIApplication.shared.delegate as! AppDelegate
-    let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let contexto = CoreDataStack.shared.persistentContainer.viewContext
     
     //MARK: - Variables Locales
     var nombreCliente: String?
@@ -155,9 +154,12 @@ class IME_ListaClientesTVC: UITableViewController {
                 //TODO: - avisar al usuario que se eliminaran los proyectos relacionados
             }
             
-            self.contexto.delete(empresa!)
-            self.appDel.saveContext()
-            
+            do{
+                self.contexto.delete(empresa!)
+                try self.contexto.save()
+            }catch let error {
+                print(error.localizedDescription)
+            }
             self.diccionario[self.indexOfNumbers[indexPath.section]]?.remove(at: indexPath.row)
             
             if indexPath.row != 0 {

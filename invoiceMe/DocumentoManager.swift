@@ -14,7 +14,10 @@ extension Documento {
         
         return [
             "tipoDocumento" : Int(self.tipoDocumento),
-            "numeroDocumento" : Int(self.numeroDocumento),
+            "numeroDocumento" : String(self.numeroDocumento),
+            "sufijoDocumento" : self.sufijoDocumento!,
+            "fechaEmision": self.fechaEmision!,
+            "fechaValidez": self.fechaValidez!,
             "logo" : self.logo!,
             "emisor" : self.emisor.map({$0.toJSON()})!,
             "receptor" : self.receptor.map({$0.toJSON()})!,

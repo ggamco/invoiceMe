@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import SwiftyJSON
 import Alamofire
 import WebKit
@@ -19,8 +20,7 @@ class IME_ProyectosNAV: UINavigationController, SideMenuItemContent {
 class IME_ProyectosTVC: UITableViewController {
 
     //MARK: - Objetos propios COREDATA
-    let appDel = UIApplication.shared.delegate as! AppDelegate
-    let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let contexto = CoreDataStack.shared.persistentContainer.viewContext
     
     var servicioProyecto: API_ServicioProyecto?
     var servicioEmpresa: API_ServicioEmpresa?
@@ -200,7 +200,7 @@ class IME_ProyectosTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
+                
         let borrarAction = UITableViewRowAction(style: .destructive, title: "Borrar") { (action, indexPath) in
             
             let proyecto = self.diccionario[self.empresas[indexPath.section]]?[indexPath.row]
@@ -212,8 +212,11 @@ class IME_ProyectosTVC: UITableViewController {
             }
             
             self.servicioProyecto?.eliminarProyecto(by: (proyecto?.objectID)!)
-            self.appDel.saveContext()
-            
+            do {
+                try self.contexto.save()
+            } catch let error {
+                print(error.localizedDescription)
+            }
             self.tableView.reloadData()
         }
         

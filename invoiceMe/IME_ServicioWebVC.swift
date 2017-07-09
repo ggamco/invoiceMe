@@ -13,15 +13,10 @@ import Alamofire
 class IME_ServicioWebVC: UIViewController {
 
     // MARK: - Objetos propios COREDATA
-    let appDel = UIApplication.shared.delegate as! AppDelegate
-    let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let contexto = CoreDataStack.shared.persistentContainer.viewContext
     var servicioDocumento: ServicioDocumento?
     
     // MARK: - Variables Locales
-    var tipoDocumento: Int?
-    var numeroDocumento: Int?
-    var emisor: Emisor?
-    var receptor: Empresa?
     var documento: Documento?
     var destino: String?
     
@@ -45,16 +40,14 @@ class IME_ServicioWebVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         servicioDocumento = ServicioDocumento(contexto: contexto)
-        print(tipoDocumento)
-        print(numeroDocumento)
+        documento = servicioDocumento?.recuperarDocumentos().last
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        documento = crearDoc()
         
         let image = UIImagePNGRepresentation(UIImage(named: "placeHolderLogo")!)?.base64EncodedString()
         documento?.logo = image
@@ -63,7 +56,8 @@ class IME_ServicioWebVC: UIViewController {
         
         print("el json: \(parameter!)")
 
-        let url = URL(string: "http://192.168.1.109:8080/PDFCreator/PDF")
+        //let url = URL(string: "http://localhost:8080/PDFCreator/PDF")
+        let url = URL(string: "http://gmbdesign.es/PDFCreator/PDF")
         
         let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
         
@@ -85,17 +79,4 @@ class IME_ServicioWebVC: UIViewController {
         }
     }
     
-    // MARK: - Funciones propias
-    func crearDoc() -> Documento? {
-        let doc = servicioDocumento?.crearDocumento(tipoDocumento: tipoDocumento!,
-                                                    numeroDocumento: numeroDocumento!,
-                                                    logo: "")
-        doc?.emisor = emisor
-        doc?.receptor = receptor
-        
-        appDel.saveContext()
-        
-        return servicioDocumento?.recuperarDocumentos().last
-    }
-
 }
