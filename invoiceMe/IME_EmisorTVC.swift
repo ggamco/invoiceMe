@@ -88,6 +88,10 @@ class IME_EmisorTVC: UITableViewController {
             myIbanEmisor.text = emisorDes.iban
             myEmailEmisor.text = emisorDes.email
             myTelefonoEmisor.text = emisorDes.telefono
+            
+            esActualizacion = true
+        } else {
+            esActualizacion = false
         }
         
         //si la vista nace de una actualización ocultamos el boton guardar

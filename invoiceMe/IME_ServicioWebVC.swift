@@ -76,6 +76,8 @@ class IME_ServicioWebVC: UIViewController {
                 self.destino = path.path
                 print(self.destino!)
                 self.webview.loadRequest(URLRequest(url: path))
+                
+                // TODO: - almacenar la ruta de almacenamiento en CoreData
         }
     }
     
