@@ -16,6 +16,7 @@ class IME_MenuTVC: MenuViewController {
     var lastSectionSelected = 0
     var lastRowSelected = 0
     var contadorTag: Int!
+    var fotoSeleccionada = false
     
     // MARK: - IBOutlets
     @IBOutlet weak var myImagenPerfil: UIImageView!
@@ -32,6 +33,10 @@ class IME_MenuTVC: MenuViewController {
         myTableView.delegate = self
         myTableView.dataSource = self
         myCerrarSesionBTN.layer.cornerRadius = 5
+        
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(pickerPhoto))
+        myImagenPerfil.addGestureRecognizer(tapGR)
+        myImagenPerfil.isUserInteractionEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,5 +112,74 @@ extension IME_MenuTVC : UITableViewDelegate, UITableViewDataSource {
         tableView.reloadData()
         
         menuContainerViewController.hideSideMenu()
+    }
+}
+
+// MARK: - Extension de ImagePicker para tomar fotografias
+extension IME_MenuTVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func pickerPhoto(){
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            muestraMenu()
+        } else {
+            muestraLibreriaFotos()
+        }
+        
+    }
+    
+    func muestraMenu(){
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        let tomaFoto = UIAlertAction(title: "Toma foto", style: .default) { _ in
+            
+            self.muestraCamaraDispositivo()
+            
+        }
+        let seleccionaFoto = UIAlertAction(title: "Selecciona desde Fotos", style: .default) { _ in
+            
+            self.muestraLibreriaFotos()
+            
+        }
+        
+        alertVC.addAction(cancelAction)
+        alertVC.addAction(tomaFoto)
+        alertVC.addAction(seleccionaFoto)
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+    func muestraLibreriaFotos(){
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func muestraCamaraDispositivo(){
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        //TODO: - Cambiar el nombre de la variable donde se cargará la imagen.
+        //TODO: - Crear variable fotoselectionada: Bool = false
+        if let imageData = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            myImagenPerfil.image = imageData
+            if myImagenPerfil != nil {
+                fotoSeleccionada = true
+            }
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        dismiss(animated: true, completion: nil)
     }
 }

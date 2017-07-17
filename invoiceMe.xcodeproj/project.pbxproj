@@ -30,6 +30,8 @@
 		CC23D8A71F120EE500DBA8B6 /* IME_ListaProductosTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23D8A61F120EE500DBA8B6 /* IME_ListaProductosTVC.swift */; };
 		CC23D8A91F120FAB00DBA8B6 /* IME_ProductoCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23D8A81F120FAB00DBA8B6 /* IME_ProductoCustomCell.swift */; };
 		CC23D8AB1F123D0900DBA8B6 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23D8AA1F123D0900DBA8B6 /* CoreDataStack.swift */; };
+		CC23D8B01F12B2F800DBA8B6 /* IME_VistaProductoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23D8AF1F12B2F800DBA8B6 /* IME_VistaProductoTVC.swift */; };
+		CC23D8B21F12CB2700DBA8B6 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23D8B11F12CB2700DBA8B6 /* CustomTextField.swift */; };
 		CC3BD3581E75C63E000C5A1D /* API_ServicioEmpresa.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BD3571E75C63E000C5A1D /* API_ServicioEmpresa.swift */; };
 		CC3BD35A1E760DBB000C5A1D /* API_ServicioProyecto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BD3591E760DBB000C5A1D /* API_ServicioProyecto.swift */; };
 		CC68BD561E717DFF005CC8E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68BD551E717DFF005CC8E3 /* AppDelegate.swift */; };
@@ -85,6 +87,8 @@
 		CC23D8A61F120EE500DBA8B6 /* IME_ListaProductosTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_ListaProductosTVC.swift; sourceTree = "<group>"; };
 		CC23D8A81F120FAB00DBA8B6 /* IME_ProductoCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_ProductoCustomCell.swift; sourceTree = "<group>"; };
 		CC23D8AA1F123D0900DBA8B6 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		CC23D8AF1F12B2F800DBA8B6 /* IME_VistaProductoTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_VistaProductoTVC.swift; sourceTree = "<group>"; };
+		CC23D8B11F12CB2700DBA8B6 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		CC3BD3571E75C63E000C5A1D /* API_ServicioEmpresa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_ServicioEmpresa.swift; sourceTree = "<group>"; };
 		CC3BD3591E760DBB000C5A1D /* API_ServicioProyecto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_ServicioProyecto.swift; sourceTree = "<group>"; };
 		CC68BD521E717DFF005CC8E3 /* invoiceMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = invoiceMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +180,7 @@
 			children = (
 				5EF2CCEC1F08F93C006184FE /* IME_CrearDocumentoTVC.swift */,
 				5EF2CCEF1F09633E006184FE /* IME_EmisorTVC.swift */,
+				5EF2CCF11F09AAB1006184FE /* IME_ServicioWebVC.swift */,
 			);
 			name = "CREAR DOCUMENTO";
 			sourceTree = "<group>";
@@ -208,9 +213,9 @@
 				5EF2CCEA1F08DA61006184FE /* CLIENTES */,
 				CC23745E1EF45C6300F658D6 /* OPCIONES */,
 				5EF2CCEE1F08F942006184FE /* CREAR DOCUMENTO */,
-				5EF2CCF11F09AAB1006184FE /* IME_ServicioWebVC.swift */,
 				CC23D8A61F120EE500DBA8B6 /* IME_ListaProductosTVC.swift */,
 				CC23D8A81F120FAB00DBA8B6 /* IME_ProductoCustomCell.swift */,
+				CC23D8AF1F12B2F800DBA8B6 /* IME_VistaProductoTVC.swift */,
 			);
 			name = "VISTAS PRINCIPALES";
 			sourceTree = "<group>";
@@ -236,6 +241,14 @@
 				5EF2CCE61F07EEF5006184FE /* API_ServicioProducto.swift */,
 			);
 			name = SERVICIOS_COREDATA;
+			sourceTree = "<group>";
+		};
+		CC23D8B31F12CB9400DBA8B6 /* VISTAS_PERSONALIZADAS */ = {
+			isa = PBXGroup;
+			children = (
+				CC23D8B11F12CB2700DBA8B6 /* CustomTextField.swift */,
+			);
+			name = VISTAS_PERSONALIZADAS;
 			sourceTree = "<group>";
 		};
 		CC3BD3541E74B16C000C5A1D /* PROYECTOS */ = {
@@ -273,6 +286,7 @@
 			children = (
 				CC68BD551E717DFF005CC8E3 /* AppDelegate.swift */,
 				5EF2CCE31F078297006184FE /* MODEL+MAPPING */,
+				CC23D8B31F12CB9400DBA8B6 /* VISTAS_PERSONALIZADAS */,
 				CCBE72FE1E718E9B00BA8F28 /* APIS */,
 				5EE423881F005DB30010A556 /* MENU */,
 				CC23745A1EF45B6300F658D6 /* INTRO|LOGIN|REGISTRO */,
@@ -458,6 +472,7 @@
 				5EA6D3C01EFFBAB70015C69F /* IME_LoginVC.swift in Sources */,
 				5EF2CCDA1F06C351006184FE /* EmpresaManager.swift in Sources */,
 				CC68BD561E717DFF005CC8E3 /* AppDelegate.swift in Sources */,
+				CC23D8B21F12CB2700DBA8B6 /* CustomTextField.swift in Sources */,
 				CC68BD831E717F03005CC8E3 /* IME_ColorCorporativoCCCell.swift in Sources */,
 				CC23D8AB1F123D0900DBA8B6 /* CoreDataStack.swift in Sources */,
 				CC68BD5E1E717DFF005CC8E3 /* invoiceMe.xcdatamodeld in Sources */,
@@ -484,6 +499,7 @@
 				CC68BD7F1E717F03005CC8E3 /* IME_ProyectosTVC.swift in Sources */,
 				CC68BD731E717EF0005CC8E3 /* IME_ProjectBudgeCell.swift in Sources */,
 				CC68BD781E717EF9005CC8E3 /* IME_IntroAnimacionVC.swift in Sources */,
+				CC23D8B01F12B2F800DBA8B6 /* IME_VistaProductoTVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

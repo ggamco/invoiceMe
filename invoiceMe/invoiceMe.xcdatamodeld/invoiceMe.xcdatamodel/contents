@@ -44,6 +44,7 @@
         <attribute name="irpf" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="iva" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="precio" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="titulo" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="documento" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Documento" inverseName="productos" inverseEntity="Documento" syncable="YES"/>
     </entity>
     <entity name="Proyecto" representedClassName="Proyecto" syncable="YES" codeGenerationType="class">
@@ -62,7 +63,7 @@
         <element name="Documento" positionX="-504" positionY="0" width="128" height="180"/>
         <element name="Emisor" positionX="-225" positionY="-63" width="128" height="180"/>
         <element name="Empresa" positionX="-470" positionY="-354" width="128" height="210"/>
-        <element name="Producto" positionX="-702" positionY="-261" width="128" height="180"/>
+        <element name="Producto" positionX="-702" positionY="-261" width="128" height="195"/>
         <element name="Proyecto" positionX="-207" positionY="-387" width="128" height="195"/>
     </elements>
 </model>

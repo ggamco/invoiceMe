@@ -7,47 +7,85 @@
 //
 
 import UIKit
+import InteractiveSideMenu
+import CoreData
+
+class IME_ProductosNAV: UINavigationController, SideMenuItemContent {
+    
+}
 
 class IME_ListaProductosTVC: UITableViewController {
 
+    // MARK: - Variables Locales
+    var productos: [Producto]?
+    
+    //MARK: - Objetos propios COREDATA
+    let contexto = CoreDataStack.shared.persistentContainer.viewContext
+    
+    // MARK: - IBActions
+    @IBAction func openMenu(_ sender: Any) {
+        if let navigationViewController = self.navigationController as? SideMenuItemContent {
+            navigationViewController.showSideMenu()
+        }
+    }
+    
+    // MARK: - LIFE VC
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.topItem?.title = ""
+    }
+    
+    //Usamos este metodo propio del ciclo de vida del VC para cargar datos siempre que vuelva a visualizarse
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //Asignamos el delegate
+        navigationController?.delegate = self
+        self.navigationController?.navigationBar.topItem?.title = ""
+    }
+    
+    //MARK: - FUNCIONES PROPIAS
+    func cargarProductos() {
         
     }
-
+    
+    func cerrarVentana() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        return 5
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "celdaProducto", for: indexPath) as! IME_ProductoCustomCell
 
-        // Configure the cell...
 
         return cell
     }
     
-
     
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+//MARK: - Extensión de UINavigationControllerDelegate
+//USADO PARA DEVOLVER DATOS AL VIEWCONTROLLER ANTERIOR
+
+extension IME_ListaProductosTVC: UINavigationControllerDelegate {
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        
+        
     }
-    */
-
+    
 }

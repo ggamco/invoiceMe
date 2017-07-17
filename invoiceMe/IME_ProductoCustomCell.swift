@@ -15,7 +15,11 @@ class IME_ProductoCustomCell: UITableViewCell {
     @IBOutlet weak var myTitulo: UILabel!
     @IBOutlet weak var myPrecio: UILabel!
     @IBOutlet weak var myCantidad: UILabel!
+    @IBOutlet weak var myStepper: UIStepper!
     
+    @IBAction func aumentarCantidad(_ sender: UIStepper) {
+        myCantidad.text = String(sender.value)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

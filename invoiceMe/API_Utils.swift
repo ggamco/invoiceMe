@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 let CONSTANTES = Constantes()
 
 struct Constantes {

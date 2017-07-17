@@ -39,6 +39,12 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Estimado usuario, ¿nos permites acceder a tu librería multimedia?</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Estimado usuario, ¿nos permites acceder a tu cámara?</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Estimado usuario, ¿nos permites acceder a tu librería de imágenes?</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
