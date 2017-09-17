@@ -7,4 +7,5 @@ target 'invoiceMe' do
     pod 'Alamofire'
     pod 'PhoneNumberKit'
     pod 'InteractiveSideMenu'
+    pod 'Parse'
 end

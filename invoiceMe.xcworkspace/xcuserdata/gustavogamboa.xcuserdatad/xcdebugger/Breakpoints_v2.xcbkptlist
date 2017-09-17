@@ -46,9 +46,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "crearDoc()"
-            landmarkType = "7">
+            endingLineNumber = "90">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -65,53 +63,6 @@
             endingLineNumber = "227"
             landmarkName = "navigationController(_:willShow:animated:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "invoiceMe.IME_ListaClientesTVC.navigationController (__ObjC.UINavigationController, willShow : __ObjC.UIViewController, animated : Swift.Bool) -&gt; ()"
-                  moduleName = "invoiceMe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gustavogamboa/XcodeProjects/invoiceMe/invoiceMe/IME_ListaClientesTVC.swift"
-                  timestampString = "520728936.46761"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "227"
-                  endingLineNumber = "227"
-                  offsetFromSymbolStart = "2032">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "invoiceMe.IME_ListaClientesTVC.navigationController (__ObjC.UINavigationController, willShow : __ObjC.UIViewController, animated : Swift.Bool) -&gt; ()"
-                  moduleName = "invoiceMe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gustavogamboa/XcodeProjects/invoiceMe/invoiceMe/IME_ListaClientesTVC.swift"
-                  timestampString = "520728936.471564"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "227"
-                  endingLineNumber = "227"
-                  offsetFromSymbolStart = "2044">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "invoiceMe.IME_ListaClientesTVC.navigationController (__ObjC.UINavigationController, willShow : __ObjC.UIViewController, animated : Swift.Bool) -&gt; ()"
-                  moduleName = "invoiceMe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gustavogamboa/XcodeProjects/invoiceMe/invoiceMe/IME_ListaClientesTVC.swift"
-                  timestampString = "520728936.475872"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "227"
-                  endingLineNumber = "227"
-                  offsetFromSymbolStart = "2152">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

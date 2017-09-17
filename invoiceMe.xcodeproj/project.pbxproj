@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		037BBF779056E92B46C30911 /* Pods_invoiceMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A177C2C5AD8418A97ADB29 /* Pods_invoiceMe.framework */; };
+		5E463F5F1F6D3A9C000B9DDE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E463F5E1F6D3A9C000B9DDE /* Parse.framework */; };
+		5E463F611F6D410D000B9DDE /* IME_TutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E463F601F6D410D000B9DDE /* IME_TutorialVC.swift */; };
+		5E463F631F6DC907000B9DDE /* IME_LoginTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E463F621F6DC907000B9DDE /* IME_LoginTVC.swift */; };
 		5EA6D3C01EFFBAB70015C69F /* IME_LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6D3BF1EFFBAB70015C69F /* IME_LoginVC.swift */; };
 		5EA6D3C21EFFC0D70015C69F /* InteractiveSideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA6D3C11EFFC0D70015C69F /* InteractiveSideMenu.framework */; };
 		5EA6D3C41EFFC26E0015C69F /* IME_RegistroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6D3C31EFFC26E0015C69F /* IME_RegistroVC.swift */; };
@@ -61,6 +65,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E463F5E1F6D3A9C000B9DDE /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-gmadscsvlyqjzlgjqoxfxeumshgf/Build/Products/Debug-iphoneos/Parse/Parse.framework"; sourceTree = "<group>"; };
+		5E463F601F6D410D000B9DDE /* IME_TutorialVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_TutorialVC.swift; sourceTree = "<group>"; };
+		5E463F621F6DC907000B9DDE /* IME_LoginTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_LoginTVC.swift; sourceTree = "<group>"; };
 		5EA6D3BF1EFFBAB70015C69F /* IME_LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_LoginVC.swift; sourceTree = "<group>"; };
 		5EA6D3C11EFFC0D70015C69F /* InteractiveSideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InteractiveSideMenu.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-gmadscsvlyqjzlgjqoxfxeumshgf/Build/Products/Debug-iphonesimulator/InteractiveSideMenu/InteractiveSideMenu.framework"; sourceTree = "<group>"; };
 		5EA6D3C31EFFC26E0015C69F /* IME_RegistroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_RegistroVC.swift; sourceTree = "<group>"; };
@@ -124,11 +131,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E463F5F1F6D3A9C000B9DDE /* Parse.framework in Frameworks */,
 				5EA6D3C61EFFC3490015C69F /* Pods_invoiceMe.framework in Frameworks */,
 				5EA6D3C21EFFC0D70015C69F /* InteractiveSideMenu.framework in Frameworks */,
 				CCBE72FB1E71852600BA8F28 /* Alamofire.framework in Frameworks */,
 				CCBE72FC1E71852600BA8F28 /* PhoneNumberKit.framework in Frameworks */,
 				CCBE72FD1E71852600BA8F28 /* SwiftyJSON.framework in Frameworks */,
+				037BBF779056E92B46C30911 /* Pods_invoiceMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,7 +208,9 @@
 			children = (
 				CC68BD751E717EF9005CC8E3 /* IME_IntroAnimacionVC.swift */,
 				5EA6D3BF1EFFBAB70015C69F /* IME_LoginVC.swift */,
+				5E463F621F6DC907000B9DDE /* IME_LoginTVC.swift */,
 				5EA6D3C31EFFC26E0015C69F /* IME_RegistroVC.swift */,
+				5E463F601F6D410D000B9DDE /* IME_TutorialVC.swift */,
 			);
 			name = "INTRO|LOGIN|REGISTRO";
 			sourceTree = "<group>";
@@ -323,6 +334,7 @@
 		E5E96FEF7CECC785D5DDAA51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E463F5E1F6D3A9C000B9DDE /* Parse.framework */,
 				5EA6D3C51EFFC3490015C69F /* Pods_invoiceMe.framework */,
 				5EA6D3C11EFFC0D70015C69F /* InteractiveSideMenu.framework */,
 				CCBE72F81E71852600BA8F28 /* Alamofire.framework */,
@@ -479,6 +491,7 @@
 				5EF2CCE01F06F5F1006184FE /* DocumentoManager.swift in Sources */,
 				5EF2CCF21F09AAB1006184FE /* IME_ServicioWebVC.swift in Sources */,
 				5EE423841F0027000010A556 /* IME_MenuTVC.swift in Sources */,
+				5E463F631F6DC907000B9DDE /* IME_LoginTVC.swift in Sources */,
 				CC68BD801E717F03005CC8E3 /* IME_CrearProyectoNuevoTVC.swift in Sources */,
 				5EE423821F0026C50010A556 /* IME_HostViewController.swift in Sources */,
 				CC23D8A71F120EE500DBA8B6 /* IME_ListaProductosTVC.swift in Sources */,
@@ -493,6 +506,7 @@
 				CC68BD811E717F03005CC8E3 /* IME_ListaClientesTVC.swift in Sources */,
 				CC3BD35A1E760DBB000C5A1D /* API_ServicioProyecto.swift in Sources */,
 				CC3BD3581E75C63E000C5A1D /* API_ServicioEmpresa.swift in Sources */,
+				5E463F611F6D410D000B9DDE /* IME_TutorialVC.swift in Sources */,
 				CC23D8A91F120FAB00DBA8B6 /* IME_ProductoCustomCell.swift in Sources */,
 				CC23745D1EF45C4500F658D6 /* IME_ListaClientesPrincipalTVC.swift in Sources */,
 				CC68BD8A1E717F0E005CC8E3 /* IME_EditarPerfilTVC.swift in Sources */,

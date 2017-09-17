@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let configuration = ParseClientConfiguration {
+            $0.applicationId = "GPCnMgZWwWcTKToE02nMOfomH8lVSDCVDKGs3bQr"
+            $0.clientKey = "c0Lt5ww44YHZdES7EqtqKbSuypz4b8m4iYi8KZvZ"
+            $0.server = "https://parseapi.back4app.com/"
+        }
+        Parse.initialize(with: configuration)
         
         //personalizar ui
         personalizaUI()
@@ -50,6 +58,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         buttonItem.setTitleTextAttributes([NSFontAttributeName: font!], for: .normal)
         
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let TOKEN_DEVICE = deviceToken.reduce("", {$0 + String(format: "%02X",    $1)})
+        print("deviceToken: \(TOKEN_DEVICE)")
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

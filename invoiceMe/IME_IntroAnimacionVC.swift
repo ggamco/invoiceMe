@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class IME_IntroAnimacionVC: UIViewController {
 
@@ -88,9 +89,38 @@ class IME_IntroAnimacionVC: UIViewController {
     }
     
     func comienzoApp(){
-        let dashboardVC = storyboard?.instantiateViewController(withIdentifier: "Dashboard") as! IME_PrimeraVentanaTBC
-        dashboardVC.modalTransitionStyle = .coverVertical
-        present(dashboardVC, animated: true, completion: nil)
+        // TODO: - Logica de mostrar tutorial, paso por registro o login.
+        if CUSTOM_PREFS.string(forKey: CONSTANTES.PREFS.FIRST_TIME) != nil {
+            //El usuario ya habia iniciado por primera vez la aplicación y ya ha visualizado el tutorial
+            if CUSTOM_PREFS.string(forKey: CONSTANTES.PREFS.REGISTERED) != nil {
+                //el usuario esta registrado, preguntamos si esta logueado
+                if PFUser.current() != nil {
+                    // El usuario esta logueado, lo enviamos a la ventana principal
+                    let principalVC = storyboard?.instantiateViewController(withIdentifier: "Dashboard") as! IME_PrimeraVentanaTBC
+                    principalVC.modalTransitionStyle = .crossDissolve
+                    present(principalVC, animated: true, completion: nil)
+                } else {
+                    //El usuario no esta logueado, le pedimos login
+                    let loginVC = storyboard?.instantiateViewController(withIdentifier: "Dashboard") as! IME_LoginVC
+                    loginVC.modalTransitionStyle = .crossDissolve
+                    present(loginVC, animated: true, completion: nil)
+                }
+            } else {
+                //El usuario no esta registrado
+                let registroVC = storyboard?.instantiateViewController(withIdentifier: "Dashboard") as! IME_RegistroVC
+                registroVC.modalTransitionStyle = .crossDissolve
+                present(registroVC, animated: true, completion: nil)
+            }
+        } else {
+            //Es la primera ejecución de la aplicacion, mostramos el tutorial
+            let tutorialVC = storyboard?.instantiateViewController(withIdentifier: "Dashboard") as! IME_TutorialVC
+            tutorialVC.modalTransitionStyle = .crossDissolve
+            present(tutorialVC, animated: true, completion: nil)
+        }
+        
+
+        
+        
     }
 
 }

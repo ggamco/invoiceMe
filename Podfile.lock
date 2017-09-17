@@ -1,6 +1,9 @@
 PODS:
   - Alamofire (4.5.0)
+  - Bolts/Tasks (1.8.4)
   - InteractiveSideMenu (2.0)
+  - Parse (1.14.4):
+    - Bolts/Tasks (~> 1.8)
   - PhoneNumberKit (1.2.3):
     - PhoneNumberKit/PhoneNumberKitCore (= 1.2.3)
     - PhoneNumberKit/UIKit (= 1.2.3)
@@ -12,15 +15,18 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - InteractiveSideMenu
+  - Parse
   - PhoneNumberKit
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   InteractiveSideMenu: 337f6d95a3f6543c517a888893531430e18553b3
+  Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
   PhoneNumberKit: 1e5cca669113fc361a8c82ec1ee559c62b8cd0f7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 48c62a70cc911a58a3ae477d5783201a409b7c37
+PODFILE CHECKSUM: 28a67240cae84822a6f04c8b2432422794b46543
 
 COCOAPODS: 1.2.0

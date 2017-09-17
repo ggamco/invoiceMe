@@ -9,9 +9,12 @@
 import UIKit
 
 let CONSTANTES = Constantes()
+let CUSTOM_PREFS = UserDefaults.standard
 
 struct Constantes {
     let COLORES = Colores()
+    let PREFS = Preferencias()
+    let DEVICE = DeviceSize()
 }
 
 struct Colores {
@@ -23,6 +26,18 @@ struct Colores {
     let FIRST_TEXT_COLOR = #colorLiteral(red: 0.1294117647, green: 0.1294117647, blue: 0.1294117647, alpha: 1)
     let SECOND_TEXT_COLOR = #colorLiteral(red: 0.4588235294, green: 0.4588235294, blue: 0.4588235294, alpha: 1)
     let DIVIDER_COLOR = #colorLiteral(red: 0.7411764706, green: 0.7411764706, blue: 0.7411764706, alpha: 1)
+}
+
+struct Preferencias {
+    let REGISTERED = "registered"
+    let FIRST_TIME = "firstTime"
+}
+
+struct DeviceSize {
+    let SMALL: CGFloat = 480.0
+    let MEDIUM: CGFloat = 568.0
+    let STANDARD: CGFloat = 667.0
+    let PLUS: CGFloat = 736.0
 }
 
 func personalizaBackBTN(_ title: String) -> UIBarButtonItem{
