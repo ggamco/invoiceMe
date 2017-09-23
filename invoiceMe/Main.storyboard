@@ -3711,7 +3711,7 @@
         <!--Regístrate-->
         <scene sceneID="rw0-YE-fh3">
             <objects>
-                <tableViewController storyboardIdentifier="RegistroTVC" id="MzT-x1-GB7" customClass="IME_LoginTVC" customModule="invoiceMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RegistroTVC" id="MzT-x1-GB7" customClass="IME_RegistroTVC" customModule="invoiceMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="GGK-vb-ew8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3920,7 +3920,7 @@
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                                     <state key="normal" title="Regístrate"/>
                                                     <connections>
-                                                        <action selector="loginUsuario:" destination="MzT-x1-GB7" eventType="touchUpInside" id="Ek5-lH-uSr"/>
+                                                        <action selector="registrarUsuario:" destination="MzT-x1-GB7" eventType="touchUpInside" id="Fgr-ec-ItW"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -3951,10 +3951,11 @@
                     <connections>
                         <outlet property="myBarraCorreo" destination="BhY-kY-apE" id="9Vz-mQ-hBf"/>
                         <outlet property="myBarraPassword" destination="IUP-fy-Js9" id="naj-Pk-CyO"/>
-                        <outlet property="myBotonLogin" destination="m6g-My-RuW" id="QnX-Uv-Ue1"/>
+                        <outlet property="myBotonRegistro" destination="m6g-My-RuW" id="wxp-FN-0Wx"/>
                         <outlet property="myBottomCons" destination="GrA-oH-IM8" id="3P0-dv-JwN"/>
                         <outlet property="myCorreo" destination="sbf-M9-dnn" id="KxR-O7-GGR"/>
                         <outlet property="myImagenPerfil" destination="SwK-YK-euI" id="pgz-3O-ke7"/>
+                        <outlet property="myLabelPerfil" destination="Xz2-sR-Jey" id="kcq-Lz-e4i"/>
                         <outlet property="myPassword" destination="85H-ui-yqF" id="OjF-15-YUo"/>
                         <outlet property="myTopCons" destination="Ih5-pX-FH3" id="Ndz-gb-YkS"/>
                     </connections>
