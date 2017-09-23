@@ -96,24 +96,24 @@ class IME_IntroAnimacionVC: UIViewController {
                 //el usuario esta registrado, preguntamos si esta logueado
                 if PFUser.current() != nil {
                     // El usuario esta logueado, lo enviamos a la ventana principal
-                    let principalVC = storyboard?.instantiateViewController(withIdentifier: "Dashboard") as! IME_PrimeraVentanaTBC
+                    let principalVC = storyboard?.instantiateViewController(withIdentifier: "PrimeraVentanaTBC") as! IME_PrimeraVentanaTBC
                     principalVC.modalTransitionStyle = .crossDissolve
                     present(principalVC, animated: true, completion: nil)
                 } else {
                     //El usuario no esta logueado, le pedimos login
-                    let loginVC = storyboard?.instantiateViewController(withIdentifier: "Dashboard") as! IME_LoginVC
+                    let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginTVC") as! IME_LoginTVC
                     loginVC.modalTransitionStyle = .crossDissolve
                     present(loginVC, animated: true, completion: nil)
                 }
             } else {
                 //El usuario no esta registrado
-                let registroVC = storyboard?.instantiateViewController(withIdentifier: "Dashboard") as! IME_RegistroVC
+                let registroVC = storyboard?.instantiateViewController(withIdentifier: "RegistroVC") as! IME_RegistroVC
                 registroVC.modalTransitionStyle = .crossDissolve
                 present(registroVC, animated: true, completion: nil)
             }
         } else {
             //Es la primera ejecución de la aplicacion, mostramos el tutorial
-            let tutorialVC = storyboard?.instantiateViewController(withIdentifier: "Dashboard") as! IME_TutorialVC
+            let tutorialVC = storyboard?.instantiateViewController(withIdentifier: "TutorialVC") as! IME_TutorialVC
             tutorialVC.modalTransitionStyle = .crossDissolve
             present(tutorialVC, animated: true, completion: nil)
         }

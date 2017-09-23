@@ -94,10 +94,6 @@ class IME_RegistroVC: UIViewController {
         myCorreo.delegate = self
         myPassword.delegate = self
         
-        //Personalizacion del boton back del navigationController
-        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "arrow2")
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow2mask")
-        self.navigationController?.navigationBar.backItem?.title = ""
     }
     
     // MARK: - Funciones de Utilidades

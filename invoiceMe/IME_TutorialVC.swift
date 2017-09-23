@@ -10,26 +10,43 @@ import UIKit
 
 class IME_TutorialVC: UIViewController {
 
+    @IBOutlet weak var myScrollView: UIScrollView!
+    @IBOutlet weak var myPageControl: UIPageControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        let anchoImagen = self.view.frame.width
+        let altoImagen = self.view.frame.height
+        for c_imagen in 0 ..< 8 {
+            let name = String(format: "FOTO_%d", c_imagen)
+            let image = UIImage(named: name)
+            let imagenes = UIImageView(image: image)
+            imagenes.frame = CGRect(x: CGFloat(c_imagen) * anchoImagen,
+                                    y: 0,
+                                    width: anchoImagen,
+                                    height: altoImagen)
+            myScrollView.addSubview(imagenes as UIImageView)
+            
+        }
+        myScrollView.delegate = self
+        myScrollView.contentSize = CGSize(width: 7 * anchoImagen, height: altoImagen)
+        myScrollView.isPagingEnabled = true
+        myPageControl.numberOfPages = 7
+        myPageControl.currentPage = 0
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        CUSTOM_PREFS.setValue("NO", forKey: CONSTANTES.PREFS.FIRST_TIME)
     }
-    */
 
+}//FIN DE LA CLASE
+
+extension IME_TutorialVC : UIScrollViewDelegate {
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pagina = myScrollView.contentOffset.x / myScrollView.frame.width
+        myPageControl.currentPage = Int(pagina)
+    }
+    
 }

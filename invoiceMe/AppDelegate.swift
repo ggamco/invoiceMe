@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         navBar.backIndicatorImage = UIImage(named: "arrow2")
         navBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow2mask")
+        navBar.topItem?.title = ""
 
         tabBar.barTintColor = CONSTANTES.COLORES.PRIMARY_COLOR
         tabBar.barStyle = .black
