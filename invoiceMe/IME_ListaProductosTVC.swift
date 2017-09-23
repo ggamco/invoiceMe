@@ -7,12 +7,7 @@
 //
 
 import UIKit
-import InteractiveSideMenu
 import CoreData
-
-class IME_ProductosNAV: UINavigationController, SideMenuItemContent {
-    
-}
 
 class IME_ListaProductosTVC: UITableViewController {
 
@@ -21,13 +16,6 @@ class IME_ListaProductosTVC: UITableViewController {
     
     //MARK: - Objetos propios COREDATA
     let contexto = CoreDataStack.shared.persistentContainer.viewContext
-    
-    // MARK: - IBActions
-    @IBAction func openMenu(_ sender: Any) {
-        if let navigationViewController = self.navigationController as? SideMenuItemContent {
-            navigationViewController.showSideMenu()
-        }
-    }
     
     // MARK: - LIFE VC
     override func viewDidLoad() {

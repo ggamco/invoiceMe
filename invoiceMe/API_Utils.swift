@@ -47,7 +47,7 @@ func personalizaBackBTN(_ title: String) -> UIBarButtonItem{
     backButton.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT
     backButton.style = .plain
     backButton.title = title
-    backButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 16.0)!], for:.normal)
+    backButton.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "HelveticaNeue", size: 16.0)!], for:.normal)
     
     return backButton
 }

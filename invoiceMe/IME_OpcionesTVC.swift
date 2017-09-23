@@ -7,11 +7,6 @@
 //
 
 import UIKit
-import InteractiveSideMenu
-
-class IME_OpcionesNAV: UINavigationController, SideMenuItemContent {
-    
-}
 
 class IME_OpcionesTVC: UITableViewController {
 
@@ -21,13 +16,6 @@ class IME_OpcionesTVC: UITableViewController {
     @IBOutlet weak var myImagenPerfil: UIImageView!
     @IBOutlet weak var myPermitirPushCell: UITableViewCell!
     @IBOutlet weak var myPushOptionsCell: UITableViewCell!
-    
-    // MARK: - IBActions
-    @IBAction func openMenu(_ sender: Any) {
-        if let navigationViewController = self.navigationController as? SideMenuItemContent {
-            navigationViewController.showSideMenu()
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +38,7 @@ class IME_OpcionesTVC: UITableViewController {
         
     }
     
-    func printPush(){
+    @objc func printPush(){
         
         if mySwitch.isOn {
             myPushOptionsCell.isUserInteractionEnabled = true

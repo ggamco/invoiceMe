@@ -111,7 +111,7 @@ class IME_CrearClienteNuevoTVC: UITableViewController {
     }
     
     //MARK: - Funciones Propias
-    func formatearTelefono() {
+    @objc func formatearTelefono() {
         myTelefonoCliente.text?.append("+34")
     }
     

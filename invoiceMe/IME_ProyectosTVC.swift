@@ -11,11 +11,6 @@ import CoreData
 import SwiftyJSON
 import Alamofire
 import WebKit
-import InteractiveSideMenu
-
-class IME_ProyectosNAV: UINavigationController, SideMenuItemContent {
-    
-}
 
 class IME_ProyectosTVC: UITableViewController {
 
@@ -30,13 +25,6 @@ class IME_ProyectosTVC: UITableViewController {
     var proyectos: [Proyecto] = []
     var empresas: [String] = []
     var diccionario: [String : [Proyecto]] = [:]
-    
-    //MARK: - IBActions
-    @IBAction func openMenu(_ sender: Any) {
-        if let navigationViewController = self.navigationController as? SideMenuItemContent {
-            navigationViewController.showSideMenu()
-        }
-    }
     
     @IBAction func crearProyecto(_ sender: UIBarButtonItem) {
         let destinoVC = storyboard?.instantiateViewController(withIdentifier: "CrearProyectoNuevoTVC") as! IME_CrearProyectoNuevoTVC
@@ -235,7 +223,7 @@ class IME_ProyectosTVC: UITableViewController {
 
     }
     
-    func cerrarVentana() {
+    @objc func cerrarVentana() {
         dismiss(animated: true, completion: nil)
     }
 

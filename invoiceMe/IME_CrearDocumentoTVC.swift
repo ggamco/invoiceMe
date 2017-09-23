@@ -8,11 +8,6 @@
 
 import UIKit
 import CoreData
-import InteractiveSideMenu
-
-class IME_CrearDocumentoNAV: UINavigationController, SideMenuItemContent {
-    
-}
 
 class IME_CrearDocumentoTVC: UITableViewController {
 
@@ -47,13 +42,6 @@ class IME_CrearDocumentoTVC: UITableViewController {
     @IBOutlet weak var mySwFechaEmision: UISwitch!
     @IBOutlet weak var mySwFechaValidez: UISwitch!
 
-    //MARK: - IBActions
-    @IBAction func openMenu(_ sender: Any) {
-        if let navigationViewController = self.navigationController as? SideMenuItemContent {
-            navigationViewController.showSideMenu()
-        }
-    }
-    
     @IBAction func activarFechasSW(_ sw: UISwitch) {
         if sw.isOn {
             if sw.tag == 0 {
@@ -161,7 +149,7 @@ class IME_CrearDocumentoTVC: UITableViewController {
         myFechaValidez.textColor = UIColor.gray
     }
     
-    func setFechaLabel(_ dp: UIDatePicker){
+    @objc func setFechaLabel(_ dp: UIDatePicker){
         
         if dp.tag == 0 {
             today = datapicker.date

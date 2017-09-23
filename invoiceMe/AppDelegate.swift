@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -43,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navBar.isTranslucent = false
         navBar.barStyle = .black
         navBar.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT
-        navBar.titleTextAttributes = [NSForegroundColorAttributeName : CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT, NSFontAttributeName: font!]
+        navBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT, NSAttributedStringKey.font: font!]
         
         navBar.backIndicatorImage = UIImage(named: "arrow2")
         navBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow2mask")
@@ -56,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         toolBar.barTintColor = CONSTANTES.COLORES.PRIMARY_COLOR
         toolBar.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT
         
-        buttonItem.setTitleTextAttributes([NSFontAttributeName: font!], for: .normal)
+        buttonItem.setTitleTextAttributes([NSAttributedStringKey.font: font!], for: .normal)
         
     }
     

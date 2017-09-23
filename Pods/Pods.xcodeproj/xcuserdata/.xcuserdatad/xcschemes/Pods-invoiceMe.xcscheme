@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7D6343047585E859A1BEE8D1C74D87E7'
+               BlueprintIdentifier = 'DC9A82AAF1F7178B8F4B74D13B96A4BD'
                BlueprintName = 'Pods-invoiceMe'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods-invoiceMe.framework'>

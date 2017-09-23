@@ -37,7 +37,7 @@ class IME_IntroAnimacionVC: UIViewController {
     }
     
     //MARK: - Funciones Propia
-    func animacionPunto(){
+    @objc func animacionPunto(){
         
         //añadimos un color al circulo
         circleShape.fillColor = UIColor.white.cgColor
@@ -66,7 +66,7 @@ class IME_IntroAnimacionVC: UIViewController {
         
     }
     
-    func muestraAutomatico(){
+    @objc func muestraAutomatico(){
         //Preparamos la animación del logo, lo haremos aumentar de escala
         let logoAnimation = UIViewPropertyAnimator(duration: 0.20, curve: .easeInOut) {
             self.myLogoIntro.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
@@ -77,7 +77,7 @@ class IME_IntroAnimacionVC: UIViewController {
         
     }
     
-    func desaparecer(){
+    @objc func desaparecer(){
         //Hacemos desaparecer el circulo usando su opacidad
         let logoAnimation = UIViewPropertyAnimator(duration: 0.05, curve: .easeOut) {
             self.circleShape.opacity = 0
@@ -88,7 +88,7 @@ class IME_IntroAnimacionVC: UIViewController {
         
     }
     
-    func comienzoApp(){
+    @objc func comienzoApp(){
         // TODO: - Logica de mostrar tutorial, paso por registro o login.
         if CUSTOM_PREFS.string(forKey: CONSTANTES.PREFS.FIRST_TIME) != nil {
             //El usuario ya habia iniciado por primera vez la aplicación y ya ha visualizado el tutorial

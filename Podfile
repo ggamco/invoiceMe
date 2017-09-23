@@ -5,7 +5,6 @@ use_frameworks!
 target 'invoiceMe' do
     pod 'SwiftyJSON'
     pod 'Alamofire'
-    pod 'PhoneNumberKit'
-    pod 'InteractiveSideMenu'
     pod 'Parse'
+    pod 'PhoneNumberKit', '~> 2.0'
 end

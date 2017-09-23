@@ -214,7 +214,7 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
         self.tableView.endEditing(true)
     }
     
-    func enableFecha(_ sw: UISwitch){
+    @objc func enableFecha(_ sw: UISwitch){
         if sw.isOn {
             if sw.tag == 0 {
                 myFechaInicio.isEnabled = true
@@ -236,7 +236,7 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
         }
     }
     
-    func setFechaLabel(_ dp: UIDatePicker){
+    @objc func setFechaLabel(_ dp: UIDatePicker){
         
         if dp.tag == 0 {
             today = datapicker.date
@@ -253,7 +253,7 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
         
     }
     
-    func mostrarFilasHoras(){
+    @objc func mostrarFilasHoras(){
         celdasOcultas = !celdasOcultas
         tableView.reloadData()
     }

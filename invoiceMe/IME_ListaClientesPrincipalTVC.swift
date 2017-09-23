@@ -7,11 +7,6 @@
 //
 
 import UIKit
-import InteractiveSideMenu
-
-class IME_ListaClientesNAV: UINavigationController, SideMenuItemContent {
-    
-}
 
 class IME_ListaClientesPrincipalTVC: UITableViewController {
     
@@ -23,13 +18,6 @@ class IME_ListaClientesPrincipalTVC: UITableViewController {
     var empresaSeleccionada = 0
     var indexOfNumbers = [String]()
     var diccionario: [String : [Empresa]] = [:]
-    
-    //MARK: - IBActions
-    @IBAction func openMenu(_ sender: Any) {
-        if let navigationViewController = self.navigationController as? SideMenuItemContent {
-            navigationViewController.showSideMenu()
-        }
-    }
     
     @IBAction func crearCliente(_ sender: UIBarButtonItem) {
         let destinoVC = storyboard?.instantiateViewController(withIdentifier: "CrearClienteNuevoTVC") as! IME_CrearClienteNuevoTVC
@@ -45,7 +33,7 @@ class IME_ListaClientesPrincipalTVC: UITableViewController {
     }
     
     //MARK: - Utils
-    func cerrarVentana() {
+    @objc func cerrarVentana() {
         dismiss(animated: true, completion: nil)
     }
     

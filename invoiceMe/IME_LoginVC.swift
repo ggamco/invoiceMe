@@ -19,9 +19,8 @@ class IME_LoginVC: UIViewController {
     
     // MARK: - IBActions
     @IBAction func loginUsuario(_ sender: UIButton) {
-        // TODO: - Funcior para hacer login en parse
+        // TODO: - Funcion para hacer login en parse
     }
-    
     
     // MARK: - LIFE VC
     override func viewDidLoad() {

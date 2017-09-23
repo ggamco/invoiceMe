@@ -94,7 +94,7 @@ class IME_ListaClientesTVC: UITableViewController {
         }
     }
     
-    func cerrarVentana() {
+    @objc func cerrarVentana() {
         dismiss(animated: true, completion: nil)
     }
     

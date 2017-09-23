@@ -113,7 +113,7 @@ class IME_EmisorTVC: UITableViewController {
     }
     
     //MARK: - Funciones Propias
-    func formatearTelefono() {
+    @objc func formatearTelefono() {
         myTelefonoEmisor.text?.append("+34")
     }
     

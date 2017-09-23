@@ -167,7 +167,7 @@ extension IME_RegistroVC : UITextFieldDelegate {
 }
 extension IME_RegistroVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func pickerPhoto(){
+    @objc func pickerPhoto(){
         
         if UIImagePickerController.isSourceTypeAvailable(.camera){
             muestraMenu()
