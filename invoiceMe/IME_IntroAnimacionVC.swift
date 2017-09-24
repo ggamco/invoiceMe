@@ -97,19 +97,22 @@ class IME_IntroAnimacionVC: UIViewController {
                 if PFUser.current() != nil {
                     // El usuario esta logueado, lo enviamos a la ventana principal
                     let principalVC = storyboard?.instantiateViewController(withIdentifier: "PrimeraVentanaTBC") as! IME_PrimeraVentanaTBC
-                    principalVC.modalTransitionStyle = .crossDissolve
-                    present(principalVC, animated: true, completion: nil)
+                    let navController = UINavigationController(rootViewController: principalVC)
+                    navController.modalTransitionStyle = .crossDissolve
+                    self.present(navController, animated:true, completion: nil)
                 } else {
                     //El usuario no esta logueado, le pedimos login
                     let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginTVC") as! IME_LoginTVC
-                    loginVC.modalTransitionStyle = .crossDissolve
-                    present(loginVC, animated: true, completion: nil)
+                    let navController = UINavigationController(rootViewController: loginVC)
+                    navController.modalTransitionStyle = .crossDissolve
+                    self.present(navController, animated:true, completion: nil)
                 }
             } else {
                 //El usuario no esta registrado
-                let registroVC = storyboard?.instantiateViewController(withIdentifier: "RegistroVC") as! IME_RegistroVC
-                registroVC.modalTransitionStyle = .crossDissolve
-                present(registroVC, animated: true, completion: nil)
+                let registroVC = storyboard?.instantiateViewController(withIdentifier: "RegistroTVC") as! IME_RegistroTVC
+                let navController = UINavigationController(rootViewController: registroVC)
+                navController.modalTransitionStyle = .crossDissolve
+                self.present(navController, animated:true, completion: nil)
             }
         } else {
             //Es la primera ejecución de la aplicacion, mostramos el tutorial
@@ -117,10 +120,6 @@ class IME_IntroAnimacionVC: UIViewController {
             tutorialVC.modalTransitionStyle = .crossDissolve
             present(tutorialVC, animated: true, completion: nil)
         }
-        
-
-        
-        
+     
     }
-
 }

@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		037BBF779056E92B46C30911 /* Pods_invoiceMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A177C2C5AD8418A97ADB29 /* Pods_invoiceMe.framework */; };
+		5E173CDD1F77B2E800095DE9 /* CustomCameraOverlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E173CDB1F77B2E800095DE9 /* CustomCameraOverlayVC.swift */; };
+		5E173CDE1F77B2E800095DE9 /* CustomCameraOverlayVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E173CDC1F77B2E800095DE9 /* CustomCameraOverlayVC.xib */; };
+		5E173CE11F77B92A00095DE9 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E173CE01F77B92A00095DE9 /* CustomOverlayView.swift */; };
 		5E2BE2771F77154B004CEDBA /* IME_RegistroTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2BE2761F77154B004CEDBA /* IME_RegistroTVC.swift */; };
 		5E463F611F6D410D000B9DDE /* IME_TutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E463F601F6D410D000B9DDE /* IME_TutorialVC.swift */; };
 		5E463F631F6DC907000B9DDE /* IME_LoginTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E463F621F6DC907000B9DDE /* IME_LoginTVC.swift */; };
-		5EA6D3C01EFFBAB70015C69F /* IME_LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6D3BF1EFFBAB70015C69F /* IME_LoginVC.swift */; };
-		5EA6D3C41EFFC26E0015C69F /* IME_RegistroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6D3C31EFFC26E0015C69F /* IME_RegistroVC.swift */; };
+		5EA0F7D21F78449C00F78B19 /* PKHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA0F7D31F78449C00F78B19 /* PKHUD.framework */; };
+		5EA0F7D51F78611800F78B19 /* API_SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0F7D41F78611800F78B19 /* API_SignIn.swift */; };
 		5EA6D3C61EFFC3490015C69F /* Pods_invoiceMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA6D3C51EFFC3490015C69F /* Pods_invoiceMe.framework */; };
 		5EE3D2451F7681320046DFDA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EE3D2461F7681320046DFDA /* Parse.framework */; };
 		5EF2CCD81F06C0E0006184FE /* ProyectoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCD71F06C0E0006184FE /* ProyectoManager.swift */; };
@@ -61,13 +64,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E173CDB1F77B2E800095DE9 /* CustomCameraOverlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCameraOverlayVC.swift; sourceTree = "<group>"; };
+		5E173CDC1F77B2E800095DE9 /* CustomCameraOverlayVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCameraOverlayVC.xib; sourceTree = "<group>"; };
+		5E173CE01F77B92A00095DE9 /* CustomOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOverlayView.swift; sourceTree = "<group>"; };
 		5E2BE2761F77154B004CEDBA /* IME_RegistroTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_RegistroTVC.swift; sourceTree = "<group>"; };
 		5E463F5E1F6D3A9C000B9DDE /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-gmadscsvlyqjzlgjqoxfxeumshgf/Build/Products/Debug-iphoneos/Parse/Parse.framework"; sourceTree = "<group>"; };
 		5E463F601F6D410D000B9DDE /* IME_TutorialVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_TutorialVC.swift; sourceTree = "<group>"; };
 		5E463F621F6DC907000B9DDE /* IME_LoginTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_LoginTVC.swift; sourceTree = "<group>"; };
-		5EA6D3BF1EFFBAB70015C69F /* IME_LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_LoginVC.swift; sourceTree = "<group>"; };
+		5EA0F7D31F78449C00F78B19 /* PKHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PKHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EA0F7D41F78611800F78B19 /* API_SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_SignIn.swift; sourceTree = "<group>"; };
 		5EA6D3C11EFFC0D70015C69F /* InteractiveSideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InteractiveSideMenu.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-gmadscsvlyqjzlgjqoxfxeumshgf/Build/Products/Debug-iphonesimulator/InteractiveSideMenu/InteractiveSideMenu.framework"; sourceTree = "<group>"; };
-		5EA6D3C31EFFC26E0015C69F /* IME_RegistroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_RegistroVC.swift; sourceTree = "<group>"; };
 		5EA6D3C51EFFC3490015C69F /* Pods_invoiceMe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_invoiceMe.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-gmadscsvlyqjzlgjqoxfxeumshgf/Build/Products/Debug-iphonesimulator/Pods_invoiceMe.framework"; sourceTree = "<group>"; };
 		5EE3D2461F7681320046DFDA /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EF2CCD71F06C0E0006184FE /* ProyectoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProyectoManager.swift; sourceTree = "<group>"; };
@@ -127,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EA0F7D21F78449C00F78B19 /* PKHUD.framework in Frameworks */,
 				5EE3D2451F7681320046DFDA /* Parse.framework in Frameworks */,
 				5EF571231F7671FC00EBDDC0 /* PhoneNumberKit.framework in Frameworks */,
 				5EA6D3C61EFFC3490015C69F /* Pods_invoiceMe.framework in Frameworks */,
@@ -139,6 +146,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E173CDF1F77B2F400095DE9 /* CAMERA_OVERLAY */ = {
+			isa = PBXGroup;
+			children = (
+				5E173CDB1F77B2E800095DE9 /* CustomCameraOverlayVC.swift */,
+				5E173CE01F77B92A00095DE9 /* CustomOverlayView.swift */,
+				5E173CDC1F77B2E800095DE9 /* CustomCameraOverlayVC.xib */,
+			);
+			name = CAMERA_OVERLAY;
+			sourceTree = "<group>";
+		};
 		5EF2CCE31F078297006184FE /* MODEL+MAPPING */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,10 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				CC68BD751E717EF9005CC8E3 /* IME_IntroAnimacionVC.swift */,
-				5EA6D3BF1EFFBAB70015C69F /* IME_LoginVC.swift */,
 				5E463F621F6DC907000B9DDE /* IME_LoginTVC.swift */,
 				5E2BE2761F77154B004CEDBA /* IME_RegistroTVC.swift */,
-				5EA6D3C31EFFC26E0015C69F /* IME_RegistroVC.swift */,
 				5E463F601F6D410D000B9DDE /* IME_TutorialVC.swift */,
 			);
 			name = "INTRO|LOGIN|REGISTRO";
@@ -243,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				CC23D8B11F12CB2700DBA8B6 /* CustomTextField.swift */,
+				5E173CDF1F77B2F400095DE9 /* CAMERA_OVERLAY */,
 			);
 			name = VISTAS_PERSONALIZADAS;
 			sourceTree = "<group>";
@@ -310,6 +326,7 @@
 			children = (
 				CC23D8AE1F12426A00DBA8B6 /* SERVICIOS_COREDATA */,
 				CC68BD6A1E717EC8005CC8E3 /* API_Utils.swift */,
+				5EA0F7D41F78611800F78B19 /* API_SignIn.swift */,
 				CC23D8AA1F123D0900DBA8B6 /* CoreDataStack.swift */,
 			);
 			name = APIS;
@@ -318,6 +335,7 @@
 		E5E96FEF7CECC785D5DDAA51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5EA0F7D31F78449C00F78B19 /* PKHUD.framework */,
 				5EE3D2461F7681320046DFDA /* Parse.framework */,
 				5EF571261F76720400EBDDC0 /* Bolts.framework */,
 				5EF571241F7671FC00EBDDC0 /* PhoneNumberKit.framework */,
@@ -400,6 +418,7 @@
 				CC68BD911E717F8F005CC8E3 /* Assets.xcassets in Resources */,
 				CC68BD951E7183A1005CC8E3 /* Podfile in Resources */,
 				CC68BD631E717DFF005CC8E3 /* LaunchScreen.storyboard in Resources */,
+				5E173CDE1F77B2E800095DE9 /* CustomCameraOverlayVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,13 +487,13 @@
 				5EF2CCD81F06C0E0006184FE /* ProyectoManager.swift in Sources */,
 				CC68BD791E717EF9005CC8E3 /* IME_HorasTVC.swift in Sources */,
 				CC68BD821E717F03005CC8E3 /* IME_CrearClienteNuevoTVC.swift in Sources */,
-				5EA6D3C01EFFBAB70015C69F /* IME_LoginVC.swift in Sources */,
 				5EF2CCDA1F06C351006184FE /* EmpresaManager.swift in Sources */,
 				CC68BD561E717DFF005CC8E3 /* AppDelegate.swift in Sources */,
 				CC23D8B21F12CB2700DBA8B6 /* CustomTextField.swift in Sources */,
 				CC68BD831E717F03005CC8E3 /* IME_ColorCorporativoCCCell.swift in Sources */,
 				CC23D8AB1F123D0900DBA8B6 /* CoreDataStack.swift in Sources */,
 				CC68BD5E1E717DFF005CC8E3 /* invoiceMe.xcdatamodeld in Sources */,
+				5E173CE11F77B92A00095DE9 /* CustomOverlayView.swift in Sources */,
 				5EF2CCE01F06F5F1006184FE /* DocumentoManager.swift in Sources */,
 				5EF2CCF21F09AAB1006184FE /* IME_ServicioWebVC.swift in Sources */,
 				5E463F631F6DC907000B9DDE /* IME_LoginTVC.swift in Sources */,
@@ -484,9 +503,10 @@
 				CC68BD891E717F0E005CC8E3 /* IME_OpcionesTVC.swift in Sources */,
 				5EF2CCDC1F06F370006184FE /* EmisorManager.swift in Sources */,
 				CC68BD6B1E717EC8005CC8E3 /* API_Utils.swift in Sources */,
-				5EA6D3C41EFFC26E0015C69F /* IME_RegistroVC.swift in Sources */,
+				5EA0F7D51F78611800F78B19 /* API_SignIn.swift in Sources */,
 				CC68BD8B1E717F0E005CC8E3 /* IME_NotificacionesTVC.swift in Sources */,
 				CC68BD771E717EF9005CC8E3 /* IME_PrimeraVentanaTBC.swift in Sources */,
+				5E173CDD1F77B2E800095DE9 /* CustomCameraOverlayVC.swift in Sources */,
 				5E2BE2771F77154B004CEDBA /* IME_RegistroTVC.swift in Sources */,
 				CC68BD811E717F03005CC8E3 /* IME_ListaClientesTVC.swift in Sources */,
 				CC3BD35A1E760DBB000C5A1D /* API_ServicioProyecto.swift in Sources */,

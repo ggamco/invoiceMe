@@ -7,4 +7,5 @@ target 'invoiceMe' do
     pod 'Alamofire'
     pod 'Parse'
     pod 'PhoneNumberKit', '~> 2.0'
+    pod 'PKHUD'
 end

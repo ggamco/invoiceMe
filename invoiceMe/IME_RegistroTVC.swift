@@ -8,6 +8,8 @@
 
 import UIKit
 import Parse
+import Alamofire
+import PKHUD
 
 class IME_RegistroTVC: UITableViewController {
 
@@ -28,14 +30,10 @@ class IME_RegistroTVC: UITableViewController {
     
     // MARK: - IBActions
     @IBAction func registrarUsuario(_ sender: UIButton) {
-        // TODO: - Funcion para registrar usuario en parse
-        var errorInicial = ""
-        
         if verificaTF(myCorreo.text) || verificaTF(myPassword.text)  {
-            
-            errorInicial = "Por favor, rellene los campos solicitados."
-            
+            present(muestraAlertVC(titulo: "Atención", mensaje: "Por favor, rellene los campos solicitados."), animated: true, completion: nil)
         } else {
+            HUD.show(.progress)
             let newUser = PFUser()
             newUser.password = myPassword.text
             newUser.email = myCorreo.text
@@ -43,27 +41,26 @@ class IME_RegistroTVC: UITableViewController {
             newUser.signUpInBackground(block: { (exitoso, errorRegistro) in
                 
                 if errorRegistro != nil {
+                    HUD.hide(afterDelay: 0)
                     self.present(muestraAlertVC(titulo: "Atención", mensaje: "\((errorRegistro?.localizedDescription)!)"), animated: true, completion: nil)
                 } else {
                     self.signUpWithPhoto()
-                    self.registerDeviceOnAPI()
-                    self.performSegue(withIdentifier: "jumpFromRegisterVC", sender: self)
+                    if let _ = self.registerDeviceOnAPI() {
+                        HUD.hide(afterDelay: 0)
+                        self.present(muestraAlertVC(titulo: "Atención", mensaje: "Se ha producido un error durante el registro. Veulve a intentarlo más tarde.\nSiEl problema persiste contacte con soporte desde el AppleStore"), animated: true, completion: nil)
+                    } else {
+                        HUD.hide(afterDelay: 0)
+                        UserDefaults.setValue("REGISTRADO_OK", forKey: CONSTANTES.PREFS.REGISTERED)
+                        self.performSegue(withIdentifier: "fromRegistroTVC", sender: self)
+                    }
                 }
             })
-            
-            if errorInicial != "" {
-                present(muestraAlertVC(titulo: "Atención", mensaje: errorInicial), animated: true, completion: nil)
-            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //personaliza imagen perfil
-        myImagenPerfil.layer.cornerRadius = myImagenPerfil.frame.width / 2
-        myImagenPerfil.layer.borderWidth = 2
-        myImagenPerfil.layer.borderColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT.cgColor
+        deviceSize = self.view.frame.height
         
         //gesto sobre la imagen para que el usuario pueda interactuar
         myImagenPerfil.isUserInteractionEnabled = true
@@ -77,9 +74,15 @@ class IME_RegistroTVC: UITableViewController {
         myCorreo.delegate = self
         myPassword.delegate = self
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //personaliza imagen perfil
+        myImagenPerfil.layer.cornerRadius = myImagenPerfil.frame.width / 2
+        myImagenPerfil.layer.borderWidth = 2
+        myImagenPerfil.layer.borderColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT.cgColor
+    }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -102,7 +105,6 @@ class IME_RegistroTVC: UITableViewController {
     }
 
     //MARK: - Utiles
-    
     func verificaTF(_ string: String?) -> Bool {
         return string?.trimmingCharacters(in: .whitespaces) == ""
     }
@@ -147,19 +149,33 @@ class IME_RegistroTVC: UITableViewController {
         }
     }
     
-    func registerDeviceOnAPI() {
+    func registerDeviceOnAPI() -> Error? {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        var errorServicio: Error?
         
+        let url = URL(string: CONSTANTES.URLS.URL_REGISTER_DEVICE)
+        let paremeters: [String : String] = [
+            "deviceToken" : appDelegate.TOKEN_DEVICE
+        ]
+        let headers: [String : String] = [
+            "Authorization" : CONSTANTES.URLS.AUTH_CODE,
+            "content-type": "application/json"
+        ]
+        Alamofire.request(
+            url!,
+            method: .post,
+            parameters: paremeters,
+            encoding: JSONEncoding.default,
+            headers: headers).response { (response) in
+                if let error = response.error {
+                    print("Se ha producido un error en la autentificación y registro del dispositivo. \(error.localizedDescription)")
+                    errorServicio = error
+                } else {
+                    print("Registrado correctamente")
+                }
+        }
+        return errorServicio
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }// MARK: - Fin de la clase
 
@@ -228,13 +244,15 @@ extension IME_RegistroTVC: UIImagePickerControllerDelegate, UINavigationControll
         imagePicker.sourceType = .camera
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
+        
         present(imagePicker, animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        if let imageData = info[UIImagePickerControllerOriginalImage] as? UIImage{
+        if let imageData = info[UIImagePickerControllerEditedImage] as? UIImage{
             myImagenPerfil.image = imageData
+            myImagenPerfil.alpha = 1.0
             fotoSeleccionada = true
             myLabelPerfil.isHidden = true
         }
@@ -243,8 +261,14 @@ extension IME_RegistroTVC: UIImagePickerControllerDelegate, UINavigationControll
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
         dismiss(animated: true, completion: nil)
+    }
+    
+    func customOverlayView(_ imagePicker: UIImagePickerController) -> CustomOverlayView {
+        let customViewOverlay = CustomCameraOverlayVC(nibName: "CustomCameraOverlayVC", bundle: nil)
+        let customView:CustomOverlayView = customViewOverlay.view as! CustomOverlayView
+        customView.frame = imagePicker.view.frame
+        return customView
     }
 }
 

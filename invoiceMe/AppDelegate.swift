@@ -14,6 +14,7 @@ import Parse
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var TOKEN_DEVICE: String!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -46,7 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         navBar.backIndicatorImage = UIImage(named: "arrow2")
         navBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow2mask")
-        navBar.topItem?.title = ""
 
         tabBar.barTintColor = CONSTANTES.COLORES.PRIMARY_COLOR
         tabBar.barStyle = .black
@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let TOKEN_DEVICE = deviceToken.reduce("", {$0 + String(format: "%02X",    $1)})
+        TOKEN_DEVICE = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
         print("deviceToken: \(TOKEN_DEVICE)")
     }
     

@@ -9,12 +9,14 @@ PODS:
   - PhoneNumberKit/PhoneNumberKitCore (2.0.0)
   - PhoneNumberKit/UIKit (2.0.0):
     - PhoneNumberKit/PhoneNumberKitCore
+  - PKHUD (4.2.3)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire
   - Parse
   - PhoneNumberKit (~> 2.0)
+  - PKHUD
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -22,8 +24,9 @@ SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Parse: 7daa8804b876d250a65420534c97d2d786c3b0b4
   PhoneNumberKit: 073b3cef30c2a64ddcd623ea5953bc84bb5b3fc4
+  PKHUD: c7692163a09875cbf15827dc581df3c5cf7f1015
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 73d7c869afee95a0e7201d2429e4add2e594d764
+PODFILE CHECKSUM: 0bc9a81d1969f12c9050d9e366c39ba4e3d0977e
 
 COCOAPODS: 1.2.0

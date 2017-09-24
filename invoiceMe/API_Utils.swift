@@ -15,6 +15,7 @@ struct Constantes {
     let COLORES = Colores()
     let PREFS = Preferencias()
     let DEVICE = DeviceSize()
+    let URLS = Urls()
 }
 
 struct Colores {
@@ -38,6 +39,12 @@ struct DeviceSize {
     let MEDIUM: CGFloat = 568.0
     let STANDARD: CGFloat = 667.0
     let PLUS: CGFloat = 736.0
+}
+
+struct Urls {
+    let AUTH_CODE = ""
+    let URL_PDF_CREATE = "http://gmbdesign.es/PDFCreator/PDF"
+    let URL_REGISTER_DEVICE = "http://gmbdesign.es/PDFCreator/RegisterDeviceOnAPI"
 }
 
 func personalizaBackBTN(_ title: String) -> UIBarButtonItem{

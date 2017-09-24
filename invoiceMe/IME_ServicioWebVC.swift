@@ -56,8 +56,7 @@ class IME_ServicioWebVC: UIViewController {
         
         print("el json: \(parameter!)")
 
-        //let url = URL(string: "http://localhost:8080/PDFCreator/PDF")
-        let url = URL(string: "http://gmbdesign.es/PDFCreator/PDF")
+        let url = URL(string: CONSTANTES.URLS.URL_PDF_CREATE)
         
         let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
         

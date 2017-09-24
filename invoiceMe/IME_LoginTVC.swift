@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Parse
+import PKHUD
 
 class IME_LoginTVC: UITableViewController {
     
@@ -25,12 +27,24 @@ class IME_LoginTVC: UITableViewController {
     
     // MARK: - IBActions
     @IBAction func loginUsuario(_ sender: UIButton) {
-        // TODO: - Funcion para hacer login en parse
+        let sign = APISignIn(p_username: myCorreo.text!, p_password: myPassword.text!)
+        
+        do {
+            HUD.show(.progress)
+            try sign.signUser()
+            self.performSegue(withIdentifier: "fromLoginTVC", sender: self)
+        } catch let error{
+            present(muestraAlertVC(titulo: "Lo sentimos", mensaje: "\(error.localizedDescription)"),
+                    animated: true,
+                    completion: nil)
+        }
+        HUD.hide(afterDelay: 0)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         deviceSize = self.view.frame.height
+        self.navigationController?.navigationBar.topItem?.title = ""
         
         //Personaliza boton
         myBotonLogin.layer.cornerRadius = 5
