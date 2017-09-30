@@ -14,6 +14,9 @@
 		5E2BE2771F77154B004CEDBA /* IME_RegistroTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2BE2761F77154B004CEDBA /* IME_RegistroTVC.swift */; };
 		5E463F611F6D410D000B9DDE /* IME_TutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E463F601F6D410D000B9DDE /* IME_TutorialVC.swift */; };
 		5E463F631F6DC907000B9DDE /* IME_LoginTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E463F621F6DC907000B9DDE /* IME_LoginTVC.swift */; };
+		5E484B651F7E91EB00F7A63D /* EPSignature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E484B661F7E91EB00F7A63D /* EPSignature.framework */; };
+		5E484B681F7E922900F7A63D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E484B671F7E922800F7A63D /* LocalAuthentication.framework */; };
+		5E484B6A1F7ED75C00F7A63D /* IME_FacturasTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E484B691F7ED75C00F7A63D /* IME_FacturasTVC.swift */; };
 		5EA0F7D21F78449C00F78B19 /* PKHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA0F7D31F78449C00F78B19 /* PKHUD.framework */; };
 		5EA0F7D51F78611800F78B19 /* API_SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0F7D41F78611800F78B19 /* API_SignIn.swift */; };
 		5EA6D3C61EFFC3490015C69F /* Pods_invoiceMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA6D3C51EFFC3490015C69F /* Pods_invoiceMe.framework */; };
@@ -71,6 +74,9 @@
 		5E463F5E1F6D3A9C000B9DDE /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-gmadscsvlyqjzlgjqoxfxeumshgf/Build/Products/Debug-iphoneos/Parse/Parse.framework"; sourceTree = "<group>"; };
 		5E463F601F6D410D000B9DDE /* IME_TutorialVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_TutorialVC.swift; sourceTree = "<group>"; };
 		5E463F621F6DC907000B9DDE /* IME_LoginTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_LoginTVC.swift; sourceTree = "<group>"; };
+		5E484B661F7E91EB00F7A63D /* EPSignature.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EPSignature.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E484B671F7E922800F7A63D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		5E484B691F7ED75C00F7A63D /* IME_FacturasTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_FacturasTVC.swift; sourceTree = "<group>"; };
 		5EA0F7D31F78449C00F78B19 /* PKHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PKHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA0F7D41F78611800F78B19 /* API_SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_SignIn.swift; sourceTree = "<group>"; };
 		5EA6D3C11EFFC0D70015C69F /* InteractiveSideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InteractiveSideMenu.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-gmadscsvlyqjzlgjqoxfxeumshgf/Build/Products/Debug-iphonesimulator/InteractiveSideMenu/InteractiveSideMenu.framework"; sourceTree = "<group>"; };
@@ -133,6 +139,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E484B681F7E922900F7A63D /* LocalAuthentication.framework in Frameworks */,
+				5E484B651F7E91EB00F7A63D /* EPSignature.framework in Frameworks */,
 				5EA0F7D21F78449C00F78B19 /* PKHUD.framework in Frameworks */,
 				5EE3D2451F7681320046DFDA /* Parse.framework in Frameworks */,
 				5EF571231F7671FC00EBDDC0 /* PhoneNumberKit.framework in Frameworks */,
@@ -270,6 +278,7 @@
 				CC68BD931E718309005CC8E3 /* CUSTOM_CELLS */,
 				CC68BD7B1E717F03005CC8E3 /* IME_CrearProyectoNuevoTVC.swift */,
 				CC68BD7C1E717F03005CC8E3 /* IME_ListaClientesTVC.swift */,
+				5E484B691F7ED75C00F7A63D /* IME_FacturasTVC.swift */,
 			);
 			name = PROYECTOS;
 			sourceTree = "<group>";
@@ -335,6 +344,8 @@
 		E5E96FEF7CECC785D5DDAA51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E484B671F7E922800F7A63D /* LocalAuthentication.framework */,
+				5E484B661F7E91EB00F7A63D /* EPSignature.framework */,
 				5EA0F7D31F78449C00F78B19 /* PKHUD.framework */,
 				5EE3D2461F7681320046DFDA /* Parse.framework */,
 				5EF571261F76720400EBDDC0 /* Bolts.framework */,
@@ -491,6 +502,7 @@
 				CC68BD561E717DFF005CC8E3 /* AppDelegate.swift in Sources */,
 				CC23D8B21F12CB2700DBA8B6 /* CustomTextField.swift in Sources */,
 				CC68BD831E717F03005CC8E3 /* IME_ColorCorporativoCCCell.swift in Sources */,
+				5E484B6A1F7ED75C00F7A63D /* IME_FacturasTVC.swift in Sources */,
 				CC23D8AB1F123D0900DBA8B6 /* CoreDataStack.swift in Sources */,
 				CC68BD5E1E717DFF005CC8E3 /* invoiceMe.xcdatamodeld in Sources */,
 				5E173CE11F77B92A00095DE9 /* CustomOverlayView.swift in Sources */,

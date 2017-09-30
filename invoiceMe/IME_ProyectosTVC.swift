@@ -55,35 +55,7 @@ class IME_ProyectosTVC: UITableViewController {
         ordenarProyectosPorEmpresa()
         tableView.reloadData()
         
-        if proyectos.count != 0 {
-            
-            let parameter = proyectos[0].toJSON()
-            
-            print(parameter)
-            
-            let url = URL(string: "http://localhost:8080/PDFCreator/PDF")
-            /*
-            Alamofire.download(url!, method: .post, parameters: parameter, encoding: JSONEncoding.default).response(completionHandler: { (data) in
-                print(data)
-            })
-            */
-            let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
-            print("destino: \(String(describing: pdfUrl()))")
-            
-            Alamofire.download(
-                url!,
-                method: .post,
-                parameters: parameter,
-                encoding: JSONEncoding.default,
-                headers: nil,
-                to: destination).downloadProgress(closure: { (progress) in
-                    //progress closure
-                    print("Progress: \(progress)")
-                }).responseData(completionHandler: { (data) in
-                    
-                })
         
-        }
     }
 
     //MARK: - Recupera empresas
@@ -208,7 +180,17 @@ class IME_ProyectosTVC: UITableViewController {
             self.tableView.reloadData()
         }
         
-        return [borrarAction]
+        let facturarAction = UITableViewRowAction(style: .normal, title: "Facturar") { (action, indexPath) in
+            let destinoVC = self.storyboard?.instantiateViewController(withIdentifier: "FacturasTVC") as! IME_FacturasTVC
+            destinoVC.proyecto = self.diccionario[self.empresas[indexPath.section]]?[indexPath.row]
+            destinoVC.hidesBottomBarWhenPushed = true
+            // IMPORTANT!
+            // Este es el que funciona para ocultar el titulo del back buttom item
+            self.navigationItem.backBarButtonItem?.title = ""
+            self.navigationController?.pushViewController(destinoVC, animated: true)
+        }
+        
+        return [facturarAction, borrarAction]
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -218,6 +200,10 @@ class IME_ProyectosTVC: UITableViewController {
         destinoVC.proyecto = diccionario[empresas[indexPath.section]]?[indexPath.row]
         destinoVC.esActualizacion = true
         destinoVC.title = "Editar Proyecto"
+        
+        // IMPORTANT!
+        // Este es el que funciona para ocultar el titulo del back buttom item
+        self.navigationItem.backBarButtonItem?.title = ""
         
         self.navigationController?.pushViewController(destinoVC, animated: true)
 

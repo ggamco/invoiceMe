@@ -8,4 +8,5 @@ target 'invoiceMe' do
     pod 'Parse'
     pod 'PhoneNumberKit', '~> 2.0'
     pod 'PKHUD'
+    pod 'EPSignature', '~> 1.0'
 end

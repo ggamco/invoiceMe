@@ -24,6 +24,7 @@ class IME_CrearDocumentoTVC: UITableViewController {
     //MARK: - Variables Locales
     var today: Date?
     var tomorrow: Date?
+    var tipoDocumentoDeseado: Int?
     var empresaSeleccionada = 0
     var seccionSeleccionada = 0
     var documentoNuevo: Documento?
@@ -34,14 +35,18 @@ class IME_CrearDocumentoTVC: UITableViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var myNombreEmisor: UITextField!
     @IBOutlet weak var myNombreReceptor: UITextField!
-    @IBOutlet weak var myTipoDocumento: UISegmentedControl!
     @IBOutlet weak var myNumeroDocumento: UITextField!
     @IBOutlet weak var mySufijoDocumento: UITextField!
     @IBOutlet weak var myFechaEmision: UITextField!
     @IBOutlet weak var myFechaValidez: UITextField!
     @IBOutlet weak var mySwFechaEmision: UISwitch!
     @IBOutlet weak var mySwFechaValidez: UISwitch!
-
+    
+    // MARK: - IBActions
+    @IBAction func cancelarAction(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func activarFechasSW(_ sw: UISwitch) {
         if sw.isOn {
             if sw.tag == 0 {
@@ -74,35 +79,29 @@ class IME_CrearDocumentoTVC: UITableViewController {
         servicioDocumento = ServicioDocumento(contexto: contexto)
         servicioEmisor = ServicioEmisor(contexto: contexto)
         
-        //CONFIGURACIONES ESTETICAS VARIAS
-        myNumeroDocumento.layer.cornerRadius = 5
-        mySufijoDocumento.layer.cornerRadius = 5
-        myFechaEmision.layer.cornerRadius = 5
-        myFechaValidez.layer.cornerRadius = 5
+        //Recuperamos contador
+        let contador = UserDefaults.standard.integer(forKey: "contador")
+        if contador != 0 {
+            myNumeroDocumento.text = String(contador)
+        } else {
+            myNumeroDocumento.text = String(1)
+        }
         
-        //CONFIGURACIONES VARIAS
-        format.dateFormat = "dd/MM/yyyy"
-        myFechaEmision.delegate = self
-        myFechaValidez.delegate = self
-        
-        //CONFIGURAMOS LA CARGA DEL DATAPICKER
-        datapicker.datePickerMode = UIDatePickerMode.date
-        myFechaEmision.inputView = datapicker
-        myFechaValidez.inputView = datapicker
-        datapicker.addTarget(self, action: #selector(setFechaLabel), for: UIControlEvents.valueChanged)
-        
+        configuracionesVarias()
         setFechasIniciales()
         
-        //Recuperamos contador
-        myNumeroDocumento.text = String(UserDefaults.standard.integer(forKey: "contador"))
         
+        //Comprobamos el nombre de la empresa si ya la tenemos seleccionada
+        if let nombreEmpresa = receptor?.nombre {
+            myNombreReceptor.text = nombreEmpresa
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 4
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -111,8 +110,6 @@ class IME_CrearDocumentoTVC: UITableViewController {
         case 0:
             return 2
         case 1:
-            return 1
-        case 2:
             return 3
         default:
             return 1
@@ -123,7 +120,7 @@ class IME_CrearDocumentoTVC: UITableViewController {
     // MARK: - FUNCIONES PROPIAS
     func crearDocumento() -> Documento? {
         
-        let doc = servicioDocumento?.crearDocumento(tipoDocumento: myTipoDocumento.selectedSegmentIndex,
+        let doc = servicioDocumento?.crearDocumento(tipoDocumento: tipoDocumentoDeseado!,
                                                     numeroDocumento: Int(myNumeroDocumento.text!)!,
                                                     sujijo: mySufijoDocumento.text!,
                                                     fechaEmison: mySwFechaEmision.isOn ? myFechaEmision.text! : "",
@@ -161,9 +158,26 @@ class IME_CrearDocumentoTVC: UITableViewController {
                 datapicker.date = tomorrow!
             }
             myFechaValidez.text = format.string(from: tomorrow!)
-            
         }
+    }
+    
+    func configuracionesVarias() {
+        //CONFIGURACIONES ESTETICAS VARIAS
+        myNumeroDocumento.layer.cornerRadius = 5
+        mySufijoDocumento.layer.cornerRadius = 5
+        myFechaEmision.layer.cornerRadius = 5
+        myFechaValidez.layer.cornerRadius = 5
         
+        //CONFIGURACIONES VARIAS
+        format.dateFormat = "dd/MM/yyyy"
+        myFechaEmision.delegate = self
+        myFechaValidez.delegate = self
+        
+        //CONFIGURAMOS LA CARGA DEL DATAPICKER
+        datapicker.datePickerMode = UIDatePickerMode.date
+        myFechaEmision.inputView = datapicker
+        myFechaValidez.inputView = datapicker
+        datapicker.addTarget(self, action: #selector(setFechaLabel), for: UIControlEvents.valueChanged)
     }
     
     // MARK: - Navigation
@@ -185,23 +199,14 @@ class IME_CrearDocumentoTVC: UITableViewController {
         } else if segue.identifier == "servicioPDF" {
 
             //Creamos el Documento con los datos obtenidos
-            documentoNuevo = crearDocumento()
-            
-        } else {
-            
-            let destinationVC = segue.destination as? IME_ListaClientesTVC
-            
-            destinationVC?.empresaSeleccionada = empresaSeleccionada
-            destinationVC?.seccionSeleccionada = seccionSeleccionada
-            
-            if let nombre = myNombreReceptor.text, myNombreReceptor.text != "" {
-                destinationVC?.nombreCliente = nombre
+            if emisor != nil && receptor != nil {
+                documentoNuevo = crearDocumento()
             } else {
-                destinationVC?.nombreCliente = receptor?.nombre
+                let alert = muestraAlertVC(titulo: "Atención", mensaje: "Completa todos los campos para continuar.")
+                present(alert, animated: true, completion: nil)
             }
         }
     }
-
 }
 
 //MARK: - Extensión de UITextFieldDelegate

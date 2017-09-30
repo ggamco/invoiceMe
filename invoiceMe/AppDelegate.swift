@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var TOKEN_DEVICE: String!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
         let configuration = ParseClientConfiguration {
             $0.applicationId = "GPCnMgZWwWcTKToE02nMOfomH8lVSDCVDKGs3bQr"
@@ -47,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         navBar.backIndicatorImage = UIImage(named: "arrow2")
         navBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow2mask")
-
+        
         tabBar.barTintColor = CONSTANTES.COLORES.PRIMARY_COLOR
         tabBar.barStyle = .black
         tabBar.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT

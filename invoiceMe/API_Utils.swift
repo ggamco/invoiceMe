@@ -21,9 +21,9 @@ struct Constantes {
 struct Colores {
     let ARRAY_COLORES = [#colorLiteral(red: 0.1662613613, green: 0.4032051037, blue: 0.2543297463, alpha: 1),#colorLiteral(red: 0.5450980392, green: 0.8509803922, blue: 0.7647058824, alpha: 1),#colorLiteral(red: 0.2502827563, green: 0.7019311045, blue: 0.8830132378, alpha: 1),#colorLiteral(red: 0, green: 0.4143941104, blue: 0.5748094916, alpha: 1),#colorLiteral(red: 0.822672526, green: 0.0745171441, blue: 0.7198893229, alpha: 1),#colorLiteral(red: 0.9137254902, green: 0.7568627451, blue: 0.9333333333, alpha: 1),#colorLiteral(red: 1, green: 0.385687934, blue: 0.536496949, alpha: 1),#colorLiteral(red: 1, green: 0.8448621962, blue: 0.2726894404, alpha: 1),#colorLiteral(red: 1, green: 0.7024071813, blue: 0.3223260045, alpha: 1),#colorLiteral(red: 0.6470377604, green: 0.4429990681, blue: 0.2726894404, alpha: 1)]
     
-    let PRIMARY_COLOR_DARK = #colorLiteral(red: 0.1882352941, green: 0.2470588235, blue: 0.6235294118, alpha: 1)
-    let PRIMARY_COLOR = #colorLiteral(red: 0.2470588235, green: 0.3176470588, blue: 0.7098039216, alpha: 1)
-    let PRIMARY_COLOR_LIGHT = #colorLiteral(red: 0.7725490196, green: 0.7921568627, blue: 0.9137254902, alpha: 1)
+    let PRIMARY_COLOR_DARK = #colorLiteral(red: 0.003921568627, green: 0.3411764706, blue: 0.6078431373, alpha: 1)
+    let PRIMARY_COLOR = #colorLiteral(red: 0.007843137255, green: 0.4666666667, blue: 0.7411764706, alpha: 1)
+    let PRIMARY_COLOR_LIGHT = #colorLiteral(red: 0.8823529412, green: 0.9607843137, blue: 0.9960784314, alpha: 1)
     let FIRST_TEXT_COLOR = #colorLiteral(red: 0.1294117647, green: 0.1294117647, blue: 0.1294117647, alpha: 1)
     let SECOND_TEXT_COLOR = #colorLiteral(red: 0.4588235294, green: 0.4588235294, blue: 0.4588235294, alpha: 1)
     let DIVIDER_COLOR = #colorLiteral(red: 0.7411764706, green: 0.7411764706, blue: 0.7411764706, alpha: 1)

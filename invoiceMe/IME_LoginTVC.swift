@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import PKHUD
+import Alamofire
 
 class IME_LoginTVC: UITableViewController {
     
@@ -32,6 +33,7 @@ class IME_LoginTVC: UITableViewController {
         do {
             HUD.show(.progress)
             try sign.signUser()
+            
             self.performSegue(withIdentifier: "fromLoginTVC", sender: self)
         } catch let error{
             present(muestraAlertVC(titulo: "Lo sentimos", mensaje: "\(error.localizedDescription)"),
@@ -53,6 +55,36 @@ class IME_LoginTVC: UITableViewController {
         myCorreo.delegate = self
         myPassword.delegate = self
         
+    }
+    
+    // MARK: - Utils
+    func loginDeviceOnAPI() -> Error? {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        var errorServicio: Error?
+        
+        let url = URL(string: CONSTANTES.URLS.URL_REGISTER_DEVICE)
+        let paremeters: [String : String] = [
+            "deviceToken" : appDelegate.TOKEN_DEVICE,
+            "user" : myCorreo.text!
+        ]
+        let headers: [String : String] = [
+            "Autorization" : CONSTANTES.URLS.AUTH_CODE,
+            "content-type": "application/json"
+        ]
+        Alamofire.request(
+            url!,
+            method: .post,
+            parameters: paremeters,
+            encoding: JSONEncoding.default,
+            headers: headers).response { (response) in
+                if let error = response.error {
+                    print("Se ha producido un error en la autentificación y registro del dispositivo. \(error.localizedDescription)")
+                    errorServicio = error
+                } else {
+                    print("Registrado correctamente")
+                }
+        }
+        return errorServicio
     }
     
     // MARK: - Table view data source
