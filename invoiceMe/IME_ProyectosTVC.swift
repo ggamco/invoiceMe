@@ -183,7 +183,7 @@ class IME_ProyectosTVC: UITableViewController {
         let facturarAction = UITableViewRowAction(style: .normal, title: "Facturar") { (action, indexPath) in
             let destinoVC = self.storyboard?.instantiateViewController(withIdentifier: "FacturasTVC") as! IME_FacturasTVC
             destinoVC.proyecto = self.diccionario[self.empresas[indexPath.section]]?[indexPath.row]
-            destinoVC.hidesBottomBarWhenPushed = true
+            //destinoVC.hidesBottomBarWhenPushed = true
             // IMPORTANT!
             // Este es el que funciona para ocultar el titulo del back buttom item
             self.navigationItem.backBarButtonItem?.title = ""
