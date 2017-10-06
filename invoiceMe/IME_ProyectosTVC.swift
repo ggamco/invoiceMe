@@ -55,7 +55,11 @@ class IME_ProyectosTVC: UITableViewController {
         ordenarProyectosPorEmpresa()
         tableView.reloadData()
         
-        
+        if proyectos.count == 0 {
+            emptyTable(self.tableView)
+        } else {
+            resetTableUI(self.tableView)
+        }
     }
 
     //MARK: - Recupera empresas
@@ -177,7 +181,9 @@ class IME_ProyectosTVC: UITableViewController {
             } catch let error {
                 print(error.localizedDescription)
             }
+            
             self.tableView.reloadData()
+            
         }
         
         let facturarAction = UITableViewRowAction(style: .normal, title: "Facturar") { (action, indexPath) in

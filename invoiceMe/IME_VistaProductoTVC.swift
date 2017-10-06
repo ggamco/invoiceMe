@@ -10,6 +10,14 @@ import UIKit
 
 class IME_VistaProductoTVC: UITableViewController {
 
+    //MARK: - Objetos propios COREDATA
+    let contexto = CoreDataStack.shared.persistentContainer.viewContext
+    var servicioProducto: API_ServicioProducto?
+    
+    var esActualizacion = false
+    var producto: Producto?
+    
+    
     // MARK: - IBOutlets
     @IBOutlet weak var myCodigo: UITextField!
     @IBOutlet weak var myTitulo: UITextField!
@@ -27,24 +35,100 @@ class IME_VistaProductoTVC: UITableViewController {
     @IBOutlet weak var myCantidad: UITextField!
     @IBOutlet weak var myStepperCantidad: UIStepper!
     
+    @IBAction func guardarCambiosAction(_ sender: UIBarButtonItem) {
+        if esActualizacion {
+            guardarCambios()
+        } else {
+            if myTitulo.text!.characters.count > 0 {
+                if myCodigo.text!.characters.count > 0 {
+                    
+                    producto = servicioProducto?.crearProducto(codigo: myCodigo.text!,
+                                                               descripcion: myDescripccion.text!,
+                                                               cantidad: (myCantidad.text! as NSString).floatValue,
+                                                               precio: (myPrecio.text! as NSString).floatValue,
+                                                               iva: (myIVA.text! as NSString).floatValue,
+                                                               irpf: (myIRPF.text! as NSString).floatValue,
+                                                               exentoIva: myExentoIVA.isOn,
+                                                               exentoIrpf: myExentoIRPF.isOn)
+                    
+                    do {
+                        try contexto.save()
+                    } catch let error {
+                        print(error.localizedDescription)
+                    }
+                    
+                    esActualizacion = false
+                    
+                    let _ = navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    let alert = muestraAlertVC(titulo: "Atención!", mensaje: "No has añadido ningun código de producto.")
+                    self.present(alert, animated: true, completion: nil)
+                }
+            } else {
+                let alert = muestraAlertVC(titulo: "Atención!", mensaje: "No has introducido un nombre válido al producto.")
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
     
     // MARK: - LIFE VC
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        servicioProducto = API_ServicioProducto(contexto: contexto)
         mySelectorMoneda.layer.cornerRadius = 5
         mySelectorMoneda.layer.borderWidth = 0.5
         mySelectorMoneda.layer.borderColor = CONSTANTES.COLORES.FIRST_TEXT_COLOR.cgColor
         mySelectorTipoDescuento.layer.cornerRadius = 5
         mySelectorTipoDescuento.layer.borderWidth = 0.5
         mySelectorTipoDescuento.layer.borderColor = CONSTANTES.COLORES.FIRST_TEXT_COLOR.cgColor
+        
+        if esActualizacion {
+            cargarProducto()
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - Utils
+    func cargarProducto() {
+        if let productoDes = producto {
+            myCodigo.text = productoDes.codigo
+            myTitulo.text = productoDes.titulo
+            myDescripccion.text = productoDes.descripcion
+            myPrecio.text = String(format: "%.2f", productoDes.precio)
+            myIVA.text = String(format: "%.2f", productoDes.iva)
+            myIRPF.text = String(format: "%.2f", productoDes.irpf)
+            myExentoIVA.isOn = productoDes.exentoIva
+            myExentoIRPF.isOn = productoDes.exentoIrpf
+            myCantidad.text = String(format: "%.2f", productoDes.cantidad)
+        }
     }
-
+    
+    func guardarCambios(){
+        
+        producto?.titulo = myTitulo.text
+        producto?.codigo = myCodigo.text
+        producto?.descripcion = myDescripccion.text
+        producto?.precio = (myPrecio.text! as NSString).floatValue
+        producto?.iva = (myIVA.text! as NSString).floatValue
+        producto?.exentoIva = myExentoIVA.isOn
+        producto?.exentoIrpf = myExentoIRPF.isOn
+        producto?.irpf = (myIRPF.text! as NSString).floatValue
+        producto?.cantidad = (myCantidad.text! as NSString).floatValue
+        servicioProducto?.actualizarProducto(productoActualizado: producto!)
+        
+        do {
+            try contexto.save()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        esActualizacion = false
+        
+        let _ = navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

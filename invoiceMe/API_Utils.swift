@@ -79,3 +79,16 @@ func pdfUrl() -> URL? {
         return nil
     }
 }
+
+func emptyTable(_ tableView: UITableView) {
+    let backTable = UIImageView(frame: tableView.bounds)
+    backTable.contentMode = .scaleAspectFill
+    backTable.image = #imageLiteral(resourceName: "placeHolderTable")
+    tableView.backgroundView = backTable
+    tableView.separatorStyle = .none
+}
+
+func resetTableUI(_ tableView: UITableView) {
+    tableView.separatorStyle = .singleLine
+    tableView.backgroundView = nil
+}

@@ -8,7 +8,7 @@
 
 import CoreData
 
-class ServicioProducto {
+class API_ServicioProducto {
     
     //Contexto de la aplicación necesario para almacenar datos en CoreData
     var contexto: NSManagedObjectContext
@@ -74,7 +74,7 @@ class ServicioProducto {
     }
     
     //MARK: - Recuperar todas los Productos
-    func recuperarDocumentos() -> [Producto] {
+    func recuperarProductos() -> [Producto] {
         var resultadoBusqueda: [Producto] = []
         
         resultadoBusqueda = buscarProducto(byQuery: NSPredicate(value: true))
@@ -83,7 +83,7 @@ class ServicioProducto {
     }
     
     //MARK: - Actualizar Producto
-    func actualizarProyecto(productoActualizado: Producto) {
+    func actualizarProducto(productoActualizado: Producto) {
         
         if let producto = buscarProducto(by: productoActualizado.objectID) {
             producto.codigo = productoActualizado.codigo

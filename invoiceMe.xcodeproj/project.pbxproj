@@ -14,7 +14,6 @@
 		5E2BE2771F77154B004CEDBA /* IME_RegistroTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2BE2761F77154B004CEDBA /* IME_RegistroTVC.swift */; };
 		5E463F611F6D410D000B9DDE /* IME_TutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E463F601F6D410D000B9DDE /* IME_TutorialVC.swift */; };
 		5E463F631F6DC907000B9DDE /* IME_LoginTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E463F621F6DC907000B9DDE /* IME_LoginTVC.swift */; };
-		5E484B651F7E91EB00F7A63D /* EPSignature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E484B661F7E91EB00F7A63D /* EPSignature.framework */; };
 		5E484B681F7E922900F7A63D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E484B671F7E922800F7A63D /* LocalAuthentication.framework */; };
 		5E484B6A1F7ED75C00F7A63D /* IME_FacturasTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E484B691F7ED75C00F7A63D /* IME_FacturasTVC.swift */; };
 		5EA0F7D21F78449C00F78B19 /* PKHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA0F7D31F78449C00F78B19 /* PKHUD.framework */; };
@@ -33,6 +32,7 @@
 		5EF2CCF01F09633E006184FE /* IME_EmisorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCEF1F09633E006184FE /* IME_EmisorTVC.swift */; };
 		5EF2CCF21F09AAB1006184FE /* IME_ServicioWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCF11F09AAB1006184FE /* IME_ServicioWebVC.swift */; };
 		5EF571231F7671FC00EBDDC0 /* PhoneNumberKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF571241F7671FC00EBDDC0 /* PhoneNumberKit.framework */; };
+		CC0004541F85277000B29B96 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0004551F85277000B29B96 /* SwipeCellKit.framework */; };
 		CC23745D1EF45C4500F658D6 /* IME_ListaClientesPrincipalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23745C1EF45C4500F658D6 /* IME_ListaClientesPrincipalTVC.swift */; };
 		CC23D8A71F120EE500DBA8B6 /* IME_ListaProductosTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23D8A61F120EE500DBA8B6 /* IME_ListaProductosTVC.swift */; };
 		CC23D8A91F120FAB00DBA8B6 /* IME_ProductoCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23D8A81F120FAB00DBA8B6 /* IME_ProductoCustomCell.swift */; };
@@ -98,6 +98,7 @@
 		66A177C2C5AD8418A97ADB29 /* Pods_invoiceMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_invoiceMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A8D12782F6E96162A1B5E3 /* Pods-invoiceMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-invoiceMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-invoiceMe/Pods-invoiceMe.debug.xcconfig"; sourceTree = "<group>"; };
 		B5C10125A2879F48CCB5DDF9 /* Pods-invoiceMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-invoiceMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-invoiceMe/Pods-invoiceMe.release.xcconfig"; sourceTree = "<group>"; };
+		CC0004551F85277000B29B96 /* SwipeCellKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwipeCellKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC23745C1EF45C4500F658D6 /* IME_ListaClientesPrincipalTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_ListaClientesPrincipalTVC.swift; sourceTree = "<group>"; };
 		CC23D8A61F120EE500DBA8B6 /* IME_ListaProductosTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_ListaProductosTVC.swift; sourceTree = "<group>"; };
 		CC23D8A81F120FAB00DBA8B6 /* IME_ProductoCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_ProductoCustomCell.swift; sourceTree = "<group>"; };
@@ -139,8 +140,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC0004541F85277000B29B96 /* SwipeCellKit.framework in Frameworks */,
 				5E484B681F7E922900F7A63D /* LocalAuthentication.framework in Frameworks */,
-				5E484B651F7E91EB00F7A63D /* EPSignature.framework in Frameworks */,
 				5EA0F7D21F78449C00F78B19 /* PKHUD.framework in Frameworks */,
 				5EE3D2451F7681320046DFDA /* Parse.framework in Frameworks */,
 				5EF571231F7671FC00EBDDC0 /* PhoneNumberKit.framework in Frameworks */,
@@ -344,6 +345,7 @@
 		E5E96FEF7CECC785D5DDAA51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CC0004551F85277000B29B96 /* SwipeCellKit.framework */,
 				5E484B671F7E922800F7A63D /* LocalAuthentication.framework */,
 				5E484B661F7E91EB00F7A63D /* EPSignature.framework */,
 				5EA0F7D31F78449C00F78B19 /* PKHUD.framework */,

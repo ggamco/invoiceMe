@@ -39,7 +39,6 @@ class IME_ListaClientesTVC: UITableViewController {
         self.present(navigationController, animated: true, completion: nil)
     }
     
-    
     //MARK: - LIFE VC
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +60,12 @@ class IME_ListaClientesTVC: UITableViewController {
         
         //Asignamos el delegate
         navigationController?.delegate = self
-        self.navigationController?.navigationBar.topItem?.title = ""
+        
+        if empresas?.count == 0 {
+            emptyTable(self.tableView)
+        } else {
+            resetTableUI(self.tableView)
+        }
     }
 
     //MARK: - FUNCIONES PROPIAS
@@ -181,6 +185,10 @@ class IME_ListaClientesTVC: UITableViewController {
             }
             
             self.tableView.reloadData()
+            
+            if self.empresas?.count == 0 {
+                emptyTable(self.tableView)
+            }
             
         }
         

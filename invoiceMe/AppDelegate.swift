@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Parse
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

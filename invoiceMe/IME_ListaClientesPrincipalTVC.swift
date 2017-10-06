@@ -54,6 +54,12 @@ class IME_ListaClientesPrincipalTVC: UITableViewController {
         cargarEmpresasCD()
         //Recargamos la tabla con los últimos datos
         self.tableView.reloadData()
+        
+        if empresas?.count == 0 {
+            emptyTable(self.tableView)
+        } else {
+            resetTableUI(self.tableView)
+        }
     }
     
     //MARK: - FUNCIONES PROPIAS

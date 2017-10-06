@@ -21,11 +21,15 @@ class IME_FacturasTVC: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        let backTable = UIImageView(frame: self.tableView.bounds)
-        backTable.contentMode = .scaleAspectFill
-        backTable.image = #imageLiteral(resourceName: "placeHolderTable")
-        self.tableView.backgroundView = backTable
-        self.tableView.separatorStyle = .none
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if proyecto?.facturas?.count == 0 {
+            emptyTable(self.tableView)
+        }
+        
     }
 
     // MARK: - Utils
