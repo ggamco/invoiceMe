@@ -97,7 +97,7 @@ class ServicioDocumento {
     }
     
     //MARK: - Eliminar Documento
-    func eliminarProyecto(by id: NSManagedObjectID){
+    func eliminarDocumento(by id: NSManagedObjectID){
         if let documentoEliminado = buscarDocumento(by: id){
             contexto.delete(documentoEliminado)
         }

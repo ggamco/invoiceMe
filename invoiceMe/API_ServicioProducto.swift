@@ -20,6 +20,7 @@ class API_ServicioProducto {
     
     //MARK: - Crear Producto
     func crearProducto(codigo: String,
+                       titulo: String,
                        descripcion: String,
                        cantidad: Float,
                        precio: Float,
@@ -31,6 +32,7 @@ class API_ServicioProducto {
         let nuevoProducto = NSEntityDescription.insertNewObject(forEntityName: "Producto", into: contexto) as! Producto
         
         nuevoProducto.codigo = codigo
+        nuevoProducto.titulo = titulo
         nuevoProducto.descripcion = descripcion
         nuevoProducto.cantidad = cantidad
         nuevoProducto.precio = precio
@@ -87,6 +89,7 @@ class API_ServicioProducto {
         
         if let producto = buscarProducto(by: productoActualizado.objectID) {
             producto.codigo = productoActualizado.codigo
+            producto.titulo = productoActualizado.titulo
             producto.descripcion = productoActualizado.descripcion
             producto.cantidad = productoActualizado.cantidad
             producto.precio = productoActualizado.precio

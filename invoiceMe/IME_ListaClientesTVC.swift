@@ -25,7 +25,10 @@ class IME_ListaClientesTVC: UITableViewController {
     var indexOfNumbers = [String]()
     var diccionario: [String : [Empresa]] = [:]
     
-    //MARK: - IBActions
+    // MARK: - IBOutlets
+    @IBOutlet weak var mySalvarBTN: UIBarButtonItem!
+    
+    // MARK: - IBActions
     @IBAction func crearCliente(_ sender: UIBarButtonItem) {
         let destinoVC = storyboard?.instantiateViewController(withIdentifier: "CrearClienteNuevoTVC") as! IME_CrearClienteNuevoTVC
         
@@ -42,7 +45,7 @@ class IME_ListaClientesTVC: UITableViewController {
     //MARK: - LIFE VC
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        mySalvarBTN.tintColor = CONSTANTES.COLORES.NAV_ITEMS
         let indexNumbers = "A B C D E F G H I J K L M N Ñ O P Q R S T U V W X Y Z #"
         indexOfNumbers = indexNumbers.components(separatedBy: " ")
         
@@ -52,7 +55,7 @@ class IME_ListaClientesTVC: UITableViewController {
     //Usamos este metodo propio del ciclo de vida del VC para cargar datos siempre que vuelva a visualizarse
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.navigationItem.title = "Listado de Clientes"
         //Cargamos las empresas almacenadas en CoreData
         cargarEmpresasCD()
         //Recargamos la tabla con los últimos datos
@@ -67,7 +70,7 @@ class IME_ListaClientesTVC: UITableViewController {
             resetTableUI(self.tableView)
         }
     }
-
+    
     //MARK: - FUNCIONES PROPIAS
     func cargarEmpresasCD() {
         do {
@@ -200,7 +203,9 @@ class IME_ListaClientesTVC: UITableViewController {
             destinationVC.cliente = self.diccionario[self.indexOfNumbers[indexPath.section]]?[indexPath.row]
             destinationVC.esActualizacion = true
             destinationVC.title = "Editar Cliente"
-                
+            // IMPORTANT!
+            // Este es el que funciona para ocultar el titulo del back buttom item
+            self.navigationItem.title = "Guardar"
             self.navigationController?.pushViewController(destinationVC, animated: true)
             
         }
@@ -233,6 +238,7 @@ extension IME_ListaClientesTVC: UINavigationControllerDelegate {
                 destinationVC.empresa = diccionario[indexOfNumbers[seccionSeleccionada]]?[empresaSeleccionada]
                 destinationVC.empresaSeleccionada = empresaSeleccionada
                 destinationVC.seccionSeleccionada = seccionSeleccionada
+                destinationVC.navigationItem.title = "Editar Proyecto"
             }
         } else if let destinationVC = viewController as? IME_CrearDocumentoTVC {
             if empresas?.count != 0 {

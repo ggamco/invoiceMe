@@ -43,6 +43,7 @@ class IME_VistaProductoTVC: UITableViewController {
                 if myCodigo.text!.characters.count > 0 {
                     
                     producto = servicioProducto?.crearProducto(codigo: myCodigo.text!,
+                                                               titulo: myTitulo.text!,
                                                                descripcion: myDescripccion.text!,
                                                                cantidad: (myCantidad.text! as NSString).floatValue,
                                                                precio: (myPrecio.text! as NSString).floatValue,
@@ -146,15 +147,4 @@ class IME_VistaProductoTVC: UITableViewController {
             return 5
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

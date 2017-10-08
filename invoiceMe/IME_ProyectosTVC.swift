@@ -183,17 +183,16 @@ class IME_ProyectosTVC: UITableViewController {
             }
             
             self.tableView.reloadData()
-            
         }
         
         let facturarAction = UITableViewRowAction(style: .normal, title: "Facturar") { (action, indexPath) in
-            let destinoVC = self.storyboard?.instantiateViewController(withIdentifier: "FacturasTVC") as! IME_FacturasTVC
-            destinoVC.proyecto = self.diccionario[self.empresas[indexPath.section]]?[indexPath.row]
-            //destinoVC.hidesBottomBarWhenPushed = true
-            // IMPORTANT!
-            // Este es el que funciona para ocultar el titulo del back buttom item
-            self.navigationItem.backBarButtonItem?.title = ""
-            self.navigationController?.pushViewController(destinoVC, animated: true)
+            
+            let proyecto = self.diccionario[self.empresas[indexPath.section]]?[indexPath.row]
+            let actionVC = self.muestraActionSheet(titulo: "Elija una opción:",
+                                              mensaje: "¿Qué tipo de documento quiere crear?",
+                                              proyecto: proyecto!)
+            self.present(actionVC, animated: true, completion: nil)
+            
         }
         
         return [facturarAction, borrarAction]
@@ -201,7 +200,7 @@ class IME_ProyectosTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let destinoVC = storyboard?.instantiateViewController(withIdentifier: "DetalleProyectoTVC") as! IME_DetalleProyectoTVC
+        let destinoVC = storyboard?.instantiateViewController(withIdentifier: "DetalleProyectoVC") as! IME_DetalleProyectoVC
         
         destinoVC.proyecto = diccionario[empresas[indexPath.section]]?[indexPath.row]
         destinoVC.title = "Detalle Proyecto"
@@ -213,9 +212,36 @@ class IME_ProyectosTVC: UITableViewController {
         self.navigationController?.pushViewController(destinoVC, animated: true)
 
     }
-    
+    // MARK: - Utiles
     @objc func cerrarVentana() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func muestraActionSheet (titulo: String, mensaje: String, proyecto: Proyecto) -> UIAlertController {
+        let destinoVC = storyboard?.instantiateViewController(withIdentifier: "CrearDocumentoTVC") as! IME_CrearDocumentoTVC
+        destinoVC.receptor = proyecto.cliente
+        destinoVC.proyecto = proyecto
+        
+        let navigationController = UINavigationController(rootViewController: destinoVC)
+        let alertVC = UIAlertController(title: titulo, message: mensaje, preferredStyle: .actionSheet)
+        let alertActionPresupuesto = UIAlertAction(title: "Presupuesto", style: .default) { (action) in
+            destinoVC.navigationController?.navigationBar.topItem?.title = "Crear Presupuesto"
+            destinoVC.tipoDocumentoDeseado = 0
+            self.navigationController?.modalPresentationStyle = .currentContext
+            self.present(navigationController, animated: true, completion: nil)
+        }
+        let alertActionFactura = UIAlertAction(title: "Factura", style: .default) { (action) in
+            destinoVC.navigationController?.navigationBar.topItem?.title = "Crear Factura"
+            destinoVC.tipoDocumentoDeseado = 1
+            self.navigationController?.modalPresentationStyle = .currentContext
+            self.present(navigationController, animated: true, completion: nil)
+        }
+        let alertActionCancelar = UIAlertAction(title: "Cancelar", style: .cancel) { (action) in
+        }
+        alertVC.addAction(alertActionPresupuesto)
+        alertVC.addAction(alertActionFactura)
+        alertVC.addAction(alertActionCancelar)
+        return alertVC
     }
 
 }

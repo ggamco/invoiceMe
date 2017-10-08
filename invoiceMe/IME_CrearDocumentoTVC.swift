@@ -31,6 +31,8 @@ class IME_CrearDocumentoTVC: UITableViewController {
     var emisor: Emisor?
     var receptor: Empresa?
     var productos: [Producto]?
+    var proyecto: Proyecto?
+    var contador: Int!
     
     // MARK: - IBOutlets
     @IBOutlet weak var myNombreEmisor: UITextField!
@@ -45,6 +47,16 @@ class IME_CrearDocumentoTVC: UITableViewController {
     // MARK: - IBActions
     @IBAction func cancelarAction(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+    @IBAction func guardarAction(_ sender: UIBarButtonItem) {
+        //Creamos el Documento con los datos obtenidos
+        if emisor != nil && receptor != nil {
+            documentoNuevo = crearDocumento()
+            dismiss(animated: true, completion: nil)
+        } else {
+            let alert = muestraAlertVC(titulo: "Atención", mensaje: "Completa todos los campos para continuar.")
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func activarFechasSW(_ sw: UISwitch) {
@@ -78,9 +90,12 @@ class IME_CrearDocumentoTVC: UITableViewController {
         //INICIAMOS SERVICIO COREDATA
         servicioDocumento = ServicioDocumento(contexto: contexto)
         servicioEmisor = ServicioEmisor(contexto: contexto)
-        
+        emisor = servicioEmisor?.recuperarEmisores().last
+        if emisor != nil {
+            myNombreEmisor.text = emisor?.nombre
+        }
         //Recuperamos contador
-        let contador = UserDefaults.standard.integer(forKey: "contador")
+        contador = recuperarContador(tipoDocumentoDeseado!)
         if contador != 0 {
             myNumeroDocumento.text = String(contador)
         } else {
@@ -89,7 +104,6 @@ class IME_CrearDocumentoTVC: UITableViewController {
         
         configuracionesVarias()
         setFechasIniciales()
-        
         
         //Comprobamos el nombre de la empresa si ya la tenemos seleccionada
         if let nombreEmpresa = receptor?.nombre {
@@ -116,7 +130,6 @@ class IME_CrearDocumentoTVC: UITableViewController {
         }
     }
 
-    
     // MARK: - FUNCIONES PROPIAS
     func crearDocumento() -> Documento? {
         
@@ -128,14 +141,38 @@ class IME_CrearDocumentoTVC: UITableViewController {
                                                     logo: "")
         doc?.emisor = emisor
         doc?.receptor = receptor
+        doc?.proyecto = proyecto
+        //doc?.productos =
         
         do {
             try contexto.save()
+            //TODO: - Contador para facturas o presupuestos
+            //Comprobar el valor asignado al documento y guardar incrementado segun tipoDoc.
+            guardarContador()
         } catch let error {
             print(error.localizedDescription)
         }
         
         return servicioDocumento?.recuperarDocumentos().last
+    }
+    
+    func guardarContador(){
+        let numero = convertirToEntero(myNumeroDocumento.text)
+        switch tipoDocumentoDeseado! {
+        case 0:
+            UserDefaults.standard.setValue(numero + 1, forKey: "contadorPresupuestos")
+        default:
+            UserDefaults.standard.setValue(numero + 1, forKey: "contadorFacturas")
+        }
+    }
+    
+    func recuperarContador(_ tipoDocumento: Int) -> Int? {
+        switch tipoDocumento {
+        case 0:
+            return UserDefaults.standard.integer(forKey: "contadorPresupuestos")
+        default:
+            return UserDefaults.standard.integer(forKey: "contadorFacturas")
+        }
     }
     
     func setFechasIniciales() {

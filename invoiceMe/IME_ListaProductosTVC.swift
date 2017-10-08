@@ -51,6 +51,8 @@ class IME_ListaProductosTVC: UITableViewController {
         
         if productos?.count == 0 {
             emptyTable(self.tableView)
+        } else {
+            resetTableUI(self.tableView)
         }
     }
     

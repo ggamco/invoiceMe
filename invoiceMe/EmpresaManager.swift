@@ -12,12 +12,12 @@ extension Empresa {
     
     func toJSON() -> [String : Any] {
         return [
-            "nombre" : self.nombre!,
-            "direccion" : self.direccion!,
-            "zipCode" : Int(self.cpostal!)!,
-            "ciudad" : self.ciudad!,
-            "cif" : self.cif!,
-            "email" : self.email!
+            "nombre" : dimeString(self.nombre),
+            "direccion" : dimeString(self.direccion),
+            "zipCode" : convertirToEntero(self.cpostal),
+            "ciudad" : dimeString(self.ciudad),
+            "cif" : dimeString(self.cif),
+            "email" : dimeString(self.email)
         ]
     }
     

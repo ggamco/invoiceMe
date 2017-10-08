@@ -15,9 +15,6 @@
 		5E463F611F6D410D000B9DDE /* IME_TutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E463F601F6D410D000B9DDE /* IME_TutorialVC.swift */; };
 		5E463F631F6DC907000B9DDE /* IME_LoginTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E463F621F6DC907000B9DDE /* IME_LoginTVC.swift */; };
 		5E484B681F7E922900F7A63D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E484B671F7E922800F7A63D /* LocalAuthentication.framework */; };
-		5E484B6A1F7ED75C00F7A63D /* IME_FacturasTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E484B691F7ED75C00F7A63D /* IME_FacturasTVC.swift */; };
-		5E62B7601F88C9C300703672 /* IME_DetalleProyectoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E62B75F1F88C9C300703672 /* IME_DetalleProyectoTVC.swift */; };
-		5E62B7621F88C9ED00703672 /* IME_TituloProyectoCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E62B7611F88C9ED00703672 /* IME_TituloProyectoCustomCell.swift */; };
 		5E62B7641F88CA1D00703672 /* IME_MasterFacturasCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E62B7631F88CA1D00703672 /* IME_MasterFacturasCustomCell.swift */; };
 		5EA0F7D21F78449C00F78B19 /* PKHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA0F7D31F78449C00F78B19 /* PKHUD.framework */; };
 		5EA0F7D51F78611800F78B19 /* API_SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0F7D41F78611800F78B19 /* API_SignIn.swift */; };
@@ -67,6 +64,7 @@
 		CC68BD951E7183A1005CC8E3 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CC68BD941E7183A1005CC8E3 /* Podfile */; };
 		CCBE72FB1E71852600BA8F28 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCBE72F81E71852600BA8F28 /* Alamofire.framework */; };
 		CCBE72FD1E71852600BA8F28 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCBE72FA1E71852600BA8F28 /* SwiftyJSON.framework */; };
+		CCDBF6D61F8AAB76007C58FD /* IME_DetalleProyectoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDBF6D51F8AAB76007C58FD /* IME_DetalleProyectoVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,9 +77,6 @@
 		5E463F621F6DC907000B9DDE /* IME_LoginTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_LoginTVC.swift; sourceTree = "<group>"; };
 		5E484B661F7E91EB00F7A63D /* EPSignature.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EPSignature.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E484B671F7E922800F7A63D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
-		5E484B691F7ED75C00F7A63D /* IME_FacturasTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_FacturasTVC.swift; sourceTree = "<group>"; };
-		5E62B75F1F88C9C300703672 /* IME_DetalleProyectoTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_DetalleProyectoTVC.swift; sourceTree = "<group>"; };
-		5E62B7611F88C9ED00703672 /* IME_TituloProyectoCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_TituloProyectoCustomCell.swift; sourceTree = "<group>"; };
 		5E62B7631F88CA1D00703672 /* IME_MasterFacturasCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_MasterFacturasCustomCell.swift; sourceTree = "<group>"; };
 		5EA0F7D31F78449C00F78B19 /* PKHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PKHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA0F7D41F78611800F78B19 /* API_SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_SignIn.swift; sourceTree = "<group>"; };
@@ -139,6 +134,7 @@
 		CCBE72F81E71852600BA8F28 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-adhrplllzgplmdgnmzynxvcbyifd/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		CCBE72F91E71852600BA8F28 /* PhoneNumberKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhoneNumberKit.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-adhrplllzgplmdgnmzynxvcbyifd/Build/Products/Debug-iphonesimulator/PhoneNumberKit/PhoneNumberKit.framework"; sourceTree = "<group>"; };
 		CCBE72FA1E71852600BA8F28 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-adhrplllzgplmdgnmzynxvcbyifd/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		CCDBF6D51F8AAB76007C58FD /* IME_DetalleProyectoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_DetalleProyectoVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +170,7 @@
 		5E62B7651F88CA2800703672 /* DETALLE PROYECTO */ = {
 			isa = PBXGroup;
 			children = (
-				5E62B75F1F88C9C300703672 /* IME_DetalleProyectoTVC.swift */,
+				CCDBF6D51F8AAB76007C58FD /* IME_DetalleProyectoVC.swift */,
 				5E62B7661F88CCF700703672 /* CUSTOM CELLS */,
 			);
 			name = "DETALLE PROYECTO";
@@ -183,7 +179,6 @@
 		5E62B7661F88CCF700703672 /* CUSTOM CELLS */ = {
 			isa = PBXGroup;
 			children = (
-				5E62B7611F88C9ED00703672 /* IME_TituloProyectoCustomCell.swift */,
 				5E62B7631F88CA1D00703672 /* IME_MasterFacturasCustomCell.swift */,
 			);
 			name = "CUSTOM CELLS";
@@ -304,7 +299,6 @@
 				CC68BD931E718309005CC8E3 /* CUSTOM_CELLS */,
 				CC68BD7B1E717F03005CC8E3 /* IME_CrearProyectoNuevoTVC.swift */,
 				CC68BD7C1E717F03005CC8E3 /* IME_ListaClientesTVC.swift */,
-				5E484B691F7ED75C00F7A63D /* IME_FacturasTVC.swift */,
 			);
 			name = PROYECTOS;
 			sourceTree = "<group>";
@@ -523,8 +517,6 @@
 				5EF2CCE91F07F390006184FE /* API_ServicioEmisor.swift in Sources */,
 				CC68BD8C1E717F0E005CC8E3 /* IME_EditarEmpresaTVC.swift in Sources */,
 				5EF2CCD81F06C0E0006184FE /* ProyectoManager.swift in Sources */,
-				5E62B7621F88C9ED00703672 /* IME_TituloProyectoCustomCell.swift in Sources */,
-				5E62B7601F88C9C300703672 /* IME_DetalleProyectoTVC.swift in Sources */,
 				CC68BD791E717EF9005CC8E3 /* IME_HorasTVC.swift in Sources */,
 				CC68BD821E717F03005CC8E3 /* IME_CrearClienteNuevoTVC.swift in Sources */,
 				5EF2CCDA1F06C351006184FE /* EmpresaManager.swift in Sources */,
@@ -532,7 +524,7 @@
 				CC68BD561E717DFF005CC8E3 /* AppDelegate.swift in Sources */,
 				CC23D8B21F12CB2700DBA8B6 /* CustomTextField.swift in Sources */,
 				CC68BD831E717F03005CC8E3 /* IME_ColorCorporativoCCCell.swift in Sources */,
-				5E484B6A1F7ED75C00F7A63D /* IME_FacturasTVC.swift in Sources */,
+				CCDBF6D61F8AAB76007C58FD /* IME_DetalleProyectoVC.swift in Sources */,
 				CC23D8AB1F123D0900DBA8B6 /* CoreDataStack.swift in Sources */,
 				CC68BD5E1E717DFF005CC8E3 /* invoiceMe.xcdatamodeld in Sources */,
 				5E173CE11F77B92A00095DE9 /* CustomOverlayView.swift in Sources */,

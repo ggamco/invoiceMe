@@ -107,6 +107,7 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
         format.dateStyle = DateFormatter.Style.long
         myFechaInicio.delegate = self
         myFechaFin.delegate = self
+        myGuardarBTN.tintColor = CONSTANTES.COLORES.NAV_ITEMS
         
         //CONFIGURAMOS LA CARGA DEL DATAPICKER
         datapicker.datePickerMode = UIDatePickerMode.date
@@ -146,8 +147,6 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
                 empresaSeleccionada = pos
             }
             
-            
-            
             myTipoFacturacion.selectedSegmentIndex = Int((proyecto?.tipoFacturacion)!)
             
             if (proyecto?.facturadoHoras)! {
@@ -172,7 +171,6 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
                 myFinSW.isOn = true
                 myFechaFin.text = proyecto?.fechaFinal
             }
-            
             
         } else {
             print("vacio")

@@ -71,7 +71,7 @@ class IME_CrearClienteNuevoTVC: UITableViewController {
         
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
-        
+        mySalvarCambiosBTN.tintColor = CONSTANTES.COLORES.NAV_ITEMS
         myTelefonoCliente.addTarget(self, action: #selector(formatearTelefono), for: UIControlEvents.editingDidBegin)
         
     }

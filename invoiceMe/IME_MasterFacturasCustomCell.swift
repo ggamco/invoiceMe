@@ -13,8 +13,6 @@ class IME_MasterFacturasCustomCell: UITableViewCell {
     @IBOutlet weak var myTituloFactura: UILabel!
     @IBOutlet weak var myBotonEstado: UIButton!
     
-    @IBAction func cambiarEstadoFactura(_ sender: Any) {
-    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

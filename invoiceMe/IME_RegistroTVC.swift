@@ -46,6 +46,7 @@ class IME_RegistroTVC: UITableViewController {
                     self.signUpWithPhoto()
                     UserDefaults.standard.setValue("REGISTERED", forKey: CONSTANTES.PREFS.REGISTERED)
                     HUD.hide(afterDelay: 0)
+                    self.performSegue(withIdentifier: "fromRegistroTVC", sender: self)
                     /*
                     if let _ = self.registerDeviceOnAPI() {
                         HUD.hide(afterDelay: 0)

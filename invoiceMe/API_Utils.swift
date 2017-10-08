@@ -28,6 +28,8 @@ struct Colores {
     let SECOND_TEXT_COLOR = #colorLiteral(red: 0.4588235294, green: 0.4588235294, blue: 0.4588235294, alpha: 1)
     let DIVIDER_COLOR = #colorLiteral(red: 0.7411764706, green: 0.7411764706, blue: 0.7411764706, alpha: 1)
     let NAV_ITEMS = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    let PRESUPUESTO = #colorLiteral(red: 1, green: 0.7019607843, blue: 0, alpha: 1)
+    let FACTURA = #colorLiteral(red: 0.8039215686, green: 0.862745098, blue: 0.2235294118, alpha: 1)
 }
 
 struct Preferencias {
@@ -92,4 +94,29 @@ func emptyTable(_ tableView: UITableView) {
 func resetTableUI(_ tableView: UITableView) {
     tableView.separatorStyle = .singleLine
     tableView.backgroundView = nil
+}
+
+// MARK: - Politica de nulos
+func dimeString(_ texto: String?) -> String {
+    if texto != nil {
+        return texto!
+    } else {
+        return ""
+    }
+}
+
+func dimeInt(_ numero: Int16?) -> Int {
+    if numero != nil {
+        return Int(numero!)
+    } else {
+        return 0
+    }
+}
+
+func convertirToEntero(_ convertible: String?) -> Int {
+    if let conversion = Int(convertible!) {
+        return conversion
+    } else {
+        return 0
+    }
 }
