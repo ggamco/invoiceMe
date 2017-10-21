@@ -10,15 +10,29 @@ import UIKit
 
 class IME_NotaCustomCell: UITableViewCell {
 
+    // MARK: - Delegado
+    var delegate: CellInfoDelegate?
+    
     // MARK: - IBOutlets
     @IBOutlet weak var myNotaText: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        myNotaText.layer.cornerRadius = 5
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 
+}
+
+// MARK: - Extension del delegado UITExtViewDelegate
+extension IME_NotaCustomCell: UITextViewDelegate {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if let nota = textView.text {
+            delegate?.documentoAlmacenado?.nota = nota
+            delegate?.informarDatos("NOTA")
+        }
+    }
 }

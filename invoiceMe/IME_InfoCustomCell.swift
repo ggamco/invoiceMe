@@ -10,6 +10,10 @@ import UIKit
 
 class IME_InfoCustomCell: UITableViewCell {
 
+    // MARK: - Delegado
+    var delegate: CellInfoDelegate?
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var myTitleLabel: UILabel!
     @IBOutlet weak var myNombreEmisorTF: UITextField!
     
@@ -25,3 +29,4 @@ class IME_InfoCustomCell: UITableViewCell {
     }
 
 }
+

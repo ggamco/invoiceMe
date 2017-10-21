@@ -27,7 +27,7 @@ class IME_CrearDocumentoTVC: UITableViewController {
     var tipoDocumentoDeseado: Int?
     var empresaSeleccionada = 0
     var seccionSeleccionada = 0
-    var documentoNuevo: Documento?
+    var documentoAlmacenado: Documento?
     var emisor: Emisor?
     var receptor: Empresa?
     var productos: [Producto]?
@@ -51,7 +51,7 @@ class IME_CrearDocumentoTVC: UITableViewController {
     // MARK: - IBActions
     @IBAction func guardarAction(_ sender: UIBarButtonItem) {
         //Creamos el Documento con los datos obtenidos
-        if documentoNuevo != nil {
+        if documentoAlmacenado != nil {
             guardarDocumento()
             _ = navigationController?.popViewController(animated: true)
         } else {
@@ -63,7 +63,6 @@ class IME_CrearDocumentoTVC: UITableViewController {
                 present(alert, animated: true, completion: nil)
             }
         }
-        
     }
     
     @IBAction func activarFechasSW(_ sw: UISwitch) {
@@ -153,19 +152,19 @@ class IME_CrearDocumentoTVC: UITableViewController {
         if mySwFechaValidez.isOn {
             fechaValidez = myFechaValidez.text!
         }
-        documentoNuevo = servicioDocumento?.crearDocumento(tipoDocumento: tipoDocumentoDeseado!,
+        documentoAlmacenado = servicioDocumento?.crearDocumento(tipoDocumento: tipoDocumentoDeseado!,
                                                     numeroDocumento: Int(myNumeroDocumento.text!)!,
                                                     sujijo: mySufijoDocumento.text!,
                                                     fechaEmison: fechaEmision,
                                                     fechaValidez: fechaValidez,
                                                     nota: myNotaDocumento.text!,
                                                     logo: "")
-        documentoNuevo?.emisor = emisor
-        documentoNuevo?.receptor = receptor
-        documentoNuevo?.proyecto = proyecto
-        documentoNuevo?.esActualizado = true
+        documentoAlmacenado?.emisor = emisor
+        documentoAlmacenado?.receptor = receptor
+        documentoAlmacenado?.proyecto = proyecto
+        documentoAlmacenado?.esActualizado = true
         if productos != nil{
-            documentoNuevo?.productos = NSSet(array: productos!)
+            documentoAlmacenado?.productos = NSSet(array: productos!)
         }
         
         do {
@@ -177,17 +176,17 @@ class IME_CrearDocumentoTVC: UITableViewController {
     }
     
     func guardarDocumento() {
-        documentoNuevo?.emisor = emisor
-        documentoNuevo?.receptor = receptor
-        documentoNuevo?.numeroDocumento = Int32(myNumeroDocumento.text!)!
-        documentoNuevo?.sufijoDocumento = mySufijoDocumento.text
-        documentoNuevo?.fechaEmision = myFechaEmision.text
-        documentoNuevo?.fechaValidez = myFechaValidez.text
-        documentoNuevo?.nota = myNotaDocumento.text
+        documentoAlmacenado?.emisor = emisor
+        documentoAlmacenado?.receptor = receptor
+        documentoAlmacenado?.numeroDocumento = Int32(myNumeroDocumento.text!)!
+        documentoAlmacenado?.sufijoDocumento = mySufijoDocumento.text
+        documentoAlmacenado?.fechaEmision = myFechaEmision.text
+        documentoAlmacenado?.fechaValidez = myFechaValidez.text
+        documentoAlmacenado?.nota = myNotaDocumento.text
         if let productosDes = productos {
-            documentoNuevo?.productos = NSSet(array: productosDes)
+            documentoAlmacenado?.productos = NSSet(array: productosDes)
         }
-        documentoNuevo?.esActualizado = false
+        documentoAlmacenado?.esActualizado = false
         do {
             try contexto.save()
         }catch let error {
@@ -267,7 +266,7 @@ class IME_CrearDocumentoTVC: UITableViewController {
     }
     
     func cargarDatosPrevios() {
-        if let fechaEmision = documentoNuevo?.fechaEmision {
+        if let fechaEmision = documentoAlmacenado?.fechaEmision {
             if fechaEmision.characters.count > 0 {
                 myFechaEmision.text = fechaEmision
                 myFechaEmision.isEnabled = true
@@ -275,7 +274,7 @@ class IME_CrearDocumentoTVC: UITableViewController {
                 mySwFechaEmision.isOn = true
             }
         }
-        if let fechaValidez = documentoNuevo?.fechaValidez {
+        if let fechaValidez = documentoAlmacenado?.fechaValidez {
             if fechaValidez.characters.count > 0 {
                 myFechaValidez.text = fechaValidez
                 myFechaValidez.isEnabled = true
@@ -283,13 +282,13 @@ class IME_CrearDocumentoTVC: UITableViewController {
                 mySwFechaValidez.isOn = true
             }
         }
-        myNombreEmisor.text = documentoNuevo?.emisor?.nombre
-        myNombreReceptor.text = documentoNuevo?.receptor?.nombre
-        myNumeroDocumento.text = String((documentoNuevo?.numeroDocumento)!)
-        mySufijoDocumento.text = documentoNuevo?.sufijoDocumento
-        myNotaDocumento.text = documentoNuevo?.nota
-        receptor = documentoNuevo?.receptor
-        emisor = documentoNuevo?.emisor
+        myNombreEmisor.text = documentoAlmacenado?.emisor?.nombre
+        myNombreReceptor.text = documentoAlmacenado?.receptor?.nombre
+        myNumeroDocumento.text = String((documentoAlmacenado?.numeroDocumento)!)
+        mySufijoDocumento.text = documentoAlmacenado?.sufijoDocumento
+        myNotaDocumento.text = documentoAlmacenado?.nota
+        receptor = documentoAlmacenado?.receptor
+        emisor = documentoAlmacenado?.emisor
     }
     
     // MARK: - Navigation
@@ -310,7 +309,7 @@ class IME_CrearDocumentoTVC: UITableViewController {
             
         } else if segue.identifier == "goToProductos" {
             let destinoVC = segue.destination as? IME_ListaProductosTVC
-            if let productos = documentoNuevo?.productos?.allObjects as? [Producto] {
+            if let productos = documentoAlmacenado?.productos?.allObjects as? [Producto] {
                 //destinoVC?.productosSeleccionados = productos
                 destinoVC?.indexProductosSeleccionados = arrayIndexProductos
             }

@@ -15,13 +15,17 @@ class IME_BotonCustomCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        insertarIconoBTN()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
+    func insertarIconoBTN() {
+        let origImage = UIImage(named: "plus")
+        let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+        myBotonAddConcepto.setImage(tintedImage, for: .normal)
+        myBotonAddConcepto.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR
+    }
 }

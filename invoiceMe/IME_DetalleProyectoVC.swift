@@ -172,7 +172,7 @@ class IME_DetalleProyectoVC: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destinoVC = self.storyboard?.instantiateViewController(withIdentifier: "CrearDocumentoTVC") as! IME_CrearDocumentoTVC
         destinoVC.navigationItem.title = "Editar Documento"
-        destinoVC.documentoNuevo = documentos[indexPath.row]
+        destinoVC.documentoAlmacenado = documentos[indexPath.row]
         destinoVC.esActualizacion = true
         //ESTAS LINEAS ELIMINAN EL TITULO AL BACKBUTTON
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
