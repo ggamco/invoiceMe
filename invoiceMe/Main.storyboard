@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SV4-Rp-ZRh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="D6c-IG-Ap4">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -3183,60 +3183,8 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="DATOS FACTURACiÓN" id="cqT-3P-PCV">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ClienteCustomCell" rowHeight="60" id="HKZ-2L-84i">
-                                        <rect key="frame" x="0.0" y="527.5" width="320" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HKZ-2L-84i" id="mPr-Q8-Ct2">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Precio:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zz-xm-6B9">
-                                                    <rect key="frame" x="16" y="22" width="96" height="14"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="14" id="I2L-UF-Zh7"/>
-                                                        <constraint firstAttribute="width" constant="96" id="lD6-rD-Obh"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                    <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="0.00" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BL4-90-liu" customClass="CustomTextField" customModule="invoiceMe" customModuleProvider="target">
-                                                    <rect key="frame" x="120" y="13" width="127" height="32"/>
-                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="32" id="VJx-PT-h8l"/>
-                                                    </constraints>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PN9-1P-rxF">
-                                                    <rect key="frame" x="255" y="13" width="49" height="32"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="49" id="1CC-Ir-Ub9"/>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="TT0-hP-gCd"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="49" id="aBB-LP-Ac3"/>
-                                                        <constraint firstAttribute="height" constant="32" id="oCB-cP-KBg"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
-                                                    <state key="normal" title="€">
-                                                        <color key="titleColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="9Zz-xm-6B9" firstAttribute="leading" secondItem="mPr-Q8-Ct2" secondAttribute="leading" constant="16" id="7oy-0p-Stx"/>
-                                                <constraint firstItem="PN9-1P-rxF" firstAttribute="centerY" secondItem="mPr-Q8-Ct2" secondAttribute="centerY" id="8vo-pQ-iZq"/>
-                                                <constraint firstItem="BL4-90-liu" firstAttribute="leading" secondItem="9Zz-xm-6B9" secondAttribute="trailing" constant="8" id="9lq-g7-Wla"/>
-                                                <constraint firstItem="BL4-90-liu" firstAttribute="centerY" secondItem="mPr-Q8-Ct2" secondAttribute="centerY" id="D8V-Hm-qfF"/>
-                                                <constraint firstItem="PN9-1P-rxF" firstAttribute="leading" secondItem="BL4-90-liu" secondAttribute="trailing" constant="8" id="e0J-sy-wsK"/>
-                                                <constraint firstAttribute="trailing" secondItem="PN9-1P-rxF" secondAttribute="trailing" constant="16" id="eVQ-i1-78E"/>
-                                                <constraint firstItem="9Zz-xm-6B9" firstAttribute="centerY" secondItem="mPr-Q8-Ct2" secondAttribute="centerY" id="tQL-ai-AGo"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ClienteCustomCell" rowHeight="60" id="PJm-rP-hG8">
-                                        <rect key="frame" x="0.0" y="587.5" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="527.5" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PJm-rP-hG8" id="Len-aN-hcc">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
@@ -3299,7 +3247,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ClienteCustomCell" rowHeight="60" id="GA3-w2-FAb">
-                                        <rect key="frame" x="0.0" y="647.5" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="587.5" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GA3-w2-FAb" id="DRh-1f-q31">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
@@ -3363,55 +3311,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="CANTIDAD" id="VWc-UW-ij0">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ClienteCustomCell" rowHeight="60" id="TlB-Hk-J2e">
-                                        <rect key="frame" x="0.0" y="763.5" width="320" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TlB-Hk-J2e" id="zjm-gr-fQ4">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNIDADES:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDH-vT-Ygg">
-                                                    <rect key="frame" x="16" y="22" width="96" height="14"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="14" id="7ZL-cj-kw1"/>
-                                                        <constraint firstAttribute="width" constant="96" id="RWM-kI-xH3"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                    <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="0.00" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ai-mb-Ew8" customClass="CustomTextField" customModule="invoiceMe" customModuleProvider="target">
-                                                    <rect key="frame" x="120" y="13" width="82" height="32"/>
-                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="32" id="IFv-rQ-x7S"/>
-                                                    </constraints>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                                </textField>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="99" stepValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tXW-gC-1Dh">
-                                                    <rect key="frame" x="210" y="15" width="94" height="29"/>
-                                                    <connections>
-                                                        <action selector="aumentaCantidad:" destination="2VZ-LP-rQm" eventType="valueChanged" id="bzV-TE-Hog"/>
-                                                    </connections>
-                                                </stepper>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="zDH-vT-Ygg" firstAttribute="centerY" secondItem="zjm-gr-fQ4" secondAttribute="centerY" id="MoR-DX-2VX"/>
-                                                <constraint firstItem="8ai-mb-Ew8" firstAttribute="leading" secondItem="zDH-vT-Ygg" secondAttribute="trailing" constant="8" id="dKK-py-ISb"/>
-                                                <constraint firstItem="tXW-gC-1Dh" firstAttribute="centerY" secondItem="zjm-gr-fQ4" secondAttribute="centerY" id="kU7-NH-psk"/>
-                                                <constraint firstItem="tXW-gC-1Dh" firstAttribute="leading" secondItem="8ai-mb-Ew8" secondAttribute="trailing" constant="8" id="njd-pt-cQL"/>
-                                                <constraint firstItem="zDH-vT-Ygg" firstAttribute="leading" secondItem="zjm-gr-fQ4" secondAttribute="leading" constant="16" id="q6P-Za-b3b"/>
-                                                <constraint firstAttribute="trailing" secondItem="tXW-gC-1Dh" secondAttribute="trailing" constant="16" id="zNi-UB-OjX"/>
-                                                <constraint firstItem="8ai-mb-Ew8" firstAttribute="centerY" secondItem="zjm-gr-fQ4" secondAttribute="centerY" id="zPB-EU-0Pn"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="2VZ-LP-rQm" id="VGO-AK-zMO"/>
@@ -3426,7 +3325,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="myCantidadTF" destination="8ai-mb-Ew8" id="sSJ-hn-Mjq"/>
                         <outlet property="myCodigo" destination="zcy-UL-5vP" id="OrV-rP-xfD"/>
                         <outlet property="myDescripccion" destination="mzy-gz-wOZ" id="hgT-2b-HXS"/>
                         <outlet property="myExentoIRPF" destination="S40-AX-3Cw" id="DS4-X3-GJl"/>
@@ -3434,11 +3332,7 @@
                         <outlet property="myIRPF" destination="My4-9g-Ese" id="v1j-Mg-sSo"/>
                         <outlet property="myIVA" destination="VaK-PI-3hS" id="Xvp-Sd-wgZ"/>
                         <outlet property="myMedidaCustom" destination="Rbs-OE-sDd" id="0Wl-HI-PrE"/>
-                        <outlet property="myPrecio" destination="BL4-90-liu" id="Dwo-WV-rdC"/>
                         <outlet property="mySelectorMedida" destination="aOq-B6-fdo" id="NDW-vS-n1p"/>
-                        <outlet property="mySelectorMoneda" destination="PN9-1P-rxF" id="OO8-DV-BCJ"/>
-                        <outlet property="myStepper" destination="tXW-gC-1Dh" id="Srm-dE-PFe"/>
-                        <outlet property="myTipoCantidadLBL" destination="zDH-vT-Ygg" id="7co-sj-nWk"/>
                         <outlet property="myTitulo" destination="xkp-82-qFs" id="Kl9-CO-KBj"/>
                     </connections>
                 </tableViewController>
@@ -4015,7 +3909,7 @@
                     <navigationItem key="navigationItem" title="Crear" id="TGE-yU-rPq">
                         <barButtonItem key="rightBarButtonItem" title="Guardar" id="URY-wR-7np">
                             <connections>
-                                <action selector="guardarAction:" destination="fbD-DZ-00n" id="l4z-hE-6X0"/>
+                                <action selector="guardarDocumento:" destination="IuW-yc-luW" id="Y31-MH-idq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -4364,7 +4258,7 @@
         <!--Crear Producto-->
         <scene sceneID="eza-3l-SHt">
             <objects>
-                <tableViewController storyboardIdentifier="VistaProductoTVC" id="UD1-lY-Jl2" customClass="IME_VistaProductoTVC" customModule="invoiceMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CrearProductoDocumentoTVC" id="UD1-lY-Jl2" customClass="IME_CrearProductoDocumentoTVC" customModule="invoiceMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="PEN-Iz-K7U">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4766,7 +4660,7 @@
                                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="99" stepValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Gd2-TX-eON">
                                                     <rect key="frame" x="210" y="15" width="94" height="29"/>
                                                     <connections>
-                                                        <action selector="aumentaCantidad:" destination="UD1-lY-Jl2" eventType="valueChanged" id="W0p-At-WKd"/>
+                                                        <action selector="cambiarCantidad:" destination="UD1-lY-Jl2" eventType="valueChanged" id="U2s-Mv-8eG"/>
                                                     </connections>
                                                 </stepper>
                                             </subviews>
@@ -4797,20 +4691,19 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="myCantidadTF" destination="r2w-M4-w61" id="iyQ-ur-k05"/>
-                        <outlet property="myCodigo" destination="xNy-vc-GHw" id="O1Q-h2-cO4"/>
-                        <outlet property="myDescripccion" destination="jio-WW-JON" id="aKf-m0-tLc"/>
-                        <outlet property="myExentoIRPF" destination="LdG-jc-khe" id="jrd-Ju-D2X"/>
-                        <outlet property="myExentoIVA" destination="iQ7-PY-s6r" id="21l-GX-CdV"/>
-                        <outlet property="myIRPF" destination="LVy-cA-yZs" id="V3A-6m-Gr1"/>
-                        <outlet property="myIVA" destination="ggj-jj-cWh" id="ImV-iZ-cbS"/>
-                        <outlet property="myMedidaCustom" destination="s8A-6A-h3v" id="bOE-Ej-6ls"/>
-                        <outlet property="myPrecio" destination="RmQ-ET-zV0" id="FMB-Rv-eOh"/>
-                        <outlet property="mySelectorMedida" destination="pxq-sQ-R6g" id="3B0-uq-x1R"/>
-                        <outlet property="mySelectorMoneda" destination="EMJ-XS-mYd" id="DpZ-2R-usC"/>
-                        <outlet property="myStepper" destination="Gd2-TX-eON" id="NWV-zj-l5t"/>
-                        <outlet property="myTipoCantidadLBL" destination="9fG-zd-oXH" id="pb2-Du-nwf"/>
-                        <outlet property="myTitulo" destination="eam-xx-g69" id="0yx-z5-T90"/>
+                        <outlet property="myCantidad" destination="r2w-M4-w61" id="bkD-g6-m9f"/>
+                        <outlet property="myCodigoProducto" destination="xNy-vc-GHw" id="qu6-e7-qa3"/>
+                        <outlet property="myDescripcionProducto" destination="jio-WW-JON" id="kIv-lL-sb5"/>
+                        <outlet property="myExentoIRPF" destination="LdG-jc-khe" id="7ye-qy-oQL"/>
+                        <outlet property="myExentoIVA" destination="iQ7-PY-s6r" id="92F-ce-67z"/>
+                        <outlet property="myIRPF" destination="LVy-cA-yZs" id="4Hr-Ix-9WW"/>
+                        <outlet property="myIVA" destination="ggj-jj-cWh" id="A2o-Zb-SNC"/>
+                        <outlet property="myMedidaCustom" destination="s8A-6A-h3v" id="tQT-J0-tGY"/>
+                        <outlet property="myPrecio" destination="RmQ-ET-zV0" id="lZp-LB-lp1"/>
+                        <outlet property="mySelectorMedida" destination="pxq-sQ-R6g" id="PoU-2w-kAr"/>
+                        <outlet property="myStepper" destination="Gd2-TX-eON" id="TEw-Hl-sEf"/>
+                        <outlet property="myTipoMedidaLabel" destination="9fG-zd-oXH" id="9im-oI-htt"/>
+                        <outlet property="myTituloProducto" destination="eam-xx-g69" id="NTk-Rw-cOF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eqp-j2-rBA" userLabel="First Responder" sceneMemberID="firstResponder"/>

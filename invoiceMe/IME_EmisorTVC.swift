@@ -164,9 +164,8 @@ extension IME_EmisorTVC: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         
-        if let destinationVC = viewController as? IME_CrearDocumentoTVC {
+        if let destinationVC = viewController as? IME_CrearDocumentoDynamicTVC {
             if emisor != nil {
-                destinationVC.myNombreEmisor.text = emisor?.nombre
                 destinationVC.emisor = emisor
             }
         }

@@ -98,9 +98,7 @@ class IME_ListaProductosTVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "celdaProducto", for: indexPath) as! IME_ProductoCustomCell
         if let producto = productos?[indexPath.row] {
             cell.myCodigo.text = producto.codigo
-            //cell.myPrecio.text = String(format: "%.2f",producto.precio)
             cell.myTitulo.text = producto.titulo
-            //cell.myCantidad.text = String(format: "%.2f", producto.cantidad)
             
             if indexProductosSeleccionados.count > 0 {
                 if indexProductosSeleccionados.contains(indexPath.row) {

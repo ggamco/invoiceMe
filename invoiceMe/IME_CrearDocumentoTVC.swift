@@ -153,7 +153,7 @@ class IME_CrearDocumentoTVC: UITableViewController {
             fechaValidez = myFechaValidez.text!
         }
         documentoAlmacenado = servicioDocumento?.crearDocumento(tipoDocumento: tipoDocumentoDeseado!,
-                                                    numeroDocumento: Int(myNumeroDocumento.text!)!,
+                                                    numeroDocumento: Int32(myNumeroDocumento.text!)!,
                                                     sujijo: mySufijoDocumento.text!,
                                                     fechaEmison: fechaEmision,
                                                     fechaValidez: fechaValidez,

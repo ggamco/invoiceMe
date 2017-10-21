@@ -20,7 +20,7 @@ class ServicioDocumento {
     
     //MARK: - Crear Documento
     func crearDocumento(tipoDocumento: Int,
-                        numeroDocumento: Int,
+                        numeroDocumento: Int32,
                         sujijo: String,
                         fechaEmison: String,
                         fechaValidez: String,
@@ -30,7 +30,7 @@ class ServicioDocumento {
         let nuevoDocumento = NSEntityDescription.insertNewObject(forEntityName: "Documento", into: contexto) as! Documento
         
         nuevoDocumento.tipoDocumento = Int16(tipoDocumento)
-        nuevoDocumento.numeroDocumento = Int32(numeroDocumento)
+        nuevoDocumento.numeroDocumento = numeroDocumento
         nuevoDocumento.sufijoDocumento = sujijo
         nuevoDocumento.logo = logo
         nuevoDocumento.fechaEmision = fechaEmison

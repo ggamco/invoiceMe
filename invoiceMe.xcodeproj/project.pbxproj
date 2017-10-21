@@ -16,6 +16,7 @@
 		5E463F631F6DC907000B9DDE /* IME_LoginTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E463F621F6DC907000B9DDE /* IME_LoginTVC.swift */; };
 		5E484B681F7E922900F7A63D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E484B671F7E922800F7A63D /* LocalAuthentication.framework */; };
 		5E62B7641F88CA1D00703672 /* IME_MasterFacturasCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E62B7631F88CA1D00703672 /* IME_MasterFacturasCustomCell.swift */; };
+		5E9F82861F9BCAD9009E4F04 /* IME_CrearProductoDocumentoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9F82851F9BCAD9009E4F04 /* IME_CrearProductoDocumentoTVC.swift */; };
 		5EA0F7D21F78449C00F78B19 /* PKHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA0F7D31F78449C00F78B19 /* PKHUD.framework */; };
 		5EA0F7D51F78611800F78B19 /* API_SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0F7D41F78611800F78B19 /* API_SignIn.swift */; };
 		5EA6D3C61EFFC3490015C69F /* Pods_invoiceMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA6D3C51EFFC3490015C69F /* Pods_invoiceMe.framework */; };
@@ -89,6 +90,7 @@
 		5E484B661F7E91EB00F7A63D /* EPSignature.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EPSignature.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E484B671F7E922800F7A63D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		5E62B7631F88CA1D00703672 /* IME_MasterFacturasCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_MasterFacturasCustomCell.swift; sourceTree = "<group>"; };
+		5E9F82851F9BCAD9009E4F04 /* IME_CrearProductoDocumentoTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_CrearProductoDocumentoTVC.swift; sourceTree = "<group>"; };
 		5EA0F7D31F78449C00F78B19 /* PKHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PKHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA0F7D41F78611800F78B19 /* API_SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_SignIn.swift; sourceTree = "<group>"; };
 		5EA6D3C11EFFC0D70015C69F /* InteractiveSideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InteractiveSideMenu.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-gmadscsvlyqjzlgjqoxfxeumshgf/Build/Products/Debug-iphonesimulator/InteractiveSideMenu/InteractiveSideMenu.framework"; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				5EF2CCEC1F08F93C006184FE /* IME_CrearDocumentoTVC.swift */,
 				CC8782171F9B446D00811597 /* IME_CrearDocumentoDynamicTVC.swift */,
 				5EF2CCEF1F09633E006184FE /* IME_EmisorTVC.swift */,
+				5E9F82851F9BCAD9009E4F04 /* IME_CrearProductoDocumentoTVC.swift */,
 				CC87820A1F9A822400811597 /* CUSTOM CELLS */,
 				5EF2CCF11F09AAB1006184FE /* IME_ServicioWebVC.swift */,
 				CC46FE191F9A41A60044DBDE /* IME_SeleccionProductosTVC.swift */,
@@ -590,6 +593,7 @@
 				5EA0F7D51F78611800F78B19 /* API_SignIn.swift in Sources */,
 				CC68BD8B1E717F0E005CC8E3 /* IME_NotificacionesTVC.swift in Sources */,
 				CC68BD771E717EF9005CC8E3 /* IME_PrimeraVentanaTBC.swift in Sources */,
+				5E9F82861F9BCAD9009E4F04 /* IME_CrearProductoDocumentoTVC.swift in Sources */,
 				5E173CDD1F77B2E800095DE9 /* CustomCameraOverlayVC.swift in Sources */,
 				5E2BE2771F77154B004CEDBA /* IME_RegistroTVC.swift in Sources */,
 				CC87820E1F9B43B000811597 /* IME_FechaEmisionCustomCell.swift in Sources */,
