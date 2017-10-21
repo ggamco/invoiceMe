@@ -10,6 +10,10 @@ import UIKit
 
 class IME_NumeroCustomCell: UITableViewCell {
 
+    // MARK: - IBOutlets
+    @IBOutlet weak var myNumeroDocumento: UITextField!
+    @IBOutlet weak var mySufijoDocumento: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

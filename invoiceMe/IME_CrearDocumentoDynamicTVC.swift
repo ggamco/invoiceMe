@@ -39,10 +39,37 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cellEmisor", for: indexPath) as! IME_InfoCustomCell
+            if indexPath.row == 0 {
+                cell.myTitleLabel.text = "Emisor"
+                cell.myNombreEmisorTF.text = ""
+                return cell
+            } else {
+                cell.myTitleLabel.text = "Receptor"
+                cell.myNombreEmisorTF.text = ""
+                return cell
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cellNumero", for: indexPath) as! IME_NumeroCustomCell
+                return cell
+            case 1:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cellFechaEmision", for: indexPath) as! IME_FechaEmisionCustomCell
+                return cell
+            case 2:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cellFechaValidez", for: indexPath) as! IME_FechaValidezCustomCell
+                return cell
+            default:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cellNota", for: indexPath) as! IME_NotaCustomCell
+                return cell
+            }
+        default:
+            <#code#>
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellEmisor", for: indexPath)
-
-        // Configure the cell...
-
         return cell
     }
     
@@ -51,11 +78,11 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController {
         case 0:
             return "información"
         case 1:
-            return "detalles"
+            return "datos documento"
         case 2:
-            return "Conceptos"
+            return "conceptos"
         default:
-            return "Desconocido"
+            return "desconocido"
         }
     }
 

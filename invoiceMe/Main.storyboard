@@ -3614,6 +3614,10 @@
                                         <constraint firstItem="2tF-OC-Lc9" firstAttribute="top" secondItem="4zy-BU-a2L" secondAttribute="top" constant="4" id="ylr-TU-3G0"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="myNombreEmisorTF" destination="RU2-qN-IvX" id="zpw-4c-GLD"/>
+                                    <outlet property="myTitleLabel" destination="2tF-OC-Lc9" id="GaY-gk-Esr"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellNumero" rowHeight="60" id="m4f-js-aDy" customClass="IME_NumeroCustomCell" customModule="invoiceMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="107.5" width="320" height="60"/>
@@ -3686,6 +3690,10 @@
                                         <constraint firstItem="USV-LW-uau" firstAttribute="centerY" secondItem="z84-ie-KPW" secondAttribute="centerY" constant="7.25" id="rtL-Bu-n87"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="myNumeroDocumento" destination="j77-g0-dv5" id="lhr-71-9jx"/>
+                                    <outlet property="mySufijoDocumento" destination="eMn-KZ-The" id="FEC-UC-IJe"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellFechaEmision" rowHeight="60" id="LS9-BT-3dr" customClass="IME_FechaEmisionCustomCell" customModule="invoiceMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="167.5" width="320" height="60"/>
@@ -3722,6 +3730,7 @@
                                             </constraints>
                                             <color key="onTintColor" red="0.7725490196" green="0.79215686269999996" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
+                                                <action selector="activarFechaEmision:" destination="LS9-BT-3dr" eventType="valueChanged" id="F7c-iR-2wd"/>
                                                 <action selector="activarFechasSW:" destination="fbD-DZ-00n" eventType="valueChanged" id="dGI-om-agI"/>
                                             </connections>
                                         </switch>
@@ -3736,6 +3745,10 @@
                                         <constraint firstItem="SjT-90-oAh" firstAttribute="leading" secondItem="GgI-qa-3Sj" secondAttribute="trailing" constant="8" id="ykV-6G-bJM"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="myFechaEmision" destination="SjT-90-oAh" id="agI-ba-8zg"/>
+                                    <outlet property="myFechaEmisionSW" destination="knk-He-fVy" id="G5P-QO-Zlr"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellFechaValidez" rowHeight="60" id="gKI-LQ-TCn" customClass="IME_FechaValidezCustomCell" customModule="invoiceMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="227.5" width="320" height="60"/>
@@ -3773,6 +3786,7 @@
                                             </constraints>
                                             <color key="onTintColor" red="0.7725490196" green="0.79215686269999996" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
+                                                <action selector="activarFechaValidez:" destination="gKI-LQ-TCn" eventType="valueChanged" id="25x-qD-bwL"/>
                                                 <action selector="activarFechasSW:" destination="fbD-DZ-00n" eventType="valueChanged" id="300-aZ-bTI"/>
                                             </connections>
                                         </switch>
@@ -3787,6 +3801,10 @@
                                         <constraint firstItem="O1h-Lt-n3f" firstAttribute="centerY" secondItem="flx-PP-05R" secondAttribute="centerY" id="kTw-c2-fzF"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="myFechaValidez" destination="O1h-Lt-n3f" id="3o5-C6-rfb"/>
+                                    <outlet property="myFechaValidezSW" destination="qJK-dp-D5O" id="uyr-NG-nz3"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellNota" rowHeight="120" id="DzA-uC-7Au" customClass="IME_NotaCustomCell" customModule="invoiceMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="287.5" width="320" height="120"/>
@@ -3820,6 +3838,9 @@
                                         <constraint firstAttribute="trailing" secondItem="830-xI-Uf1" secondAttribute="trailing" constant="16" id="uGI-R6-uZP"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="myNotaText" destination="830-xI-Uf1" id="v4H-WI-zCu"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellProducto" rowHeight="60" id="ef4-8h-Qmk" customClass="IME_ProductoDocumentoCustomCell" customModule="invoiceMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="407.5" width="320" height="60"/>
@@ -3857,8 +3878,8 @@
                                             <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="9.999,99 €" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEU-eK-Vjp">
-                                            <rect key="frame" x="54" y="35.5" width="57" height="15"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.999,99 €" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEU-eK-Vjp">
+                                            <rect key="frame" x="54" y="36.5" width="57" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="loT-wr-poc"/>
                                             </constraints>
@@ -3875,8 +3896,8 @@
                                             <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Cantidad:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rb8-Hb-dW7">
-                                            <rect key="frame" x="227" y="35.5" width="51" height="15"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cantidad:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rb8-Hb-dW7">
+                                            <rect key="frame" x="227" y="36.5" width="51" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="51" id="QVL-Aq-eeB"/>
                                                 <constraint firstAttribute="height" constant="15" id="i3a-5i-s1a"/>
@@ -3893,10 +3914,12 @@
                                         <constraint firstItem="Jtd-9v-Y1Z" firstAttribute="leading" secondItem="rb8-Hb-dW7" secondAttribute="trailing" constant="2" id="Dep-Pb-kqs"/>
                                         <constraint firstItem="66B-ul-cVV" firstAttribute="leading" secondItem="XMX-Rj-JUf" secondAttribute="leading" constant="16" id="MiV-Qh-ufw"/>
                                         <constraint firstAttribute="bottom" secondItem="Jtd-9v-Y1Z" secondAttribute="bottom" constant="8" id="dSj-vy-MRC"/>
+                                        <constraint firstAttribute="bottom" secondItem="rb8-Hb-dW7" secondAttribute="bottom" constant="8" id="daE-NG-lE1"/>
                                         <constraint firstItem="zEU-eK-Vjp" firstAttribute="leading" secondItem="66B-ul-cVV" secondAttribute="trailing" constant="2" id="j36-9P-vsC"/>
                                         <constraint firstItem="Afe-zU-NdZ" firstAttribute="leading" secondItem="XMX-Rj-JUf" secondAttribute="leading" constant="16" id="jEv-4m-AcL"/>
                                         <constraint firstAttribute="trailing" secondItem="Jtd-9v-Y1Z" secondAttribute="trailing" constant="16" id="kgp-gd-2iP"/>
                                         <constraint firstAttribute="bottom" secondItem="66B-ul-cVV" secondAttribute="bottom" constant="8" id="pw5-Mz-EUX"/>
+                                        <constraint firstAttribute="bottom" secondItem="zEU-eK-Vjp" secondAttribute="bottom" constant="8" id="tYV-E4-H27"/>
                                         <constraint firstItem="I9w-c6-hzH" firstAttribute="leading" secondItem="Afe-zU-NdZ" secondAttribute="trailing" constant="8" id="w5i-pE-QAj"/>
                                     </constraints>
                                 </tableViewCellContentView>

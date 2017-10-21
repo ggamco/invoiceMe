@@ -10,6 +10,21 @@ import UIKit
 
 class IME_FechaEmisionCustomCell: UITableViewCell {
 
+    // MARK: - IBOutlets
+    @IBOutlet weak var myFechaEmision: UITextField!
+    @IBOutlet weak var myFechaEmisionSW: UISwitch!
+    
+    // MARK: - IBActions
+    @IBAction func activarFechaEmision(_ sender: UISwitch) {
+        if sender.isOn {
+            myFechaEmision.isEnabled = true
+            myFechaEmision.textColor = UIColor.darkText
+        } else {
+            myFechaEmision.isEnabled = false
+            myFechaEmision.textColor = UIColor.lightText
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

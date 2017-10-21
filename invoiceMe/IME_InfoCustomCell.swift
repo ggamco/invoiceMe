@@ -10,6 +10,9 @@ import UIKit
 
 class IME_InfoCustomCell: UITableViewCell {
 
+    @IBOutlet weak var myTitleLabel: UILabel!
+    @IBOutlet weak var myNombreEmisorTF: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
