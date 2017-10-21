@@ -15,6 +15,7 @@ class IME_LoginTVC: UITableViewController {
     
     // Variable local
     var deviceSize: CGFloat!
+    var fromLogOut = false
     
     // MARK: - IBOutlets
     @IBOutlet weak var myCorreo: UITextField!
@@ -25,27 +26,60 @@ class IME_LoginTVC: UITableViewController {
     @IBOutlet weak var myTopCons: NSLayoutConstraint!
     @IBOutlet weak var myBottomCons: NSLayoutConstraint!
     @IBOutlet weak var myImagenPerfil: UIImageView!
+    @IBOutlet weak var myBotonReset: UIButton!
+    @IBOutlet weak var registrateView: UIView!
     
     // MARK: - IBActions
-    @IBAction func loginUsuario(_ sender: UIButton) {
-        HUD.show(.progress)
-        let sign = APISignIn(p_username: myCorreo.text!, p_password: myPassword.text!)
-        do {
-            try sign.signUser()
-            UserDefaults.standard.setValue("REGISTERED", forKey: CONSTANTES.PREFS.REGISTERED)
-            self.performSegue(withIdentifier: "fromLoginTVC", sender: self)
-        } catch let error{
-            present(muestraAlertVC(titulo: "Lo sentimos", mensaje: "\(error.localizedDescription)"),
-                    animated: true,
-                    completion: nil)
+    @IBAction func resetPassword(_ sender: UIButton) {
+        if !(myCorreo.text?.isEmpty)! {
+            myBotonReset.isEnabled = false
+            PFUser.requestPasswordResetForEmail(inBackground: myCorreo.text!)
+            present(muestraAlertVC(titulo: "Comprueba tu cuenta de correo", mensaje: "Hemos enviado un mensaje a tu correo con las instrucciones para cambiar la contraseña de tu cuenta InvoiceMe"), animated: true, completion: {
+                self.myBotonReset.isEnabled = true
+            })
+        } else {
+            present(muestraAlertVC(titulo: "¡Atención!", mensaje: "Introduce tu correo electrónico"), animated: true, completion: nil)
         }
-        HUD.hide(afterDelay: 0)
+    }
+    
+    @IBAction func loginUsuario(_ sender: UIButton) {
+        
+        if (myCorreo.text?.isEmpty)! || (myCorreo.text?.isEmpty)! {
+            present(muestraAlertVC(titulo: "¡Atención!", mensaje: "Rellena todos los campos para continuar"), animated: true, completion: nil)
+        } else {
+            HUD.show(.progress)
+            PFUser.logInWithUsername(inBackground: myCorreo.text!, password: myPassword.text!, block: { (user, error) in
+                HUD.hide(afterDelay: 0)
+                if user != nil {
+                    //Login ok
+                    DispatchQueue.main.async {
+                        if UserDefaults.standard.string(forKey: CONSTANTES.PREFS.REGISTERED) == nil {
+                            UserDefaults.standard.setValue("REGISTERED", forKey: CONSTANTES.PREFS.REGISTERED)
+                        }
+                        self.performSegue(withIdentifier: "fromLoginTVC", sender: self)
+                    }
+                } else {
+                    self.present(muestraAlertVC(titulo: "Lo sentimos...", mensaje: "\(error?.localizedDescription ?? "Error desconocido. Inténtalo denuevo más tarde")"), animated: true, completion: nil)
+                }
+            })
+        }
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if fromLogOut {
+            registrateView.isHidden = false
+            //IMPORTANTE
+            //ESTAS LINEAS ELIMINAN EL TITULO AL BACKBUTTON
+            let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+            self.navigationItem.backBarButtonItem = backBarButtonItem
+            //COLOCARLAS SIEMPRE EN EL PADRE
+        } else {
+            registrateView.isHidden = true
+        }
         deviceSize = self.view.frame.height
-        self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = CONSTANTES.COLORES.NAV_ITEMS
         //Personaliza boton
         myBotonLogin.layer.cornerRadius = 5
@@ -141,15 +175,15 @@ class IME_LoginTVC: UITableViewController {
         }
     }
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "goToRegister" {
+            let destinoVC = segue.destination as! IME_RegistroTVC
+            destinoVC.fromLoginVC = true
+        }
     }
-    */
 
 }// MARK: - Fin de la clase
 

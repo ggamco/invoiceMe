@@ -26,7 +26,7 @@
 		5EF2CCDE1F06F4F6006184FE /* ProductoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCDD1F06F4F6006184FE /* ProductoManager.swift */; };
 		5EF2CCE01F06F5F1006184FE /* DocumentoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCDF1F06F5F1006184FE /* DocumentoManager.swift */; };
 		5EF2CCE21F077E51006184FE /* API_ServicioDocumento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCE11F077E51006184FE /* API_ServicioDocumento.swift */; };
-		5EF2CCE71F07EEF5006184FE /* API_ServicioProducto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCE61F07EEF5006184FE /* API_ServicioProducto.swift */; };
+		5EF2CCE71F07EEF5006184FE /* API_ServicioProductoBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCE61F07EEF5006184FE /* API_ServicioProductoBase.swift */; };
 		5EF2CCE91F07F390006184FE /* API_ServicioEmisor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCE81F07F390006184FE /* API_ServicioEmisor.swift */; };
 		5EF2CCED1F08F93C006184FE /* IME_CrearDocumentoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCEC1F08F93C006184FE /* IME_CrearDocumentoTVC.swift */; };
 		5EF2CCF01F09633E006184FE /* IME_EmisorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2CCEF1F09633E006184FE /* IME_EmisorTVC.swift */; };
@@ -41,6 +41,9 @@
 		CC23D8B21F12CB2700DBA8B6 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23D8B11F12CB2700DBA8B6 /* CustomTextField.swift */; };
 		CC3BD3581E75C63E000C5A1D /* API_ServicioEmpresa.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BD3571E75C63E000C5A1D /* API_ServicioEmpresa.swift */; };
 		CC3BD35A1E760DBB000C5A1D /* API_ServicioProyecto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BD3591E760DBB000C5A1D /* API_ServicioProyecto.swift */; };
+		CC46FE161F967DD90044DBDE /* IME_MailComposeCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC46FE151F967DD90044DBDE /* IME_MailComposeCustom.swift */; };
+		CC46FE181F9806E60044DBDE /* API_ServicioProducto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC46FE171F9806E60044DBDE /* API_ServicioProducto.swift */; };
+		CC46FE1A1F9A41A60044DBDE /* IME_SeleccionProductosTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC46FE191F9A41A60044DBDE /* IME_SeleccionProductosTVC.swift */; };
 		CC68BD561E717DFF005CC8E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68BD551E717DFF005CC8E3 /* AppDelegate.swift */; };
 		CC68BD5E1E717DFF005CC8E3 /* invoiceMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC68BD5C1E717DFF005CC8E3 /* invoiceMe.xcdatamodeld */; };
 		CC68BD631E717DFF005CC8E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC68BD611E717DFF005CC8E3 /* LaunchScreen.storyboard */; };
@@ -62,6 +65,14 @@
 		CC68BD8F1E717F35005CC8E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC68BD8E1E717F35005CC8E3 /* Main.storyboard */; };
 		CC68BD911E717F8F005CC8E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC68BD901E717F8F005CC8E3 /* Assets.xcassets */; };
 		CC68BD951E7183A1005CC8E3 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CC68BD941E7183A1005CC8E3 /* Podfile */; };
+		CC8782091F9A821D00811597 /* IME_InfoCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8782081F9A821D00811597 /* IME_InfoCustomCell.swift */; };
+		CC87820C1F9B439300811597 /* IME_NumeroCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87820B1F9B439300811597 /* IME_NumeroCustomCell.swift */; };
+		CC87820E1F9B43B000811597 /* IME_FechaEmisionCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87820D1F9B43B000811597 /* IME_FechaEmisionCustomCell.swift */; };
+		CC8782101F9B43C600811597 /* IME_FechaValidezCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87820F1F9B43C600811597 /* IME_FechaValidezCustomCell.swift */; };
+		CC8782121F9B43EC00811597 /* IME_NotaCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8782111F9B43EC00811597 /* IME_NotaCustomCell.swift */; };
+		CC8782141F9B441C00811597 /* IME_ProductoDocumentoCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8782131F9B441C00811597 /* IME_ProductoDocumentoCustomCell.swift */; };
+		CC8782161F9B443500811597 /* IME_BotonCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8782151F9B443500811597 /* IME_BotonCustomCell.swift */; };
+		CC8782181F9B446D00811597 /* IME_CrearDocumentoDynamicTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8782171F9B446D00811597 /* IME_CrearDocumentoDynamicTVC.swift */; };
 		CCBE72FB1E71852600BA8F28 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCBE72F81E71852600BA8F28 /* Alamofire.framework */; };
 		CCBE72FD1E71852600BA8F28 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCBE72FA1E71852600BA8F28 /* SwiftyJSON.framework */; };
 		CCDBF6D61F8AAB76007C58FD /* IME_DetalleProyectoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDBF6D51F8AAB76007C58FD /* IME_DetalleProyectoVC.swift */; };
@@ -89,7 +100,7 @@
 		5EF2CCDD1F06F4F6006184FE /* ProductoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductoManager.swift; sourceTree = "<group>"; };
 		5EF2CCDF1F06F5F1006184FE /* DocumentoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentoManager.swift; sourceTree = "<group>"; };
 		5EF2CCE11F077E51006184FE /* API_ServicioDocumento.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_ServicioDocumento.swift; sourceTree = "<group>"; };
-		5EF2CCE61F07EEF5006184FE /* API_ServicioProducto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_ServicioProducto.swift; sourceTree = "<group>"; };
+		5EF2CCE61F07EEF5006184FE /* API_ServicioProductoBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_ServicioProductoBase.swift; sourceTree = "<group>"; };
 		5EF2CCE81F07F390006184FE /* API_ServicioEmisor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_ServicioEmisor.swift; sourceTree = "<group>"; };
 		5EF2CCEC1F08F93C006184FE /* IME_CrearDocumentoTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_CrearDocumentoTVC.swift; sourceTree = "<group>"; };
 		5EF2CCEF1F09633E006184FE /* IME_EmisorTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IME_EmisorTVC.swift; sourceTree = "<group>"; };
@@ -108,6 +119,9 @@
 		CC23D8B11F12CB2700DBA8B6 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		CC3BD3571E75C63E000C5A1D /* API_ServicioEmpresa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_ServicioEmpresa.swift; sourceTree = "<group>"; };
 		CC3BD3591E760DBB000C5A1D /* API_ServicioProyecto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_ServicioProyecto.swift; sourceTree = "<group>"; };
+		CC46FE151F967DD90044DBDE /* IME_MailComposeCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_MailComposeCustom.swift; sourceTree = "<group>"; };
+		CC46FE171F9806E60044DBDE /* API_ServicioProducto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_ServicioProducto.swift; sourceTree = "<group>"; };
+		CC46FE191F9A41A60044DBDE /* IME_SeleccionProductosTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_SeleccionProductosTVC.swift; sourceTree = "<group>"; };
 		CC68BD521E717DFF005CC8E3 /* invoiceMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = invoiceMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC68BD551E717DFF005CC8E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC68BD5D1E717DFF005CC8E3 /* invoiceMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = invoiceMe.xcdatamodel; sourceTree = "<group>"; };
@@ -131,6 +145,14 @@
 		CC68BD8E1E717F35005CC8E3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CC68BD901E717F8F005CC8E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC68BD941E7183A1005CC8E3 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		CC8782081F9A821D00811597 /* IME_InfoCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_InfoCustomCell.swift; sourceTree = "<group>"; };
+		CC87820B1F9B439300811597 /* IME_NumeroCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_NumeroCustomCell.swift; sourceTree = "<group>"; };
+		CC87820D1F9B43B000811597 /* IME_FechaEmisionCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_FechaEmisionCustomCell.swift; sourceTree = "<group>"; };
+		CC87820F1F9B43C600811597 /* IME_FechaValidezCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_FechaValidezCustomCell.swift; sourceTree = "<group>"; };
+		CC8782111F9B43EC00811597 /* IME_NotaCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_NotaCustomCell.swift; sourceTree = "<group>"; };
+		CC8782131F9B441C00811597 /* IME_ProductoDocumentoCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_ProductoDocumentoCustomCell.swift; sourceTree = "<group>"; };
+		CC8782151F9B443500811597 /* IME_BotonCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_BotonCustomCell.swift; sourceTree = "<group>"; };
+		CC8782171F9B446D00811597 /* IME_CrearDocumentoDynamicTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_CrearDocumentoDynamicTVC.swift; sourceTree = "<group>"; };
 		CCBE72F81E71852600BA8F28 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-adhrplllzgplmdgnmzynxvcbyifd/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		CCBE72F91E71852600BA8F28 /* PhoneNumberKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhoneNumberKit.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-adhrplllzgplmdgnmzynxvcbyifd/Build/Products/Debug-iphonesimulator/PhoneNumberKit/PhoneNumberKit.framework"; sourceTree = "<group>"; };
 		CCBE72FA1E71852600BA8F28 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/invoiceMe-adhrplllzgplmdgnmzynxvcbyifd/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
@@ -217,8 +239,11 @@
 			isa = PBXGroup;
 			children = (
 				5EF2CCEC1F08F93C006184FE /* IME_CrearDocumentoTVC.swift */,
+				CC8782171F9B446D00811597 /* IME_CrearDocumentoDynamicTVC.swift */,
 				5EF2CCEF1F09633E006184FE /* IME_EmisorTVC.swift */,
+				CC87820A1F9A822400811597 /* CUSTOM CELLS */,
 				5EF2CCF11F09AAB1006184FE /* IME_ServicioWebVC.swift */,
+				CC46FE191F9A41A60044DBDE /* IME_SeleccionProductosTVC.swift */,
 			);
 			name = "CREAR DOCUMENTO";
 			sourceTree = "<group>";
@@ -277,7 +302,8 @@
 				5EF2CCE81F07F390006184FE /* API_ServicioEmisor.swift */,
 				CC3BD3571E75C63E000C5A1D /* API_ServicioEmpresa.swift */,
 				CC3BD3591E760DBB000C5A1D /* API_ServicioProyecto.swift */,
-				5EF2CCE61F07EEF5006184FE /* API_ServicioProducto.swift */,
+				5EF2CCE61F07EEF5006184FE /* API_ServicioProductoBase.swift */,
+				CC46FE171F9806E60044DBDE /* API_ServicioProducto.swift */,
 			);
 			name = SERVICIOS_COREDATA;
 			sourceTree = "<group>";
@@ -286,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				CC23D8B11F12CB2700DBA8B6 /* CustomTextField.swift */,
+				CC46FE151F967DD90044DBDE /* IME_MailComposeCustom.swift */,
 				5E173CDF1F77B2F400095DE9 /* CAMERA_OVERLAY */,
 			);
 			name = VISTAS_PERSONALIZADAS;
@@ -348,6 +375,20 @@
 				CC68BD7E1E717F03005CC8E3 /* IME_ColorCorporativoCCCell.swift */,
 			);
 			name = CUSTOM_CELLS;
+			sourceTree = "<group>";
+		};
+		CC87820A1F9A822400811597 /* CUSTOM CELLS */ = {
+			isa = PBXGroup;
+			children = (
+				CC8782081F9A821D00811597 /* IME_InfoCustomCell.swift */,
+				CC87820B1F9B439300811597 /* IME_NumeroCustomCell.swift */,
+				CC87820D1F9B43B000811597 /* IME_FechaEmisionCustomCell.swift */,
+				CC87820F1F9B43C600811597 /* IME_FechaValidezCustomCell.swift */,
+				CC8782111F9B43EC00811597 /* IME_NotaCustomCell.swift */,
+				CC8782131F9B441C00811597 /* IME_ProductoDocumentoCustomCell.swift */,
+				CC8782151F9B443500811597 /* IME_BotonCustomCell.swift */,
+			);
+			name = "CUSTOM CELLS";
 			sourceTree = "<group>";
 		};
 		CCBE72FE1E718E9B00BA8F28 /* APIS */ = {
@@ -509,16 +550,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC8782101F9B43C600811597 /* IME_FechaValidezCustomCell.swift in Sources */,
+				CC87820C1F9B439300811597 /* IME_NumeroCustomCell.swift in Sources */,
+				CC46FE181F9806E60044DBDE /* API_ServicioProducto.swift in Sources */,
 				5EF2CCF01F09633E006184FE /* IME_EmisorTVC.swift in Sources */,
-				5EF2CCE71F07EEF5006184FE /* API_ServicioProducto.swift in Sources */,
+				5EF2CCE71F07EEF5006184FE /* API_ServicioProductoBase.swift in Sources */,
 				CC68BD721E717EF0005CC8E3 /* IME_ProjectBasicCell.swift in Sources */,
 				5EF2CCE21F077E51006184FE /* API_ServicioDocumento.swift in Sources */,
 				5EF2CCDE1F06F4F6006184FE /* ProductoManager.swift in Sources */,
 				5EF2CCE91F07F390006184FE /* API_ServicioEmisor.swift in Sources */,
 				CC68BD8C1E717F0E005CC8E3 /* IME_EditarEmpresaTVC.swift in Sources */,
 				5EF2CCD81F06C0E0006184FE /* ProyectoManager.swift in Sources */,
+				CC46FE161F967DD90044DBDE /* IME_MailComposeCustom.swift in Sources */,
 				CC68BD791E717EF9005CC8E3 /* IME_HorasTVC.swift in Sources */,
 				CC68BD821E717F03005CC8E3 /* IME_CrearClienteNuevoTVC.swift in Sources */,
+				CC8782181F9B446D00811597 /* IME_CrearDocumentoDynamicTVC.swift in Sources */,
 				5EF2CCDA1F06C351006184FE /* EmpresaManager.swift in Sources */,
 				5E62B7641F88CA1D00703672 /* IME_MasterFacturasCustomCell.swift in Sources */,
 				CC68BD561E717DFF005CC8E3 /* AppDelegate.swift in Sources */,
@@ -527,11 +573,15 @@
 				CCDBF6D61F8AAB76007C58FD /* IME_DetalleProyectoVC.swift in Sources */,
 				CC23D8AB1F123D0900DBA8B6 /* CoreDataStack.swift in Sources */,
 				CC68BD5E1E717DFF005CC8E3 /* invoiceMe.xcdatamodeld in Sources */,
+				CC8782091F9A821D00811597 /* IME_InfoCustomCell.swift in Sources */,
 				5E173CE11F77B92A00095DE9 /* CustomOverlayView.swift in Sources */,
 				5EF2CCE01F06F5F1006184FE /* DocumentoManager.swift in Sources */,
 				5EF2CCF21F09AAB1006184FE /* IME_ServicioWebVC.swift in Sources */,
+				CC8782121F9B43EC00811597 /* IME_NotaCustomCell.swift in Sources */,
 				5E463F631F6DC907000B9DDE /* IME_LoginTVC.swift in Sources */,
 				CC68BD801E717F03005CC8E3 /* IME_CrearProyectoNuevoTVC.swift in Sources */,
+				CC8782161F9B443500811597 /* IME_BotonCustomCell.swift in Sources */,
+				CC46FE1A1F9A41A60044DBDE /* IME_SeleccionProductosTVC.swift in Sources */,
 				CC23D8A71F120EE500DBA8B6 /* IME_ListaProductosTVC.swift in Sources */,
 				5EF2CCED1F08F93C006184FE /* IME_CrearDocumentoTVC.swift in Sources */,
 				CC68BD891E717F0E005CC8E3 /* IME_OpcionesTVC.swift in Sources */,
@@ -542,6 +592,7 @@
 				CC68BD771E717EF9005CC8E3 /* IME_PrimeraVentanaTBC.swift in Sources */,
 				5E173CDD1F77B2E800095DE9 /* CustomCameraOverlayVC.swift in Sources */,
 				5E2BE2771F77154B004CEDBA /* IME_RegistroTVC.swift in Sources */,
+				CC87820E1F9B43B000811597 /* IME_FechaEmisionCustomCell.swift in Sources */,
 				CC68BD811E717F03005CC8E3 /* IME_ListaClientesTVC.swift in Sources */,
 				CC3BD35A1E760DBB000C5A1D /* API_ServicioProyecto.swift in Sources */,
 				CC3BD3581E75C63E000C5A1D /* API_ServicioEmpresa.swift in Sources */,
@@ -551,6 +602,7 @@
 				CC68BD8A1E717F0E005CC8E3 /* IME_EditarPerfilTVC.swift in Sources */,
 				CC68BD7F1E717F03005CC8E3 /* IME_ProyectosTVC.swift in Sources */,
 				CC68BD731E717EF0005CC8E3 /* IME_ProjectBudgeCell.swift in Sources */,
+				CC8782141F9B441C00811597 /* IME_ProductoDocumentoCustomCell.swift in Sources */,
 				CC68BD781E717EF9005CC8E3 /* IME_IntroAnimacionVC.swift in Sources */,
 				CC23D8B01F12B2F800DBA8B6 /* IME_VistaProductoTVC.swift in Sources */,
 			);

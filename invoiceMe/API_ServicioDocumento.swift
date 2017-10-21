@@ -24,6 +24,7 @@ class ServicioDocumento {
                         sujijo: String,
                         fechaEmison: String,
                         fechaValidez: String,
+                        nota: String,
                         logo: String) -> Documento {
         
         let nuevoDocumento = NSEntityDescription.insertNewObject(forEntityName: "Documento", into: contexto) as! Documento
@@ -34,9 +35,9 @@ class ServicioDocumento {
         nuevoDocumento.logo = logo
         nuevoDocumento.fechaEmision = fechaEmison
         nuevoDocumento.fechaValidez = fechaValidez
+        nuevoDocumento.nota = nota
         
         return nuevoDocumento
-        
     }
     
     //MARK: - Buscar Documento
@@ -92,6 +93,7 @@ class ServicioDocumento {
             documento.productos = documentoActualizado.productos
             documento.fechaEmision = documentoActualizado.fechaEmision
             documento.fechaValidez = documentoActualizado.fechaValidez
+            documento.nota = documentoActualizado.nota
         }
         
     }

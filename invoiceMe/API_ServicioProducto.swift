@@ -2,7 +2,7 @@
 //  API_ServicioProducto.swift
 //  invoiceMe
 //
-//  Created by Gustavo Gamboa on 1/7/17.
+//  Created by Gustavo Gamboa on 19/10/17.
 //  Copyright © 2017 gmbDesign. All rights reserved.
 //
 
@@ -19,27 +19,15 @@ class API_ServicioProducto {
     }
     
     //MARK: - Crear Producto
-    func crearProducto(codigo: String,
-                       titulo: String,
-                       descripcion: String,
-                       cantidad: Float,
-                       precio: Float,
-                       iva: Float,
-                       irpf: Float,
-                       exentoIva: Bool,
-                       exentoIrpf: Bool) -> Producto {
+    func crearProducto(cantidad: Double,
+                       precio: Double,
+                       productoBase: ProductoBase) -> Producto {
         
         let nuevoProducto = NSEntityDescription.insertNewObject(forEntityName: "Producto", into: contexto) as! Producto
         
-        nuevoProducto.codigo = codigo
-        nuevoProducto.titulo = titulo
-        nuevoProducto.descripcion = descripcion
         nuevoProducto.cantidad = cantidad
         nuevoProducto.precio = precio
-        nuevoProducto.iva = iva
-        nuevoProducto.irpf = irpf
-        nuevoProducto.exentoIva = exentoIva
-        nuevoProducto.exentoIrpf = exentoIrpf
+        nuevoProducto.productoBase = productoBase
         
         return nuevoProducto
         
@@ -88,15 +76,9 @@ class API_ServicioProducto {
     func actualizarProducto(productoActualizado: Producto) {
         
         if let producto = buscarProducto(by: productoActualizado.objectID) {
-            producto.codigo = productoActualizado.codigo
-            producto.titulo = productoActualizado.titulo
-            producto.descripcion = productoActualizado.descripcion
             producto.cantidad = productoActualizado.cantidad
             producto.precio = productoActualizado.precio
-            producto.iva = productoActualizado.iva
-            producto.irpf = productoActualizado.irpf
-            producto.exentoIva = productoActualizado.exentoIva
-            producto.exentoIrpf = productoActualizado.exentoIrpf
+            producto.productoBase = productoActualizado.productoBase
         }
         
     }
@@ -108,3 +90,4 @@ class API_ServicioProducto {
         }
     }
 }
+

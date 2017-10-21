@@ -33,6 +33,8 @@ class IME_CrearDocumentoTVC: UITableViewController {
     var productos: [Producto]?
     var proyecto: Proyecto?
     var contador: Int!
+    var esActualizacion = false
+    var arrayIndexProductos: [Int] = []
     
     // MARK: - IBOutlets
     @IBOutlet weak var myNombreEmisor: UITextField!
@@ -43,20 +45,25 @@ class IME_CrearDocumentoTVC: UITableViewController {
     @IBOutlet weak var myFechaValidez: UITextField!
     @IBOutlet weak var mySwFechaEmision: UISwitch!
     @IBOutlet weak var mySwFechaValidez: UISwitch!
+    @IBOutlet weak var addConceptosBTN: UIButton!
+    @IBOutlet weak var myNotaDocumento: UITextView!
     
     // MARK: - IBActions
-    @IBAction func cancelarAction(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
-    }
     @IBAction func guardarAction(_ sender: UIBarButtonItem) {
         //Creamos el Documento con los datos obtenidos
-        if emisor != nil && receptor != nil {
-            documentoNuevo = crearDocumento()
-            dismiss(animated: true, completion: nil)
+        if documentoNuevo != nil {
+            guardarDocumento()
+            _ = navigationController?.popViewController(animated: true)
         } else {
-            let alert = muestraAlertVC(titulo: "Atención", mensaje: "Completa todos los campos para continuar.")
-            present(alert, animated: true, completion: nil)
+            if emisor != nil && receptor != nil {
+                crearDocumento()
+                dismiss(animated: true, completion: nil)
+            } else {
+                let alert = muestraAlertVC(titulo: "Atención", mensaje: "Completa todos los campos para continuar.")
+                present(alert, animated: true, completion: nil)
+            }
         }
+        
     }
     
     @IBAction func activarFechasSW(_ sw: UISwitch) {
@@ -90,70 +97,102 @@ class IME_CrearDocumentoTVC: UITableViewController {
         //INICIAMOS SERVICIO COREDATA
         servicioDocumento = ServicioDocumento(contexto: contexto)
         servicioEmisor = ServicioEmisor(contexto: contexto)
-        emisor = servicioEmisor?.recuperarEmisores().last
-        if emisor != nil {
-            myNombreEmisor.text = emisor?.nombre
-        }
-        //Recuperamos contador
-        contador = recuperarContador(tipoDocumentoDeseado!)
-        if contador != 0 {
-            myNumeroDocumento.text = String(contador)
+        //IMPORTANTE
+        //ESTAS LINEAS ELIMINAN EL TITULO AL BACKBUTTON
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        //COLOCARLAS SIEMPRE EN EL PADRE
+        if esActualizacion {
+            cargarDatosPrevios()
         } else {
-            myNumeroDocumento.text = String(1)
+            emisor = servicioEmisor?.recuperarEmisores().last
+            if emisor != nil {
+                myNombreEmisor.text = emisor?.nombre
+            }
+            //Recuperamos contador
+            contador = recuperarContador(tipoDocumentoDeseado!)
+            if contador != 0 {
+                myNumeroDocumento.text = String(contador)
+            } else {
+                myNumeroDocumento.text = String(1)
+            }
+            //Comprobamos el nombre de la empresa si ya la tenemos seleccionada
+            if let nombreEmpresa = receptor?.nombre {
+                myNombreReceptor.text = nombreEmpresa
+            }
         }
-        
         configuracionesVarias()
         setFechasIniciales()
-        
-        //Comprobamos el nombre de la empresa si ya la tenemos seleccionada
-        if let nombreEmpresa = receptor?.nombre {
-            myNombreReceptor.text = nombreEmpresa
-        }
+        insertarIconoBTN()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         switch section {
         case 0:
             return 2
         case 1:
-            return 3
+            return 4
         default:
             return 1
         }
     }
 
     // MARK: - FUNCIONES PROPIAS
-    func crearDocumento() -> Documento? {
-        
-        let doc = servicioDocumento?.crearDocumento(tipoDocumento: tipoDocumentoDeseado!,
+    func crearDocumento() {
+        var fechaEmision = ""
+        var fechaValidez = ""
+        if mySwFechaEmision.isOn {
+            fechaEmision = myFechaEmision.text!
+        }
+        if mySwFechaValidez.isOn {
+            fechaValidez = myFechaValidez.text!
+        }
+        documentoNuevo = servicioDocumento?.crearDocumento(tipoDocumento: tipoDocumentoDeseado!,
                                                     numeroDocumento: Int(myNumeroDocumento.text!)!,
                                                     sujijo: mySufijoDocumento.text!,
-                                                    fechaEmison: mySwFechaEmision.isOn ? myFechaEmision.text! : "",
-                                                    fechaValidez: mySwFechaValidez.isOn ? myFechaValidez.text! : "",
+                                                    fechaEmison: fechaEmision,
+                                                    fechaValidez: fechaValidez,
+                                                    nota: myNotaDocumento.text!,
                                                     logo: "")
-        doc?.emisor = emisor
-        doc?.receptor = receptor
-        doc?.proyecto = proyecto
-        //doc?.productos =
+        documentoNuevo?.emisor = emisor
+        documentoNuevo?.receptor = receptor
+        documentoNuevo?.proyecto = proyecto
+        documentoNuevo?.esActualizado = true
+        if productos != nil{
+            documentoNuevo?.productos = NSSet(array: productos!)
+        }
         
         do {
             try contexto.save()
-            //TODO: - Contador para facturas o presupuestos
-            //Comprobar el valor asignado al documento y guardar incrementado segun tipoDoc.
             guardarContador()
         } catch let error {
             print(error.localizedDescription)
         }
-        
-        return servicioDocumento?.recuperarDocumentos().last
+    }
+    
+    func guardarDocumento() {
+        documentoNuevo?.emisor = emisor
+        documentoNuevo?.receptor = receptor
+        documentoNuevo?.numeroDocumento = Int32(myNumeroDocumento.text!)!
+        documentoNuevo?.sufijoDocumento = mySufijoDocumento.text
+        documentoNuevo?.fechaEmision = myFechaEmision.text
+        documentoNuevo?.fechaValidez = myFechaValidez.text
+        documentoNuevo?.nota = myNotaDocumento.text
+        if let productosDes = productos {
+            documentoNuevo?.productos = NSSet(array: productosDes)
+        }
+        documentoNuevo?.esActualizado = false
+        do {
+            try contexto.save()
+        }catch let error {
+            print("Error: \(error.localizedDescription)")
+        }
     }
     
     func guardarContador(){
@@ -204,6 +243,9 @@ class IME_CrearDocumentoTVC: UITableViewController {
         mySufijoDocumento.layer.cornerRadius = 5
         myFechaEmision.layer.cornerRadius = 5
         myFechaValidez.layer.cornerRadius = 5
+        myNotaDocumento.layer.cornerRadius = 5
+        mySwFechaValidez.onTintColor = CONSTANTES.COLORES.PRIMARY_COLOR
+        mySwFechaEmision.onTintColor = CONSTANTES.COLORES.PRIMARY_COLOR
         
         //CONFIGURACIONES VARIAS
         format.dateFormat = "dd/MM/yyyy"
@@ -215,6 +257,39 @@ class IME_CrearDocumentoTVC: UITableViewController {
         myFechaEmision.inputView = datapicker
         myFechaValidez.inputView = datapicker
         datapicker.addTarget(self, action: #selector(setFechaLabel), for: UIControlEvents.valueChanged)
+    }
+    
+    func insertarIconoBTN() {
+        let origImage = UIImage(named: "plus")
+        let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+        addConceptosBTN.setImage(tintedImage, for: .normal)
+        addConceptosBTN.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR
+    }
+    
+    func cargarDatosPrevios() {
+        if let fechaEmision = documentoNuevo?.fechaEmision {
+            if fechaEmision.characters.count > 0 {
+                myFechaEmision.text = fechaEmision
+                myFechaEmision.isEnabled = true
+                myFechaEmision.textColor = UIColor.darkText
+                mySwFechaEmision.isOn = true
+            }
+        }
+        if let fechaValidez = documentoNuevo?.fechaValidez {
+            if fechaValidez.characters.count > 0 {
+                myFechaValidez.text = fechaValidez
+                myFechaValidez.isEnabled = true
+                myFechaValidez.textColor = UIColor.darkText
+                mySwFechaValidez.isOn = true
+            }
+        }
+        myNombreEmisor.text = documentoNuevo?.emisor?.nombre
+        myNombreReceptor.text = documentoNuevo?.receptor?.nombre
+        myNumeroDocumento.text = String((documentoNuevo?.numeroDocumento)!)
+        mySufijoDocumento.text = documentoNuevo?.sufijoDocumento
+        myNotaDocumento.text = documentoNuevo?.nota
+        receptor = documentoNuevo?.receptor
+        emisor = documentoNuevo?.emisor
     }
     
     // MARK: - Navigation
@@ -233,14 +308,11 @@ class IME_CrearDocumentoTVC: UITableViewController {
                 destinationVC?.esActualizacion = false
             }
             
-        } else if segue.identifier == "servicioPDF" {
-
-            //Creamos el Documento con los datos obtenidos
-            if emisor != nil && receptor != nil {
-                documentoNuevo = crearDocumento()
-            } else {
-                let alert = muestraAlertVC(titulo: "Atención", mensaje: "Completa todos los campos para continuar.")
-                present(alert, animated: true, completion: nil)
+        } else if segue.identifier == "goToProductos" {
+            let destinoVC = segue.destination as? IME_ListaProductosTVC
+            if let productos = documentoNuevo?.productos?.allObjects as? [Producto] {
+                //destinoVC?.productosSeleccionados = productos
+                destinoVC?.indexProductosSeleccionados = arrayIndexProductos
             }
         }
     }

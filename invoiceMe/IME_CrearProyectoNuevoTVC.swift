@@ -98,6 +98,10 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //ESTAS LINEAS ELIMINAN EL TITULO AL BACKBUTTON
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        //COLOCARLAS SIEMPRE EN EL PADRE
         
         //cargamos los servicios
         servicioProyecto = API_ServicioProyecto(contexto: contexto)

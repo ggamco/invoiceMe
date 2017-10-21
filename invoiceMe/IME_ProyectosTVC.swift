@@ -67,7 +67,10 @@ class IME_ProyectosTVC: UITableViewController {
         var listaEmpresas: [String] = []
         
         for proyecto in proyectos {
-            listaEmpresas.append(proyecto.empresa!)
+            let empresa = proyecto.empresa
+            if !listaEmpresas.contains(empresa!){
+                listaEmpresas.append(empresa!)
+            }
         }
         
         listaEmpresas.sort{$0.localizedCompare($1) == .orderedAscending}
@@ -81,7 +84,6 @@ class IME_ProyectosTVC: UITableViewController {
         
         for empresa in empresas {
             var listaProyectos: [Proyecto] = []
-            
             for proyecto in proyectos where proyecto.empresa == empresa {
                 listaProyectos.append(proyecto)
             }
@@ -114,8 +116,15 @@ class IME_ProyectosTVC: UITableViewController {
             cell.myLogoProject.backgroundColor = CONSTANTES.COLORES.ARRAY_COLORES[Int((data?.cliente?.color)!)]
             cell.myLogoProject.layer.cornerRadius = cell.myLogoProject.frame.size.width / 2
             cell.myProjectName.text = data?.nombre
-            cell.myProgressLabel.text = "90%"
-            cell.myProgressBar.progress = 0.9
+            if let _ = data?.horasEstimadas {
+                let calculo = calcularProgreso(data!)
+                cell.myProgressLabel.text = String(format: "%.0f", calculo * 100 ) + "%"
+                cell.myProgressBar.progress = Float(calculo)
+            } else {
+                cell.myProgressLabel.text = "0%"
+                cell.myProgressBar.progress = 0.0
+            }
+            
             
             //devuelvo la celda
             return cell
@@ -125,7 +134,13 @@ class IME_ProyectosTVC: UITableViewController {
             
             cell.myLogoProject.image = cell.myLogoProject.image?.withRenderingMode(.alwaysTemplate)
             cell.myLogoProject.tintColor = UIColor.white
-            cell.myLogoProject.backgroundColor = CONSTANTES.COLORES.ARRAY_COLORES[Int((data?.cliente?.color)!)]
+            let color = dimeInt(data?.cliente?.color)
+            if color != -1{
+                cell.myLogoProject.backgroundColor = CONSTANTES.COLORES.ARRAY_COLORES[color]
+            } else {
+                cell.myLogoProject.backgroundColor = CONSTANTES.COLORES.DESCONOCIDO
+            }
+            
             cell.myLogoProject.layer.cornerRadius = cell.myLogoProject.frame.size.width / 2
             cell.myProjectName.text = data?.nombre
             
@@ -185,17 +200,7 @@ class IME_ProyectosTVC: UITableViewController {
             self.tableView.reloadData()
         }
         
-        let facturarAction = UITableViewRowAction(style: .normal, title: "Facturar") { (action, indexPath) in
-            
-            let proyecto = self.diccionario[self.empresas[indexPath.section]]?[indexPath.row]
-            let actionVC = self.muestraActionSheet(titulo: "Elija una opción:",
-                                              mensaje: "¿Qué tipo de documento quiere crear?",
-                                              proyecto: proyecto!)
-            self.present(actionVC, animated: true, completion: nil)
-            
-        }
-        
-        return [facturarAction, borrarAction]
+        return [borrarAction]
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -217,31 +222,26 @@ class IME_ProyectosTVC: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func muestraActionSheet (titulo: String, mensaje: String, proyecto: Proyecto) -> UIAlertController {
-        let destinoVC = storyboard?.instantiateViewController(withIdentifier: "CrearDocumentoTVC") as! IME_CrearDocumentoTVC
-        destinoVC.receptor = proyecto.cliente
-        destinoVC.proyecto = proyecto
-        
-        let navigationController = UINavigationController(rootViewController: destinoVC)
-        let alertVC = UIAlertController(title: titulo, message: mensaje, preferredStyle: .actionSheet)
-        let alertActionPresupuesto = UIAlertAction(title: "Presupuesto", style: .default) { (action) in
-            destinoVC.navigationController?.navigationBar.topItem?.title = "Crear Presupuesto"
-            destinoVC.tipoDocumentoDeseado = 0
-            self.navigationController?.modalPresentationStyle = .currentContext
-            self.present(navigationController, animated: true, completion: nil)
+    func calcularProgreso(_ proyecto: Proyecto) -> Double{
+        let documentos = proyecto.documentos?.allObjects as! [Documento]
+        var sumatorioHoras: Float = 0.0
+        var sumatorioProductos: Float = 0.0
+        for doc in documentos {
+            if Int(doc.tipoDocumento) == 1 {
+                /*
+                let productos = doc.productos?.allObjects as! [Producto]
+                for pro in productos {
+                    let tipoMedida = Int(pro.tipoMedida)
+                    if tipoMedida == 1 {
+                        sumatorioHoras = sumatorioHoras + pro.cantidad
+                        sumatorioProductos = sumatorioProductos + 1.0
+                    }
+                }
+                */
+            }
         }
-        let alertActionFactura = UIAlertAction(title: "Factura", style: .default) { (action) in
-            destinoVC.navigationController?.navigationBar.topItem?.title = "Crear Factura"
-            destinoVC.tipoDocumentoDeseado = 1
-            self.navigationController?.modalPresentationStyle = .currentContext
-            self.present(navigationController, animated: true, completion: nil)
-        }
-        let alertActionCancelar = UIAlertAction(title: "Cancelar", style: .cancel) { (action) in
-        }
-        alertVC.addAction(alertActionPresupuesto)
-        alertVC.addAction(alertActionFactura)
-        alertVC.addAction(alertActionCancelar)
-        return alertVC
+        let resultado = Double(sumatorioHoras) / proyecto.horasEstimadas
+        print("Resultado: \(resultado)")
+        return resultado
     }
-
 }

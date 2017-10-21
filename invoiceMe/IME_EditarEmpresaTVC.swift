@@ -16,7 +16,6 @@ class IME_EditarEmpresaTVC: UITableViewController {
     @IBOutlet weak var myGuardarBTN: UIBarButtonItem!
     @IBOutlet weak var myCancelarBTN: UIBarButtonItem!
     
-    
     //MARK: - IBActions
     @IBAction func cancelarAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -25,8 +24,6 @@ class IME_EditarEmpresaTVC: UITableViewController {
         print("aqui salvamos los cambios y luego dismiss")
         self.dismiss(animated: true, completion: nil)
     }
-    
-    
     
     //MARK: - LIFE TVC
     override func viewDidLoad() {

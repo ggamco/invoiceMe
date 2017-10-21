@@ -13,14 +13,14 @@ extension Producto {
     func toJSON() -> [String : Any] {
         
         return [
-            "codigo" : self.codigo!,
-            "descripcion" : self.descripcion!,
+            "codigo" : dimeString(self.productoBase?.codigo),
+            "descripcion" : dimeString(self.productoBase?.descripcion),
             "cantidad" : self.cantidad,
             "precio" : self.precio,
-            "IVA" : self.iva,
-            "IRPF" : self.irpf,
-            "exentoIVA" : self.exentoIva,
-            "exentoIRPF" : self.exentoIrpf
+            "IVA" : dimeDouble(self.productoBase?.iva),
+            "IRPF" : dimeDouble(self.productoBase?.irpf),
+            "exentoIVA" : dimeBool(self.productoBase?.exentoIva),
+            "exentoIRPF" : dimeBool(self.productoBase?.exentoIrpf)
         ]
         
     }

@@ -25,6 +25,7 @@ class IME_DetalleProyectoVC: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var myEmpresaNombre: UILabel!
     @IBOutlet weak var myDocumentosLabel: UILabel!
     @IBOutlet weak var myTableView: UITableView!
+    @IBOutlet weak var botonAddDocumento: UIButton!
     
     // MARK: - IBActions
     @IBAction func editarProyecto(_ sender: UIBarButtonItem) {
@@ -34,10 +35,6 @@ class IME_DetalleProyectoVC: UIViewController, UITableViewDelegate, UITableViewD
         destinoVC.esActualizacion = true
         destinoVC.title = "Editar Proyecto"
         
-        // IMPORTANT!
-        // Este es el que funciona para ocultar el titulo del back buttom item
-        self.navigationItem.backBarButtonItem?.title = ""
-        
         let navigationController = UINavigationController(rootViewController: destinoVC)
         navigationController.navigationBar.isTranslucent = false
         navigationController.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "Cancelar", style: .plain, target: self, action: #selector(cerrarVentana))
@@ -45,13 +42,17 @@ class IME_DetalleProyectoVC: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController?.modalPresentationStyle = .currentContext
         self.present(navigationController, animated: true, completion: nil)
     }
+    @IBAction func addDocumento(_ sender: UIButton) {
+        let actionVC = self.muestraActionSheet(titulo: "Elija una opción:",
+                                               mensaje: "¿Qué tipo de documento quiere crear?",
+                                               proyecto: proyecto!)
+        self.present(actionVC, animated: true, completion: nil)
+    }
     
     // MARK: - LIFE VC
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let documentosDes = proyecto?.documentos?.allObjects as? [Documento]{
-            documentos = documentosDes
-        }
+        insertarIconoBTN()
         myTableView.delegate = self
         myTableView.dataSource = self
         myTituloProyecto.text = proyecto?.nombre
@@ -59,9 +60,54 @@ class IME_DetalleProyectoVC: UIViewController, UITableViewDelegate, UITableViewD
         servicioDocumento = ServicioDocumento(contexto: contexto)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let documentosDes = proyecto?.documentos?.allObjects as? [Documento]{
+            documentos = documentosDes
+        }
+        self.myTableView.reloadData()
+    }
+    
     // MARK: - Utils
     @objc func cerrarVentana() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func insertarIconoBTN() {
+        let origImage = UIImage(named: "plus")
+        let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+        botonAddDocumento.setImage(tintedImage, for: .normal)
+        botonAddDocumento.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR
+    }
+    
+    func muestraActionSheet (titulo: String, mensaje: String, proyecto: Proyecto) -> UIAlertController {
+        let destinoVC = storyboard?.instantiateViewController(withIdentifier: "CrearDocumentoTVC") as! IME_CrearDocumentoTVC
+        destinoVC.receptor = proyecto.cliente
+        destinoVC.proyecto = proyecto
+        
+        let navigationController = UINavigationController(rootViewController: destinoVC)
+        navigationController.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "Cancelar", style: .plain, target: self, action: #selector(cerrarVentana))
+        
+        
+        let alertVC = UIAlertController(title: titulo, message: mensaje, preferredStyle: .actionSheet)
+        let alertActionPresupuesto = UIAlertAction(title: "Presupuesto", style: .default) { (action) in
+            destinoVC.navigationController?.navigationBar.topItem?.title = "Crear Presupuesto"
+            destinoVC.tipoDocumentoDeseado = 0
+            self.navigationController?.modalPresentationStyle = .currentContext
+            self.present(navigationController, animated: true, completion: nil)
+        }
+        let alertActionFactura = UIAlertAction(title: "Factura", style: .default) { (action) in
+            destinoVC.navigationController?.navigationBar.topItem?.title = "Crear Factura"
+            destinoVC.tipoDocumentoDeseado = 1
+            self.navigationController?.modalPresentationStyle = .currentContext
+            self.present(navigationController, animated: true, completion: nil)
+        }
+        let alertActionCancelar = UIAlertAction(title: "Cancelar", style: .cancel) { (action) in
+        }
+        alertVC.addAction(alertActionPresupuesto)
+        alertVC.addAction(alertActionFactura)
+        alertVC.addAction(alertActionCancelar)
+        return alertVC
     }
     
     // MARK: - Table view data source
@@ -96,12 +142,15 @@ class IME_DetalleProyectoVC: UIViewController, UITableViewDelegate, UITableViewD
             cell.myBotonEstado.layer.cornerRadius = 5
             switch tipoDocumento{
             case 0:
-                cell.myBotonEstado.setTitle("PRESUPUESTO", for: .normal)
-                cell.myBotonEstado.backgroundColor = CONSTANTES.COLORES.PRESUPUESTO
+                cell.myTipoDocumentoLabel.text = "P"
+                cell.myTipoView.backgroundColor = CONSTANTES.COLORES.PRESUPUESTO
             default:
-                cell.myBotonEstado.setTitle("FACTURA", for: .normal)
-                cell.myBotonEstado.backgroundColor = CONSTANTES.COLORES.FACTURA
+                cell.myTipoDocumentoLabel.text = "F"
+                cell.myTipoView.backgroundColor = CONSTANTES.COLORES.FACTURA
             }
+            cell.myBotonEstado.tag = indexPath.row
+            cell.documentos = documentos
+            cell.parentViewController = self
         }
         return cell
     }
@@ -119,5 +168,27 @@ class IME_DetalleProyectoVC: UIViewController, UITableViewDelegate, UITableViewD
         }
         return [borrarAction]
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let destinoVC = self.storyboard?.instantiateViewController(withIdentifier: "CrearDocumentoTVC") as! IME_CrearDocumentoTVC
+        destinoVC.navigationItem.title = "Editar Documento"
+        destinoVC.documentoNuevo = documentos[indexPath.row]
+        destinoVC.esActualizacion = true
+        //ESTAS LINEAS ELIMINAN EL TITULO AL BACKBUTTON
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        //COLOCARLAS SIEMPRE EN EL PADRE
+        self.navigationController?.pushViewController(destinoVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44.0
+    }
+    
+    @objc func verDocumento(_ index: IndexPath) {
+        let servicioPDF = self.storyboard?.instantiateViewController(withIdentifier: "ServicioWebVC") as! IME_ServicioWebVC
+        servicioPDF.documento = documentos[index.row]
+        servicioPDF.modalTransitionStyle = .coverVertical
+        self.present(servicioPDF, animated: true, completion: nil)
+    }
 }

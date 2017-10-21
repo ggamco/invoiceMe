@@ -12,10 +12,12 @@ class IME_VistaProductoTVC: UITableViewController {
 
     //MARK: - Objetos propios COREDATA
     let contexto = CoreDataStack.shared.persistentContainer.viewContext
-    var servicioProducto: API_ServicioProducto?
+    var servicioProductoBase: API_ServicioProductoBase?
     
     var esActualizacion = false
-    var producto: Producto?
+    var producto: ProductoBase?
+    
+    var esAgregacion = false
     
     
     // MARK: - IBOutlets
@@ -26,14 +28,49 @@ class IME_VistaProductoTVC: UITableViewController {
     @IBOutlet weak var myMedidaCustom: UITextField!
     @IBOutlet weak var myPrecio: UITextField!
     @IBOutlet weak var mySelectorMoneda: UIButton!
-    @IBOutlet weak var myDescuento: UITextField!
-    @IBOutlet weak var mySelectorTipoDescuento: UIButton!
     @IBOutlet weak var myIVA: UITextField!
     @IBOutlet weak var myExentoIVA: UISwitch!
     @IBOutlet weak var myIRPF: UITextField!
     @IBOutlet weak var myExentoIRPF: UISwitch!
-    @IBOutlet weak var myCantidad: UITextField!
-    @IBOutlet weak var myStepperCantidad: UIStepper!
+    @IBOutlet weak var myTipoCantidadLBL: UILabel!
+    @IBOutlet weak var myStepper: UIStepper!
+    @IBOutlet weak var myCantidadTF: CustomTextField!
+    
+    // MARK: - IBActions
+    @IBAction func aumentaCantidad(_ sender: UIStepper) {
+        myCantidadTF.text = String(format: "%.2f", sender.value)
+    }
+    @IBAction func permitirUnidadCustom(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0, 1:
+            myTipoCantidadLBL.text = sender.titleForSegment(at: sender.selectedSegmentIndex)! + ":"
+            myMedidaCustom.isEnabled = false
+            myMedidaCustom.textColor = UIColor.gray
+        default:
+            myMedidaCustom.isEnabled = true
+            myMedidaCustom.textColor = UIColor.darkGray
+            myTipoCantidadLBL.text = sender.titleForSegment(at: sender.selectedSegmentIndex)! + ":"
+        }
+    }
+    @IBAction func activarExentos(_ sender: UISwitch) {
+        if sender.isOn {
+            if sender.tag == 0 {
+                myIVA.isEnabled = false
+                myIVA.textColor = UIColor.gray
+            } else {
+                myIRPF.isEnabled = false
+                myIRPF.textColor = UIColor.gray
+            }
+        } else {
+            if sender.tag == 0 {
+                myIVA.isEnabled = true
+                myIVA.textColor = UIColor.darkText
+            } else {
+                myIRPF.isEnabled = true
+                myIRPF.textColor = UIColor.darkText
+            }
+        }
+    }
     
     @IBAction func guardarCambiosAction(_ sender: UIBarButtonItem) {
         if esActualizacion {
@@ -42,16 +79,15 @@ class IME_VistaProductoTVC: UITableViewController {
             if myTitulo.text!.characters.count > 0 {
                 if myCodigo.text!.characters.count > 0 {
                     
-                    producto = servicioProducto?.crearProducto(codigo: myCodigo.text!,
+                    producto = servicioProductoBase?.crearProducto(codigo: myCodigo.text!,
                                                                titulo: myTitulo.text!,
                                                                descripcion: myDescripccion.text!,
-                                                               cantidad: (myCantidad.text! as NSString).floatValue,
-                                                               precio: (myPrecio.text! as NSString).floatValue,
-                                                               iva: (myIVA.text! as NSString).floatValue,
-                                                               irpf: (myIRPF.text! as NSString).floatValue,
+                                                               iva: (myIVA.text! as NSString).doubleValue,
+                                                               irpf: (myIRPF.text! as NSString).doubleValue,
                                                                exentoIva: myExentoIVA.isOn,
                                                                exentoIrpf: myExentoIRPF.isOn)
-                    
+                    producto?.tipoMedida = Int16(mySelectorMedida.selectedSegmentIndex)
+                    producto?.medidaCustom = myMedidaCustom.text
                     do {
                         try contexto.save()
                     } catch let error {
@@ -77,14 +113,24 @@ class IME_VistaProductoTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        servicioProducto = API_ServicioProducto(contexto: contexto)
+        activarExentos(myExentoIVA)
+        activarExentos(myExentoIRPF)
+        myMedidaCustom.delegate = self
+        servicioProductoBase = API_ServicioProductoBase(contexto: contexto)
+        myDescripccion.layer.cornerRadius = 5
         mySelectorMoneda.layer.cornerRadius = 5
         mySelectorMoneda.layer.borderWidth = 0.5
         mySelectorMoneda.layer.borderColor = CONSTANTES.COLORES.FIRST_TEXT_COLOR.cgColor
-        mySelectorTipoDescuento.layer.cornerRadius = 5
-        mySelectorTipoDescuento.layer.borderWidth = 0.5
-        mySelectorTipoDescuento.layer.borderColor = CONSTANTES.COLORES.FIRST_TEXT_COLOR.cgColor
-        
+        if myExentoIVA.isOn {
+            myIVA.textColor = UIColor.darkGray
+        } else {
+            myIVA.textColor = UIColor.gray
+        }
+        if myExentoIRPF.isOn {
+            myIRPF.textColor = UIColor.darkGray
+        } else {
+            myIRPF.textColor = UIColor.gray
+        }
         if esActualizacion {
             cargarProducto()
         }
@@ -96,12 +142,14 @@ class IME_VistaProductoTVC: UITableViewController {
             myCodigo.text = productoDes.codigo
             myTitulo.text = productoDes.titulo
             myDescripccion.text = productoDes.descripcion
-            myPrecio.text = String(format: "%.2f", productoDes.precio)
+            //myPrecio.text = String(format: "%.2f", productoDes.precio)
             myIVA.text = String(format: "%.2f", productoDes.iva)
             myIRPF.text = String(format: "%.2f", productoDes.irpf)
             myExentoIVA.isOn = productoDes.exentoIva
             myExentoIRPF.isOn = productoDes.exentoIrpf
-            myCantidad.text = String(format: "%.2f", productoDes.cantidad)
+            //myCantidadTF.text = String(format: "%.2f", productoDes.cantidad)
+            mySelectorMedida.selectedSegmentIndex = Int(productoDes.tipoMedida)
+            myMedidaCustom.text = productoDes.medidaCustom
         }
     }
     
@@ -110,13 +158,15 @@ class IME_VistaProductoTVC: UITableViewController {
         producto?.titulo = myTitulo.text
         producto?.codigo = myCodigo.text
         producto?.descripcion = myDescripccion.text
-        producto?.precio = (myPrecio.text! as NSString).floatValue
-        producto?.iva = (myIVA.text! as NSString).floatValue
+        //producto?.precio = (myPrecio.text! as NSString).floatValue
+        producto?.iva = (myIVA.text! as NSString).doubleValue
         producto?.exentoIva = myExentoIVA.isOn
         producto?.exentoIrpf = myExentoIRPF.isOn
-        producto?.irpf = (myIRPF.text! as NSString).floatValue
-        producto?.cantidad = (myCantidad.text! as NSString).floatValue
-        servicioProducto?.actualizarProducto(productoActualizado: producto!)
+        producto?.irpf = (myIRPF.text! as NSString).doubleValue
+        //producto?.cantidad = (myCantidadTF.text! as NSString).floatValue
+        producto?.tipoMedida = Int16(mySelectorMedida.selectedSegmentIndex)
+        producto?.medidaCustom = myMedidaCustom.text
+        servicioProductoBase?.actualizarProducto(productoActualizado: producto!)
         
         do {
             try contexto.save()
@@ -133,8 +183,11 @@ class IME_VistaProductoTVC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 3
+        if esAgregacion {
+            return 4
+        } else {
+            return 3
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -143,8 +196,24 @@ class IME_VistaProductoTVC: UITableViewController {
             return 3
         case 1:
             return 2
+        case 2:
+            return 3
         default:
-            return 5
+            return 1
         }
     }
+}// FIN DE LA CLASE
+
+extension IME_VistaProductoTVC: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.tag == 10 {
+            if textField.text != "" {
+                myTipoCantidadLBL.text = textField.text! + ":"
+            }
+        } else if textField.tag == 20 {
+            myCantidadTF.text = String(format: "%.2f", textField.text!)
+        }
+    }
+    
 }

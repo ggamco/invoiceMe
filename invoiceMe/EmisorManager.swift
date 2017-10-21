@@ -12,14 +12,14 @@ extension Emisor {
     
     func toJSON() -> [String : Any] {
         return [
-            "nombre" : self.nombre!,
-            "direccion" : self.direccion!,
-            "zipCode" : self.zipCode,
-            "ciudad" : self.ciudad!,
-            "cif" : self.cif!,
-            "iban" : self.iban!,
-            "email": self.email!,
-            "telefono": self.telefono!
+            "nombre" : dimeString(self.nombre),
+            "direccion" : dimeString(self.direccion),
+            "zipCode" : dimeInt(self.zipCode),
+            "ciudad" : dimeString(self.ciudad),
+            "cif" : dimeString(self.cif),
+            "iban" : dimeString(self.iban),
+            "email": dimeString(self.email),
+            "telefono": dimeString(self.telefono)
         ]
     }
     

@@ -238,7 +238,6 @@ extension IME_ListaClientesTVC: UINavigationControllerDelegate {
                 destinationVC.empresa = diccionario[indexOfNumbers[seccionSeleccionada]]?[empresaSeleccionada]
                 destinationVC.empresaSeleccionada = empresaSeleccionada
                 destinationVC.seccionSeleccionada = seccionSeleccionada
-                destinationVC.navigationItem.title = "Editar Proyecto"
             }
         } else if let destinationVC = viewController as? IME_CrearDocumentoTVC {
             if empresas?.count != 0 {

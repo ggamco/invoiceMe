@@ -30,6 +30,7 @@ struct Colores {
     let NAV_ITEMS = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     let PRESUPUESTO = #colorLiteral(red: 1, green: 0.7019607843, blue: 0, alpha: 1)
     let FACTURA = #colorLiteral(red: 0.8039215686, green: 0.862745098, blue: 0.2235294118, alpha: 1)
+    let DESCONOCIDO = #colorLiteral(red: 0.7411764706, green: 0.7411764706, blue: 0.7411764706, alpha: 1)
 }
 
 struct Preferencias {
@@ -109,7 +110,23 @@ func dimeInt(_ numero: Int16?) -> Int {
     if numero != nil {
         return Int(numero!)
     } else {
-        return 0
+        return -1
+    }
+}
+
+func dimeDouble(_ double: Double?) -> Double {
+    if double != nil {
+        return double!
+    } else {
+        return 0.0
+    }
+}
+
+func dimeBool(_ bool: Bool?) -> Bool {
+    if bool != nil {
+        return bool!
+    } else {
+        return false
     }
 }
 

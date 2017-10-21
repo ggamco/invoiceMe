@@ -16,6 +16,7 @@ class IME_RegistroTVC: UITableViewController {
     // Variable local
     var deviceSize: CGFloat!
     var fotoSeleccionada = false
+    var fromLoginVC = false
     
     // MARK: - IBOutlets
     @IBOutlet weak var myCorreo: UITextField!
@@ -27,6 +28,7 @@ class IME_RegistroTVC: UITableViewController {
     @IBOutlet weak var myBottomCons: NSLayoutConstraint!
     @IBOutlet weak var myImagenPerfil: UIImageView!
     @IBOutlet weak var myLabelPerfil: UILabel!
+    @IBOutlet weak var myIniciarSesionView: UIView!
     
     // MARK: - IBActions
     @IBAction func registrarUsuario(_ sender: UIButton) {
@@ -64,6 +66,12 @@ class IME_RegistroTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if fromLoginVC {
+            myIniciarSesionView.isHidden = true
+            
+        } else {
+            myIniciarSesionView.isHidden = false
+        }
         deviceSize = self.view.frame.height
         
         //gesto sobre la imagen para que el usuario pueda interactuar
@@ -83,7 +91,7 @@ class IME_RegistroTVC: UITableViewController {
         //personaliza imagen perfil
         myImagenPerfil.layer.cornerRadius = myImagenPerfil.frame.width / 2
         myImagenPerfil.layer.borderWidth = 2
-        myImagenPerfil.layer.borderColor = CONSTANTES.COLORES.PRIMARY_COLOR_LIGHT.cgColor
+        myImagenPerfil.layer.borderColor = CONSTANTES.COLORES.PRIMARY_COLOR_DARK.cgColor
     }
 
     // MARK: - Table view data source

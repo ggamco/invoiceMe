@@ -10,12 +10,30 @@ import UIKit
 
 class IME_MasterFacturasCustomCell: UITableViewCell {
 
+    //Variables
+    var documentos: [Documento] = []
+    var parentViewController: UIViewController? = nil
+    
+    //IBOutlets
     @IBOutlet weak var myTituloFactura: UILabel!
     @IBOutlet weak var myBotonEstado: UIButton!
+    @IBOutlet weak var myTipoView: UIView!
+    @IBOutlet weak var myTipoDocumentoLabel: UILabel!
+    
+    //IBAction
+    @IBAction func verDocumento(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let servicioVC = storyboard.instantiateViewController(withIdentifier: "ServicioWebVC") as! IME_ServicioWebVC
+        servicioVC.documento = documentos[sender.tag]
+        let navigation = UINavigationController(rootViewController: servicioVC)
+        parentViewController?.present(navigation, animated: true, completion: nil)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        myTipoView.layer.cornerRadius = myTipoView.frame.width / 2
+        myBotonEstado.backgroundColor = CONSTANTES.COLORES.DIVIDER_COLOR
+        myBotonEstado.setTitleColor(CONSTANTES.COLORES.NAV_ITEMS, for: .normal)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

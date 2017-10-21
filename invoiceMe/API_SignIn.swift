@@ -8,6 +8,7 @@
 
 import Foundation
 import Parse
+import PKHUD
 
 enum CustomError : Error {
     case campoVacio
@@ -31,7 +32,7 @@ class APISignIn {
         }
         
         guard validarDatosUsuarios() else {
-            throw CustomError.campoVacio
+            throw CustomError.ingresoUsuarioError
         }
     }
     

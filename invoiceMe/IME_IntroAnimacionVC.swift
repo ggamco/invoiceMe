@@ -96,6 +96,12 @@ class IME_IntroAnimacionVC: UIViewController {
                     let principalVC = storyboard?.instantiateViewController(withIdentifier: "PrimeraVentanaTBC") as! IME_PrimeraVentanaTBC
                     principalVC.modalTransitionStyle = .crossDissolve
                     self.present(principalVC, animated:true, completion: nil)
+                } else {
+                    let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginTVC") as! IME_LoginTVC
+                    loginVC.fromLogOut = true
+                    let navigationController = UINavigationController(rootViewController: loginVC)
+                    navigationController.modalTransitionStyle = .crossDissolve
+                    self.present(navigationController, animated:true, completion: nil)
                 }
             } else {
                 //El usuario no esta registrado

@@ -76,7 +76,7 @@ class IME_OpcionesTVC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,7 +84,7 @@ class IME_OpcionesTVC: UITableViewController {
         var filas = 0;
         
         switch section {
-        case 0:
+        case 0, 4:
             filas = 1
         default:
             filas = 2
@@ -111,7 +111,18 @@ class IME_OpcionesTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if indexPath.section == 4 {
+            logout()
+        }
+    }
+    
+    func logout() {
+        PFUser.logOut()
+        let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginTVC") as! IME_LoginTVC
+        loginVC.fromLogOut = true
+        let navController = UINavigationController(rootViewController: loginVC)
+        navController.modalTransitionStyle = .crossDissolve
+        self.present(navController, animated: true, completion: nil)
     }
 
     /*

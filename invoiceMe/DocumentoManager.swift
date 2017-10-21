@@ -16,9 +16,10 @@ extension Documento {
             "tipoDocumento" : Int(self.tipoDocumento),
             "numeroDocumento" : String(self.numeroDocumento),
             "sufijoDocumento" : self.sufijoDocumento!,
-            "fechaEmision": self.fechaEmision!,
-            "fechaValidez": self.fechaValidez!,
+            "fechaEmision": dimeString(self.fechaEmision),
+            "fechaValidez": dimeString(self.fechaValidez),
             "logo" : self.logo!,
+            "nota" : dimeString(self.nota),
             "emisor" : self.emisor.map({$0.toJSON()})!,
             "receptor" : self.receptor.map({$0.toJSON()})!,
             "listaProductos" : (self.productos?.allObjects as! [Producto]).map({ (model) -> [String : Any] in
