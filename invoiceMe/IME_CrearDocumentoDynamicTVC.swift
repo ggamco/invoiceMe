@@ -22,7 +22,7 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
     var servicioEmisor: ServicioEmisor?
     
     // MARK: - Variables locales
-    var documentoCoreData: Documento?
+    //var documentoCoreData: Documento?
     var documentoAlmacenado: Documento?
     var productosSeleccionado: [Producto]?
     var tipoDocumentoDeseado: Int?
@@ -34,7 +34,7 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
     
     @IBAction func guardarDocumento(_ sender: UIBarButtonItem) {
         //Creamos el Documento con los datos obtenidos
-        if documentoAlmacenado != nil {
+        if esActualizacion {
             guardarDocumento()
             _ = navigationController?.popViewController(animated: true)
         } else {
@@ -53,21 +53,28 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
         //ESTAS LINEAS ELIMINAN EL TITULO AL BACKBUTTON
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backBarButtonItem
-        //COLOCARLAS SIEMPRE EN EL PADRE
         //INICIAMOS SERVICIO COREDATA
         servicioDocumento = ServicioDocumento(contexto: contexto)
         servicioEmisor = ServicioEmisor(contexto: contexto)
-        //CARGAR DATOS PREVIOS
-        emisor = servicioEmisor?.recuperarEmisores().last
-        if let receptorAlmacenado = documentoAlmacenado?.receptor {
-            receptor = receptorAlmacenado
+        if documentoAlmacenado == nil {
+            documentoAlmacenado = servicioDocumento?.crearDocumento()
         }
         //Recuperamos contador
-        contador = recuperarContador(tipoDocumentoDeseado!)
-        
+        if esActualizacion {
+            contador = Int((documentoAlmacenado?.numeroDocumento)!)
+            cargarDatosPrevios()
+        } else {
+            contador = recuperarContador(tipoDocumentoDeseado!)
+            emisor = servicioEmisor?.recuperarEmisores().last
+            if let receptorAlmacenado = documentoAlmacenado?.receptor {
+                receptor = receptorAlmacenado
+            }
+        }
+        /*
         if documentoCoreData != nil {
             documentoAlmacenado = documentoCoreData
         }
+        */
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,6 +89,13 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
     }
     
     // MARK: - Funcciones propias
+    
+    func cargarDatosPrevios() {
+        emisor = documentoAlmacenado?.emisor
+        receptor = documentoAlmacenado?.receptor
+        proyecto = documentoAlmacenado?.proyecto
+        productosSeleccionado = documentoAlmacenado?.productos?.allObjects as? [Producto]
+    }
     
     func guardarContador(){
         if let numero = documentoAlmacenado?.numeroDocumento {
@@ -104,6 +118,7 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
     }
     
     func guardarDocumento() {
+        /*
         documentoCoreData?.emisor = emisor
         documentoCoreData?.receptor = receptor
         documentoCoreData?.numeroDocumento = (documentoAlmacenado?.numeroDocumento)!
@@ -115,14 +130,22 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
             documentoCoreData?.productos = NSSet(array: productosDes)
         }
         documentoCoreData?.esActualizado = false
+        */
+        documentoAlmacenado?.emisor = emisor
+        if let productos = productosSeleccionado {
+            documentoAlmacenado?.productos = NSSet(array: productos)
+        }
+        documentoAlmacenado?.esActualizado = false
         do {
             try contexto.save()
+            guardarContador()
         }catch let error {
             print("Error: \(error.localizedDescription)")
         }
     }
     
     func crearDocumento() {
+        /*
         var fechaEmision = ""
         var fechaValidez = ""
         if let emision = documentoAlmacenado?.fechaEmision {
@@ -131,6 +154,7 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
         if let validez = documentoAlmacenado?.fechaValidez {
             fechaValidez = validez
         }
+        
         documentoCoreData = servicioDocumento?.crearDocumento(tipoDocumento: tipoDocumentoDeseado!,
                                                               numeroDocumento: (documentoAlmacenado?.numeroDocumento)!,
                                                               sujijo: (documentoAlmacenado?.sufijoDocumento)!,
@@ -145,7 +169,14 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
         if productosSeleccionado != nil{
             documentoCoreData?.productos = NSSet(array: productosSeleccionado!)
         }
-        
+        */
+        documentoAlmacenado?.emisor = emisor
+        documentoAlmacenado?.receptor = receptor
+        documentoAlmacenado?.proyecto = proyecto
+        if let productos = productosSeleccionado {
+            documentoAlmacenado?.productos = NSSet(array: productos)
+        }
+        documentoAlmacenado?.esActualizado = true
         do {
             try contexto.save()
             guardarContador()
@@ -222,17 +253,21 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cellNumero", for: indexPath) as! IME_NumeroCustomCell
                 cell.delegate = self
-                if let numero = recuperarContador(tipoDocumentoDeseado!) {
+                if let numero = contador {
                     cell.myNumeroDocumento.text = String(numero)
                     documentoAlmacenado?.numeroDocumento = Int32(numero)
+                }
+                if let sufijo = documentoAlmacenado?.sufijoDocumento {
+                    cell.mySufijoDocumento.text = sufijo
                 }
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cellFechaEmision", for: indexPath) as! IME_FechaEmisionCustomCell
                 cell.delegate = self
                 if let documentoDes = documentoAlmacenado {
-                    if documentoDes.fechaEmision != "" {
-                        cell.myFechaEmision.text = documentoDes.fechaEmision
+                    if let emision = documentoDes.fechaEmision {
+                        cell.myFechaEmision.textColor = UIColor.darkGray
+                        cell.myFechaEmision.text = emision
                         cell.myFechaEmisionSW.isOn = true
                     }
                 }
@@ -241,8 +276,9 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cellFechaValidez", for: indexPath) as! IME_FechaValidezCustomCell
                 cell.delegate = self
                 if let documentoDes = documentoAlmacenado {
-                    if documentoDes.fechaEmision != "" {
-                        cell.myFechaValidez.text = documentoDes.fechaEmision
+                    if let validez = documentoDes.fechaValidez {
+                        cell.myFechaValidez.textColor = UIColor.darkGray
+                        cell.myFechaValidez.text = validez
                         cell.myFechaValidezSW.isOn = true
                     }
                 }
@@ -251,14 +287,14 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cellNota", for: indexPath) as! IME_NotaCustomCell
                 cell.delegate = self
                 if let documentoDes = documentoAlmacenado {
-                    if documentoDes.nota != "" {
-                        cell.myNotaText.text = documentoDes.nota
+                    if let nota = documentoDes.nota {
+                        cell.myNotaText.text = nota
                     }
                 }
                 return cell
             }
         default:
-            if productosSeleccionado != nil {
+            if productosSeleccionado?.count != 0 {
                 if let producto = productosSeleccionado?[indexPath.row] {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "cellProductoAdded", for: indexPath) as! IME_ProductoDocumentoCustomCell
                     
@@ -289,8 +325,10 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let destinoVC = self.storyboard?.instantiateViewController(withIdentifier: "EmisorTVC") as! IME_EmisorTVC
-        self.navigationController?.pushViewController(destinoVC, animated: true)
+        if indexPath.section == 0 && indexPath.row == 0 {
+            let destinoVC = self.storyboard?.instantiateViewController(withIdentifier: "EmisorTVC") as! IME_EmisorTVC
+            self.navigationController?.pushViewController(destinoVC, animated: true)
+        }
     }
 
     // MARK: - Navigation

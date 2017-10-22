@@ -19,6 +19,11 @@ class ServicioDocumento {
     }
     
     //MARK: - Crear Documento
+    func crearDocumento() -> Documento {
+        let nuevoDocumento = NSEntityDescription.insertNewObject(forEntityName: "Documento", into: contexto) as! Documento
+        return nuevoDocumento
+    }
+    
     func crearDocumento(tipoDocumento: Int,
                         numeroDocumento: Int32,
                         sujijo: String,

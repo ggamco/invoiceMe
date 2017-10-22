@@ -13,13 +13,8 @@ class IME_ProductoCustomCell: UITableViewCell {
     // MARK: - IBOutlets
     @IBOutlet weak var myCodigo: UILabel!
     @IBOutlet weak var myTitulo: UILabel!
-    @IBOutlet weak var myPrecio: UILabel!
-    @IBOutlet weak var myCantidad: UILabel!
-    @IBOutlet weak var myStepper: UIStepper!
-    
-    @IBAction func aumentarCantidad(_ sender: UIStepper) {
-        myCantidad.text = String(sender.value)
-    }
+    @IBOutlet weak var myIVA: UILabel!
+    @IBOutlet weak var myIRPF: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

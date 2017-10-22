@@ -1,33 +1,31 @@
 //
-//  IME_ListaProductosTVC.swift
+//  IME_ListaProductosDocumentoTVC.swift
 //  invoiceMe
 //
-//  Created by Gustavo Gamboa on 9/7/17.
+//  Created by Gustavo Gamboa on 22/10/17.
 //  Copyright © 2017 gmbDesign. All rights reserved.
 //
 
 import UIKit
-import CoreData
 
-class IME_ListaProductosTVC: UITableViewController {
+class IME_ListaProductosDocumentoTVC: UITableViewController {
 
     //MARK: - Objetos propios COREDATA
     let contexto = CoreDataStack.shared.persistentContainer.viewContext
-    var servicioProducto: API_ServicioProductoBase?
+    var servicioProductoBase: API_ServicioProductoBase?
+    var servicioProducto: API_ServicioProducto?
     // MARK: - Variables Locales
-    var productos: [ProductoBase]?
+    var productosBase: [ProductoBase]?
+    var productos: [Producto]?
     var indexProductosSeleccionados : [Int] = []
     var productosSeleccionados: [ProductoBase] = []
     
     @IBAction func crearProductoAction(_ sender: UIBarButtonItem) {
         let destinoVC = storyboard?.instantiateViewController(withIdentifier: "VistaProductoTVC") as! IME_VistaProductoTVC
-        
         destinoVC.esActualizacion = false
-        
         let navigationController = UINavigationController(rootViewController: destinoVC)
         navigationController.navigationBar.isTranslucent = false
         navigationController.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "Cancelar", style: .plain, target: self, action: #selector(cerrarVentana))
-        
         self.navigationController?.modalPresentationStyle = .currentContext
         self.present(navigationController, animated: true, completion: nil)
     }
@@ -44,20 +42,22 @@ class IME_ListaProductosTVC: UITableViewController {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backBarButtonItem
         //COLOCARLAS SIEMPRE EN EL PADRE
-        servicioProducto = API_ServicioProductoBase(contexto: contexto)
+        servicioProductoBase = API_ServicioProductoBase(contexto: contexto)
+        servicioProducto = API_ServicioProducto(contexto: contexto)
         cargarProductos()
-        cargarArraySeleccionados()
+        //cargarArraySeleccionados()
     }
     
     //Usamos este metodo propio del ciclo de vida del VC para cargar datos siempre que vuelva a visualizarse
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        productosBase = servicioProductoBase?.recuperarProductos()
         productos = servicioProducto?.recuperarProductos()
         tableView.reloadData()
         //Asignamos el delegate
-        navigationController?.delegate = self
+        //navigationController?.delegate = self
         
-        if productos?.count == 0 {
+        if productosBase?.count == 0 {
             emptyTable(self.tableView)
         } else {
             resetTableUI(self.tableView)
@@ -66,11 +66,11 @@ class IME_ListaProductosTVC: UITableViewController {
     
     //MARK: - FUNCIONES PROPIAS
     func cargarProductos() {
-        productos = servicioProducto?.recuperarProductos()
+        productosBase = servicioProductoBase?.recuperarProductos()
     }
-    
+    /*
     func cargarArraySeleccionados() {
-        if let productosDes = productos {
+        if let productosDes = productosBase {
             for (index, producto) in productosDes.enumerated() {
                 if productosSeleccionados.contains(producto){
                     indexProductosSeleccionados.append(index)
@@ -78,91 +78,54 @@ class IME_ListaProductosTVC: UITableViewController {
             }
         }
     }
-    
+    */
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let rows = productos?.count {
+        if let rows = productosBase?.count {
             return rows
         } else {
             return 0
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "celdaProducto", for: indexPath) as! IME_ProductoCustomCell
-        if let producto = productos?[indexPath.row] {
+        if let producto = productosBase?[indexPath.row] {
             cell.myCodigo.text = producto.codigo
             cell.myTitulo.text = producto.titulo
             cell.myIVA.text = String(producto.iva)
             cell.myIRPF.text = String(producto.irpf)
             /*
-            if indexProductosSeleccionados.count > 0 {
-                if indexProductosSeleccionados.contains(indexPath.row) {
-                    cell.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_DARK
-                } else {
-                    cell.tintColor = UIColor.lightGray
-                }
-            } else {
-                cell.tintColor = UIColor.lightGray
-            }
-            */
+             if indexProductosSeleccionados.count > 0 {
+             if indexProductosSeleccionados.contains(indexPath.row) {
+             cell.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_DARK
+             } else {
+             cell.tintColor = UIColor.lightGray
+             }
+             } else {
+             cell.tintColor = UIColor.lightGray
+             }
+             */
         }
         return cell
     }
-    /*
+    
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let editar = UITableViewRowAction(style: .normal, title: "Editar") { (action, indexPath) in
-            let destinoVC = self.storyboard?.instantiateViewController(withIdentifier: "VistaProductoTVC") as! IME_VistaProductoTVC
-            destinoVC.producto = self.productos?[indexPath.row]
-            destinoVC.esActualizacion = true
-            destinoVC.esAgregacion = true
-            destinoVC.title = "Editar Producto"
-            self.navigationController?.pushViewController(destinoVC, animated: true)
+        let eliminar = UITableViewRowAction(style: .normal, title: "Editar") { (action, indexPath) in
+            
         }
-        return [editar]
+        return [eliminar]
     }
-    */
+ 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*
-        if indexProductosSeleccionados.contains(indexPath.row) {
-            let index = indexProductosSeleccionados.index(of: indexPath.row)
-            indexProductosSeleccionados.remove(at: index!)
-        } else {
-            indexProductosSeleccionados.append(indexPath.row)
-        }
-        print(indexProductosSeleccionados)
-        self.tableView.reloadData()
-        */
-        let destinoVC = self.storyboard?.instantiateViewController(withIdentifier: "VistaProductoTVC") as! IME_VistaProductoTVC
-        destinoVC.producto = self.productos?[indexPath.row]
+        let destinoVC = self.storyboard?.instantiateViewController(withIdentifier: "CrearProductoDocumentoTVC") as! IME_CrearProductoDocumentoTVC
+        destinoVC.productoBase = self.productosBase?[indexPath.row]
         destinoVC.esActualizacion = true
-        destinoVC.esAgregacion = true
-        destinoVC.title = "Editar Producto"
         self.navigationController?.pushViewController(destinoVC, animated: true)
     }
-}
-
-//MARK: - Extensión de UINavigationControllerDelegate
-//USADO PARA DEVOLVER DATOS AL VIEWCONTROLLER ANTERIOR
-
-extension IME_ListaProductosTVC: UINavigationControllerDelegate {
-    /*
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        
-        if let destinoVC = viewController as? IME_CrearDocumentoTVC {
-            productosSeleccionados.removeAll()
-            for index in indexProductosSeleccionados {
-                //productosSeleccionados.append(productos![index])
-            }
-            //destinoVC.productos = productosSeleccionados
-            destinoVC.arrayIndexProductos = indexProductosSeleccionados
-        }
-    }
-    */
 }

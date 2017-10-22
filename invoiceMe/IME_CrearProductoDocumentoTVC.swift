@@ -15,6 +15,7 @@ class IME_CrearProductoDocumentoTVC: UITableViewController {
     let contexto = CoreDataStack.shared.persistentContainer.viewContext
     var servicioProducto: API_ServicioProducto?
     
+    var delegate: CellInfoDelegate?
     var productoBase: ProductoBase?
     var producto: Producto?
     var esActualizacion = false
@@ -76,6 +77,7 @@ class IME_CrearProductoDocumentoTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 
     // MARK: - Table view data source
