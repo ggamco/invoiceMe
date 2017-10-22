@@ -33,6 +33,11 @@ class API_ServicioProducto {
         
     }
     
+    func crearProducto() -> Producto {
+        let nuevoProducto = NSEntityDescription.insertNewObject(forEntityName: "Producto", into: contexto) as! Producto
+        return nuevoProducto
+    }
+    
     //MARK: - Buscar Producto
     
     //Buscar Producto por ObjectID

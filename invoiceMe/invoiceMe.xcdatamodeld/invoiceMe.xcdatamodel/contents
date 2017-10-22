@@ -11,7 +11,7 @@
         <attribute name="sufijoDocumento" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tipoDocumento" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="emisor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Emisor" inverseName="documentos" inverseEntity="Emisor" syncable="YES"/>
-        <relationship name="productos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductoBase" inverseName="documentos" inverseEntity="ProductoBase" syncable="YES"/>
+        <relationship name="productos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Producto" inverseName="documentos" inverseEntity="Producto" syncable="YES"/>
         <relationship name="proyecto" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Proyecto" inverseName="documentos" inverseEntity="Proyecto" syncable="YES"/>
         <relationship name="receptor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Empresa" inverseName="documentos" inverseEntity="Empresa" syncable="YES"/>
     </entity>
@@ -42,6 +42,7 @@
     <entity name="Producto" representedClassName="Producto" syncable="YES" codeGenerationType="class">
         <attribute name="cantidad" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="precio" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="documentos" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Documento" inverseName="productos" inverseEntity="Documento" syncable="YES"/>
         <relationship name="productoBase" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductoBase" inverseName="productos" inverseEntity="ProductoBase" syncable="YES"/>
     </entity>
     <entity name="ProductoBase" representedClassName="ProductoBase" syncable="YES" codeGenerationType="class">
@@ -54,7 +55,6 @@
         <attribute name="medidaCustom" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tipoMedida" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="titulo" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="documentos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Documento" inverseName="productos" inverseEntity="Documento" syncable="YES"/>
         <relationship name="productos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Producto" inverseName="productoBase" inverseEntity="Producto" syncable="YES"/>
     </entity>
     <entity name="Proyecto" representedClassName="Proyecto" syncable="YES" codeGenerationType="class">
@@ -74,8 +74,8 @@
         <element name="Documento" positionX="-504" positionY="0" width="128" height="240"/>
         <element name="Emisor" positionX="-225" positionY="9" width="128" height="180"/>
         <element name="Empresa" positionX="-488" positionY="-432" width="128" height="210"/>
-        <element name="ProductoBase" positionX="-695" positionY="-351" width="128" height="208"/>
+        <element name="Producto" positionX="-704" positionY="27" width="128" height="105"/>
+        <element name="ProductoBase" positionX="-695" positionY="-351" width="128" height="195"/>
         <element name="Proyecto" positionX="-207" positionY="-309" width="128" height="210"/>
-        <element name="Producto" positionX="-704" positionY="27" width="128" height="90"/>
     </elements>
 </model>

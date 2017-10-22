@@ -19,6 +19,7 @@ class IME_NotaCustomCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         myNotaText.layer.cornerRadius = 5
+        myNotaText.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

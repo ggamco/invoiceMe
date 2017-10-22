@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -2830,7 +2830,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Datos Emisor" id="BtA-nZ-Gmu">
                         <barButtonItem key="rightBarButtonItem" title="Guardar" id="hYH-In-vWg">
-                            <color key="tintColor" red="0.7725490196" green="0.79215686269999996" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="guardarCliente:" destination="gJ3-8q-Cm5" id="sOS-hs-04V"/>
                             </connections>
@@ -3730,7 +3730,7 @@
                                     <outlet property="myNotaText" destination="830-xI-Uf1" id="v4H-WI-zCu"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellProducto" rowHeight="60" id="ef4-8h-Qmk" customClass="IME_ProductoDocumentoCustomCell" customModule="invoiceMe" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellProductoAdded" rowHeight="60" id="ef4-8h-Qmk" customClass="IME_ProductoDocumentoCustomCell" customModule="invoiceMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="407.5" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ef4-8h-Qmk" id="XMX-Rj-JUf">
@@ -4471,7 +4471,7 @@
                                                     </constraints>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMJ-XS-mYd">
                                                     <rect key="frame" x="255" y="13" width="49" height="32"/>

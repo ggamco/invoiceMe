@@ -98,8 +98,8 @@ class IME_ListaProductosDocumentoTVC: UITableViewController {
         if let producto = productosBase?[indexPath.row] {
             cell.myCodigo.text = producto.codigo
             cell.myTitulo.text = producto.titulo
-            cell.myIVA.text = String(producto.iva)
-            cell.myIRPF.text = String(producto.irpf)
+            cell.myIVA.text = String(format: "%.2f", producto.iva)
+            cell.myIRPF.text = String(format: "%.2f", producto.irpf)
             /*
              if indexProductosSeleccionados.count > 0 {
              if indexProductosSeleccionados.contains(indexPath.row) {
@@ -125,7 +125,7 @@ class IME_ListaProductosDocumentoTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destinoVC = self.storyboard?.instantiateViewController(withIdentifier: "CrearProductoDocumentoTVC") as! IME_CrearProductoDocumentoTVC
         destinoVC.productoBase = self.productosBase?[indexPath.row]
-        destinoVC.esActualizacion = true
+        destinoVC.esAgregacion = true
         self.navigationController?.pushViewController(destinoVC, animated: true)
     }
 }

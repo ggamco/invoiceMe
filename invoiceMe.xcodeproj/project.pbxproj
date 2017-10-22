@@ -45,7 +45,6 @@
 		CC3BD35A1E760DBB000C5A1D /* API_ServicioProyecto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BD3591E760DBB000C5A1D /* API_ServicioProyecto.swift */; };
 		CC46FE161F967DD90044DBDE /* IME_MailComposeCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC46FE151F967DD90044DBDE /* IME_MailComposeCustom.swift */; };
 		CC46FE181F9806E60044DBDE /* API_ServicioProducto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC46FE171F9806E60044DBDE /* API_ServicioProducto.swift */; };
-		CC46FE1A1F9A41A60044DBDE /* IME_SeleccionProductosTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC46FE191F9A41A60044DBDE /* IME_SeleccionProductosTVC.swift */; };
 		CC68BD561E717DFF005CC8E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68BD551E717DFF005CC8E3 /* AppDelegate.swift */; };
 		CC68BD5E1E717DFF005CC8E3 /* invoiceMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC68BD5C1E717DFF005CC8E3 /* invoiceMe.xcdatamodeld */; };
 		CC68BD631E717DFF005CC8E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC68BD611E717DFF005CC8E3 /* LaunchScreen.storyboard */; };
@@ -125,7 +124,6 @@
 		CC3BD3591E760DBB000C5A1D /* API_ServicioProyecto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_ServicioProyecto.swift; sourceTree = "<group>"; };
 		CC46FE151F967DD90044DBDE /* IME_MailComposeCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_MailComposeCustom.swift; sourceTree = "<group>"; };
 		CC46FE171F9806E60044DBDE /* API_ServicioProducto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_ServicioProducto.swift; sourceTree = "<group>"; };
-		CC46FE191F9A41A60044DBDE /* IME_SeleccionProductosTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IME_SeleccionProductosTVC.swift; sourceTree = "<group>"; };
 		CC68BD521E717DFF005CC8E3 /* invoiceMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = invoiceMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC68BD551E717DFF005CC8E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC68BD5D1E717DFF005CC8E3 /* invoiceMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = invoiceMe.xcdatamodel; sourceTree = "<group>"; };
@@ -246,7 +244,6 @@
 				CC8782171F9B446D00811597 /* IME_CrearDocumentoDynamicTVC.swift */,
 				5EF2CCEF1F09633E006184FE /* IME_EmisorTVC.swift */,
 				5E7B8B121F9CA04F006A9922 /* IME_ListaProductosDocumentoTVC.swift */,
-				CC46FE191F9A41A60044DBDE /* IME_SeleccionProductosTVC.swift */,
 				5E9F82851F9BCAD9009E4F04 /* IME_CrearProductoDocumentoTVC.swift */,
 				CC87820A1F9A822400811597 /* CUSTOM CELLS */,
 				5EF2CCF11F09AAB1006184FE /* IME_ServicioWebVC.swift */,
@@ -587,7 +584,6 @@
 				5E463F631F6DC907000B9DDE /* IME_LoginTVC.swift in Sources */,
 				CC68BD801E717F03005CC8E3 /* IME_CrearProyectoNuevoTVC.swift in Sources */,
 				CC8782161F9B443500811597 /* IME_BotonCustomCell.swift in Sources */,
-				CC46FE1A1F9A41A60044DBDE /* IME_SeleccionProductosTVC.swift in Sources */,
 				CC23D8A71F120EE500DBA8B6 /* IME_ListaProductosTVC.swift in Sources */,
 				5EF2CCED1F08F93C006184FE /* IME_CrearDocumentoTVC.swift in Sources */,
 				5E7B8B131F9CA04F006A9922 /* IME_ListaProductosDocumentoTVC.swift in Sources */,

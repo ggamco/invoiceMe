@@ -18,7 +18,7 @@ class IME_CrearProductoDocumentoTVC: UITableViewController {
     var delegate: CellInfoDelegate?
     var productoBase: ProductoBase?
     var producto: Producto?
-    var esActualizacion = false
+    var esAgregacion = false
     
     // MARK: - IBOutlets
     @IBOutlet weak var myCodigoProducto: CustomTextField!
@@ -72,12 +72,87 @@ class IME_CrearProductoDocumentoTVC: UITableViewController {
     }
     
     @IBAction func guardarCambiosAction(_ sender: UIBarButtonItem) {
-        
+        if esAgregacion {
+            producto = servicioProducto?.crearProducto()
+        }
+        producto?.cantidad = convertirToDouble(myCantidad.text)
+        producto?.precio = convertirToDouble(myPrecio.text)
+        productoBase?.codigo = myCodigoProducto.text
+        productoBase?.titulo = myTituloProducto.text
+        productoBase?.descripcion = myDescripcionProducto.text
+        productoBase?.tipoMedida = Int16(mySelectorMedida.selectedSegmentIndex)
+        productoBase?.medidaCustom = myMedidaCustom.text
+        productoBase?.iva = convertirToDouble(myIVA.text)
+        productoBase?.irpf = convertirToDouble(myIRPF.text)
+        productoBase?.exentoIva = myExentoIVA.isOn
+        productoBase?.exentoIrpf = myExentoIRPF.isOn
+        producto?.productoBase = productoBase
+        do {
+            try contexto.save()
+        }catch let error {
+            print("Error: \(error.localizedDescription)")
+        }
+        if esAgregacion {
+            goToDocumento()
+        }
     }
     
+    // MARK: - LIFE VC
     override func viewDidLoad() {
         super.viewDidLoad()
+        servicioProducto = API_ServicioProducto(contexto: contexto)
+        cargarDatosPrevios()
+    }
+    
+    // MARK: - Funciones propias
+    func cargarDatosPrevios() {
+        if let productoBaseDes = productoBase {
+            myCodigoProducto.text = productoBaseDes.codigo
+            myTituloProducto.text = productoBaseDes.titulo
+            myDescripcionProducto.text = productoBaseDes.descripcion
+            mySelectorMedida.selectedSegmentIndex = Int(productoBaseDes.tipoMedida)
+            myMedidaCustom.text = productoBaseDes.medidaCustom
+            myIVA.text = String(format: "%.2f", productoBaseDes.iva)
+            myIRPF.text = String(format: "%.2f", productoBaseDes.irpf)
+            myExentoIVA.isOn = productoBaseDes.exentoIva
+            myExentoIRPF.isOn = productoBaseDes.exentoIrpf
+            cargarUnidad(productoBaseDes)
+        }
+    }
+    
+    func cargarUnidad(_ producto: ProductoBase) {
+        if producto.medidaCustom != "" {
+            myMedidaCustom.text = producto.medidaCustom
+            myTipoMedidaLabel.text = "\(producto.medidaCustom!):"
+        } else {
+            switch producto.tipoMedida {
+            case 0:
+                myTipoMedidaLabel.text = "UNIDADES:"
+            case 1:
+                myTipoMedidaLabel.text = "HORAS:"
+            default:
+                myTipoMedidaLabel.text = "OTRO:"
+            }
+        }
+    }
+    
+    func goToDocumento() {
+        let vcIndex = self.navigationController?.viewControllers.index(where: { (viewController) -> Bool in
+            
+            if let _ = viewController as? IME_CrearDocumentoDynamicTVC {
+                return true
+            }
+            return false
+        })
         
+        let vc = self.navigationController?.viewControllers[vcIndex!] as! IME_CrearDocumentoDynamicTVC
+        if vc.productosSeleccionado != nil {
+            vc.productosSeleccionado?.append(producto!)
+        } else {
+            vc.productosSeleccionado = []
+            vc.productosSeleccionado?.append(producto!)
+        }
+        self.navigationController?.popToViewController(vc, animated: true)
     }
 
     // MARK: - Table view data source
@@ -120,5 +195,4 @@ extension IME_CrearProductoDocumentoTVC: UITextFieldDelegate {
             myCantidad.text = String(format: "%.2f", textField.text!)
         }
     }
-    
 }

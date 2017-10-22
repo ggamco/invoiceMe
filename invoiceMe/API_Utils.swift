@@ -137,3 +137,11 @@ func convertirToEntero(_ convertible: String?) -> Int {
         return 0
     }
 }
+
+func convertirToDouble(_ convertible: String?) -> Double {
+    if let conversion = Double(convertible!) {
+        return conversion
+    } else {
+        return 0.00
+    }
+}

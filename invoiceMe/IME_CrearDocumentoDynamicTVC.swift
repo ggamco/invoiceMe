@@ -62,6 +62,7 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
         //Recuperamos contador
         if esActualizacion {
             contador = Int((documentoAlmacenado?.numeroDocumento)!)
+            tipoDocumentoDeseado = Int((documentoAlmacenado?.tipoDocumento)!)
             cargarDatosPrevios()
         } else {
             contador = recuperarContador(tipoDocumentoDeseado!)
@@ -294,10 +295,16 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
                 return cell
             }
         default:
-            if productosSeleccionado?.count != 0 {
-                if let producto = productosSeleccionado?[indexPath.row] {
+            if let productosDes = productosSeleccionado {
+                let count = productosDes.count
+                if count > indexPath.row {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "cellProductoAdded", for: indexPath) as! IME_ProductoDocumentoCustomCell
-                    
+                    cell.myCodigo.text = productosSeleccionado?[indexPath.row].productoBase?.codigo
+                    cell.myTitulo.text = productosSeleccionado?[indexPath.row].productoBase?.titulo
+                    cell.myPrecio.text = String(format: "%.2f", (productosSeleccionado?[indexPath.row].precio)!)
+                    cell.myCantidad.text = String(format: "%.2f", (productosSeleccionado?[indexPath.row].cantidad)!)
+                    cell.myExentoIVA.text = (productosSeleccionado?[indexPath.row].productoBase?.exentoIva)! ? "SI" : "NO"
+                    cell.myExentoIRPF.text = (productosSeleccionado?[indexPath.row].productoBase?.exentoIrpf)! ? "SI" : "NO"
                     return cell
                 } else {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "cellBoton", for: indexPath) as! IME_BotonCustomCell
