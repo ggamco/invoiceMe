@@ -57,10 +57,12 @@ class IME_CrearClienteNuevoTVC: UITableViewController {
             print(error.localizedDescription)
         }
         
-        esActualizacion = false
-        
-        let _ = navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
+        //esActualizacion = false
+        if esActualizacion {
+            let _ = navigationController?.popViewController(animated: true)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     //MARK: - LIFE VC

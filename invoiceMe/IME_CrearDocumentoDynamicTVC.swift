@@ -20,6 +20,7 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
     let contexto = CoreDataStack.shared.persistentContainer.viewContext
     var servicioDocumento: ServicioDocumento?
     var servicioEmisor: ServicioEmisor?
+    var servicioProducto: API_ServicioProducto?
     
     // MARK: - Variables locales
     //var documentoCoreData: Documento?
@@ -56,10 +57,10 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
         //INICIAMOS SERVICIO COREDATA
         servicioDocumento = ServicioDocumento(contexto: contexto)
         servicioEmisor = ServicioEmisor(contexto: contexto)
+        servicioProducto = API_ServicioProducto(contexto: contexto)
         if documentoAlmacenado == nil {
             documentoAlmacenado = servicioDocumento?.crearDocumento()
         }
-        //Recuperamos contador
         if esActualizacion {
             contador = Int((documentoAlmacenado?.numeroDocumento)!)
             tipoDocumentoDeseado = Int((documentoAlmacenado?.tipoDocumento)!)
@@ -71,11 +72,7 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
                 receptor = receptorAlmacenado
             }
         }
-        /*
-        if documentoCoreData != nil {
-            documentoAlmacenado = documentoCoreData
-        }
-        */
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -174,6 +171,7 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
         documentoAlmacenado?.emisor = emisor
         documentoAlmacenado?.receptor = receptor
         documentoAlmacenado?.proyecto = proyecto
+        documentoAlmacenado?.tipoDocumento = Int16(tipoDocumentoDeseado!)
         if let productos = productosSeleccionado {
             documentoAlmacenado?.productos = NSSet(array: productos)
         }
@@ -303,8 +301,8 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
                     cell.myTitulo.text = productosSeleccionado?[indexPath.row].productoBase?.titulo
                     cell.myPrecio.text = String(format: "%.2f", (productosSeleccionado?[indexPath.row].precio)!)
                     cell.myCantidad.text = String(format: "%.2f", (productosSeleccionado?[indexPath.row].cantidad)!)
-                    cell.myExentoIVA.text = (productosSeleccionado?[indexPath.row].productoBase?.exentoIva)! ? "SI" : "NO"
-                    cell.myExentoIRPF.text = (productosSeleccionado?[indexPath.row].productoBase?.exentoIrpf)! ? "SI" : "NO"
+                    cell.myExentoIVA.text = (productosSeleccionado?[indexPath.row].productoBase?.exentoIva)! ? "NO" : "SI"
+                    cell.myExentoIRPF.text = (productosSeleccionado?[indexPath.row].productoBase?.exentoIrpf)! ? "NO" : "SI"
                     return cell
                 } else {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "cellBoton", for: indexPath) as! IME_BotonCustomCell
@@ -335,7 +333,46 @@ class IME_CrearDocumentoDynamicTVC: UITableViewController, CellInfoDelegate {
         if indexPath.section == 0 && indexPath.row == 0 {
             let destinoVC = self.storyboard?.instantiateViewController(withIdentifier: "EmisorTVC") as! IME_EmisorTVC
             self.navigationController?.pushViewController(destinoVC, animated: true)
+        } else if indexPath.section == 2 {
+            if let productosDes = productosSeleccionado {
+                let count = productosDes.count
+                if count > indexPath.row {
+                    let destinoVC = self.storyboard?.instantiateViewController(withIdentifier: "CrearProductoDocumentoTVC") as! IME_CrearProductoDocumentoTVC
+                    destinoVC.producto = productosDes[indexPath.row]
+                    destinoVC.esActualizacion = true
+                    destinoVC.title = "Editar Producto"
+                    self.navigationController?.pushViewController(destinoVC, animated: true)
+                }
+            }
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let eliminar = UITableViewRowAction(style: .default, title: "Eliminar") { (action, indexPath) in
+            let productoDoc = self.productosSeleccionado![indexPath.row]
+            self.servicioProducto?.eliminarProducto(by: productoDoc.objectID)
+            do {
+                try self.contexto.save()
+                self.productosSeleccionado?.remove(at: indexPath.row)
+            } catch let error {
+                print("Error: \(error.localizedDescription)")
+            }
+            self.tableView.reloadData()
+        }
+        
+        if let productoDes = productosSeleccionado {
+            let count = productoDes.count
+            if indexPath.section == 2 && ( count > indexPath.row) {
+                return [eliminar]
+            } else {
+                return []
+            }
+        } else {
+            return []
+        }
+        
+        
+        
     }
 
     // MARK: - Navigation

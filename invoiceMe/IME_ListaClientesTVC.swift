@@ -22,8 +22,10 @@ class IME_ListaClientesTVC: UITableViewController {
     var empresas: [Empresa]?
     var seccionSeleccionada = 0
     var empresaSeleccionada = 0
+    var esUnica = false
     var indexOfNumbers = [String]()
     var diccionario: [String : [Empresa]] = [:]
+    var contadorEmpresas = 0
     
     // MARK: - IBOutlets
     @IBOutlet weak var mySalvarBTN: UIBarButtonItem!
@@ -45,10 +47,11 @@ class IME_ListaClientesTVC: UITableViewController {
     //MARK: - LIFE VC
     override func viewDidLoad() {
         super.viewDidLoad()
+        //ESTAS LINEAS ELIMINAN EL TITULO AL BACKBUTTON
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        //COLOCARLAS SIEMPRE EN EL PADRE
         mySalvarBTN.tintColor = CONSTANTES.COLORES.NAV_ITEMS
-        let indexNumbers = "A B C D E F G H I J K L M N Ñ O P Q R S T U V W X Y Z #"
-        indexOfNumbers = indexNumbers.components(separatedBy: " ")
-        
         self.navigationController?.navigationBar.topItem?.title = ""
     }
     
@@ -56,8 +59,7 @@ class IME_ListaClientesTVC: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = "Listado de Clientes"
-        //Cargamos las empresas almacenadas en CoreData
-        cargarEmpresasCD()
+        
         //Recargamos la tabla con los últimos datos
         self.tableView.reloadData()
         
@@ -76,7 +78,11 @@ class IME_ListaClientesTVC: UITableViewController {
         do {
             //Sentencia de busqueda en CoreData
             empresas = try contexto.fetch(Empresa.fetchRequest())
-            
+            if let count = empresas?.count{
+                if contadorEmpresas != count {
+                    nombreCliente = empresas?.last?.nombre
+                }
+            }
             //Orden alfabético del listado de Empresas
             empresas?.sort{$0.nombre!.localizedCompare($1.nombre!) == .orderedAscending}
             
@@ -108,6 +114,16 @@ class IME_ListaClientesTVC: UITableViewController {
     // MARK: - TableView DATASOURCE
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        //Cargamos las empresas almacenadas en CoreData
+        cargarEmpresasCD()
+        let indexNumbers = "A B C D E F G H I J K L M N Ñ O P Q R S T U V W X Y Z #"
+        if empresas?.count == 0 {
+            emptyTable(tableView)
+            indexOfNumbers = []
+        } else {
+            resetTableUI(tableView)
+            indexOfNumbers = indexNumbers.components(separatedBy: " ")
+        }
         return indexOfNumbers.count
     }
 
@@ -123,7 +139,12 @@ class IME_ListaClientesTVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "clienteCell", for: indexPath)
-
+        
+        if empresas?.count == 1 {
+            
+            esUnica = true
+        }
+        
         let empresaNombre = diccionario[indexOfNumbers[indexPath.section]]?[indexPath.row].nombre
         
         cell.textLabel?.text = empresaNombre
@@ -131,11 +152,8 @@ class IME_ListaClientesTVC: UITableViewController {
         if nombreCliente == empresaNombre {
             cell.accessoryType = .checkmark
             cell.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_DARK
-        } else if seccionSeleccionada != 0 && empresaSeleccionada != 0{
-            if indexPath.section == seccionSeleccionada && indexPath.row == empresaSeleccionada {
-                cell.accessoryType = .checkmark
-                cell.tintColor = CONSTANTES.COLORES.PRIMARY_COLOR_DARK
-            }
+            seccionSeleccionada = indexPath.section
+            empresaSeleccionada = indexPath.row
         } else {
             cell.accessoryType = .none
         }

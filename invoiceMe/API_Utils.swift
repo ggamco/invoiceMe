@@ -47,8 +47,9 @@ struct DeviceSize {
 
 struct Urls {
     let AUTH_CODE = ""
-    let URL_PDF_CREATE = "http://gmbdesign.es/PDFCreator/PDF"
-    let URL_REGISTER_DEVICE = "http://gmbdesign.es/PDFCreator/RegisterDeviceOnAPI"
+    let URL_PDF_CREATE = "http://gmbdesign.es/invoiceme/PDF"
+    let URL_REGISTER_DEVICE = "http://gmbdesign.es/invoiceme/RegisterDeviceOnAPI"
+    let URL_LOGIN_ON_API = "http://gmbdesign.es/invoiceme/LoginDeviceOnAPI"
 }
 
 func personalizaBackBTN(_ title: String) -> UIBarButtonItem{

@@ -15,7 +15,7 @@ extension Documento {
         return [
             "tipoDocumento" : Int(self.tipoDocumento),
             "numeroDocumento" : String(self.numeroDocumento),
-            "sufijoDocumento" : self.sufijoDocumento!,
+            "sufijo" : self.sufijoDocumento!,
             "fechaEmision": dimeString(self.fechaEmision),
             "fechaValidez": dimeString(self.fechaValidez),
             "logo" : self.logo!,

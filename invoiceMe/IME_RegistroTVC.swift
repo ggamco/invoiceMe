@@ -49,7 +49,7 @@ class IME_RegistroTVC: UITableViewController {
                     UserDefaults.standard.setValue("REGISTERED", forKey: CONSTANTES.PREFS.REGISTERED)
                     HUD.hide(afterDelay: 0)
                     self.performSegue(withIdentifier: "fromRegistroTVC", sender: self)
-                    /*
+                    
                     if let _ = self.registerDeviceOnAPI() {
                         HUD.hide(afterDelay: 0)
                         self.present(muestraAlertVC(titulo: "Atención", mensaje: "Se ha producido un error durante el registro. Veulve a intentarlo más tarde.\nSiEl problema persiste contacte con soporte desde el AppleStore"), animated: true, completion: nil)
@@ -58,7 +58,6 @@ class IME_RegistroTVC: UITableViewController {
                         UserDefaults.setValue("REGISTRADO_OK", forKey: CONSTANTES.PREFS.REGISTERED)
                         self.performSegue(withIdentifier: "fromRegistroTVC", sender: self)
                     }
-                     */
                 }
             })
         }

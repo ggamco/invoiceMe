@@ -14,11 +14,12 @@ class IME_ListaProductosDocumentoTVC: UITableViewController {
     let contexto = CoreDataStack.shared.persistentContainer.viewContext
     var servicioProductoBase: API_ServicioProductoBase?
     var servicioProducto: API_ServicioProducto?
+    
     // MARK: - Variables Locales
     var productosBase: [ProductoBase]?
     var productos: [Producto]?
-    var indexProductosSeleccionados : [Int] = []
-    var productosSeleccionados: [ProductoBase] = []
+    //var indexProductosSeleccionados : [Int] = []
+    //var productosSeleccionados: [ProductoBase] = []
     
     @IBAction func crearProductoAction(_ sender: UIBarButtonItem) {
         let destinoVC = storyboard?.instantiateViewController(withIdentifier: "VistaProductoTVC") as! IME_VistaProductoTVC
@@ -44,7 +45,7 @@ class IME_ListaProductosDocumentoTVC: UITableViewController {
         //COLOCARLAS SIEMPRE EN EL PADRE
         servicioProductoBase = API_ServicioProductoBase(contexto: contexto)
         servicioProducto = API_ServicioProducto(contexto: contexto)
-        cargarProductos()
+        //cargarProductos()
         //cargarArraySeleccionados()
     }
     
@@ -52,7 +53,7 @@ class IME_ListaProductosDocumentoTVC: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         productosBase = servicioProductoBase?.recuperarProductos()
-        productos = servicioProducto?.recuperarProductos()
+        //productos = servicioProducto?.recuperarProductos()
         tableView.reloadData()
         //Asignamos el delegate
         //navigationController?.delegate = self
@@ -65,9 +66,12 @@ class IME_ListaProductosDocumentoTVC: UITableViewController {
     }
     
     //MARK: - FUNCIONES PROPIAS
+    /*
     func cargarProductos() {
         productosBase = servicioProductoBase?.recuperarProductos()
     }
+    */
+
     /*
     func cargarArraySeleccionados() {
         if let productosDes = productosBase {
@@ -116,8 +120,29 @@ class IME_ListaProductosDocumentoTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let eliminar = UITableViewRowAction(style: .normal, title: "Editar") { (action, indexPath) in
-            
+        let eliminar = UITableViewRowAction(style: .default, title: "Eliminar") { (action, indexPath) in
+            let alertVC = UIAlertController(title: "Atención", message: "Si elimina este producto eliminará todos los productos relacionados en sus documentos. ¿Está seguro?", preferredStyle: .alert)
+            let alertActionOK = UIAlertAction(title: "Si", style: .destructive) { (action) in
+                let productoEliminado = self.productosBase![indexPath.row]
+                let predicate = NSPredicate(format: "ANY productoBase == %@", productoEliminado)
+                if let productosConBase = self.servicioProducto?.buscarProducto(byQuery: predicate) {
+                    for pro in productosConBase {
+                        self.servicioProducto?.eliminarProducto(by: pro.objectID)
+                    }
+                }
+                self.servicioProductoBase?.eliminarProducto(by: productoEliminado.objectID)
+                self.productosBase?.remove(at: indexPath.row)
+                do {
+                    try self.contexto.save()
+                    self.tableView.reloadData()
+                }catch let error {
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+            alertVC.addAction(alertActionOK)
+            let alertActionKO = UIAlertAction(title: "No", style: .cancel, handler: nil)
+            alertVC.addAction(alertActionKO)
+            self.present(alertVC, animated: true, completion: nil)
         }
         return [eliminar]
     }

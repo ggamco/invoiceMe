@@ -55,11 +55,7 @@ class IME_ProyectosTVC: UITableViewController {
         ordenarProyectosPorEmpresa()
         tableView.reloadData()
         
-        if proyectos.count == 0 {
-            emptyTable(self.tableView)
-        } else {
-            resetTableUI(self.tableView)
-        }
+        
     }
 
     //MARK: - Recupera empresas
@@ -94,6 +90,11 @@ class IME_ProyectosTVC: UITableViewController {
     
     //MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
+        if proyectos.count == 0 {
+            emptyTable(tableView)
+        } else {
+            resetTableUI(tableView)
+        }
         return diccionario.count
     }
 
@@ -188,6 +189,9 @@ class IME_ProyectosTVC: UITableViewController {
             if self.diccionario[self.empresas[indexPath.section]]?.count == 0 {
                 self.diccionario.removeValue(forKey: self.empresas[indexPath.section])
                 self.empresas.remove(at: indexPath.section)
+                if let index = self.proyectos.enumerated().filter( { $0.element === proyecto }).map({ $0.offset }).first {
+                    self.proyectos.remove(at: index)
+                }
             }
             
             self.servicioProyecto?.eliminarProyecto(by: (proyecto?.objectID)!)
@@ -224,20 +228,20 @@ class IME_ProyectosTVC: UITableViewController {
     
     func calcularProgreso(_ proyecto: Proyecto) -> Double{
         let documentos = proyecto.documentos?.allObjects as! [Documento]
-        var sumatorioHoras: Float = 0.0
-        var sumatorioProductos: Float = 0.0
+        var sumatorioHoras: Double = 0.0
+        var sumatorioProductos: Double = 0.0
         for doc in documentos {
             if Int(doc.tipoDocumento) == 1 {
-                /*
+                
                 let productos = doc.productos?.allObjects as! [Producto]
                 for pro in productos {
-                    let tipoMedida = Int(pro.tipoMedida)
+                    let tipoMedida = Int((pro.productoBase?.tipoMedida)!)
                     if tipoMedida == 1 {
                         sumatorioHoras = sumatorioHoras + pro.cantidad
                         sumatorioProductos = sumatorioProductos + 1.0
                     }
                 }
-                */
+                
             }
         }
         let resultado = Double(sumatorioHoras) / proyecto.horasEstimadas

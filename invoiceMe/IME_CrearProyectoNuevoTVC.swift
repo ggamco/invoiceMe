@@ -109,12 +109,14 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
         
         //CONFIGURACIONES VARIAS
         format.dateStyle = DateFormatter.Style.long
+        format.locale = Locale(identifier: "es_ES")
         myFechaInicio.delegate = self
         myFechaFin.delegate = self
         myGuardarBTN.tintColor = CONSTANTES.COLORES.NAV_ITEMS
         
         //CONFIGURAMOS LA CARGA DEL DATAPICKER
         datapicker.datePickerMode = UIDatePickerMode.date
+        datapicker.locale = Locale(identifier: "es_ES")
         myFechaInicio.inputView = datapicker
         myFechaFin.inputView = datapicker
         datapicker.addTarget(self, action: #selector(setFechaLabel), for: UIControlEvents.valueChanged)
@@ -132,7 +134,7 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
         empresas = (servicioEmpresa?.recuperarEmpresas())!
         //empresas.sort{$0.nombre! < $1.nombre!}
         empresas.sort{$0.nombre!.localizedCompare($1.nombre!) == .orderedAscending}
-        
+        /*
         if empresas.count > 0 {
             empresa = empresas[0]
             myNombreCliente.text = empresas[0].nombre
@@ -141,7 +143,7 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
             myNombreCliente.text = "Nuevo Cliente"
             myNombreCliente.textColor = CONSTANTES.COLORES.SECOND_TEXT_COLOR
         }
-        
+        */
         if proyecto != nil {
             myNombreProyecto.text = proyecto?.nombre
             myNombreCliente.text = proyecto?.cliente?.nombre
@@ -177,6 +179,8 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
             }
             
         } else {
+            myNombreCliente.text = "Nuevo Cliente"
+            myNombreCliente.textColor = CONSTANTES.COLORES.SECOND_TEXT_COLOR
             print("vacio")
         }
         
@@ -197,6 +201,8 @@ class IME_CrearProyectoNuevoTVC: UITableViewController {
         proyecto?.precioHora = Double(myPrecioHora.text!)!
         proyecto?.cliente = empresa
         proyecto?.descripcionCorta = myDescripcion.text
+        proyecto?.fechaFinal = myFechaInicio.text
+        proyecto?.fechaFinal = myFechaFin.text
         
         servicioProyecto?.actualizarProyecto(proyectoActualizado: proyecto!)
         

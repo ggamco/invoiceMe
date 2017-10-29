@@ -19,6 +19,7 @@ class IME_CrearProductoDocumentoTVC: UITableViewController {
     var productoBase: ProductoBase?
     var producto: Producto?
     var esAgregacion = false
+    var esActualizacion = false
     
     // MARK: - IBOutlets
     @IBOutlet weak var myCodigoProducto: CustomTextField!
@@ -39,6 +40,7 @@ class IME_CrearProductoDocumentoTVC: UITableViewController {
     @IBAction func cambiarCantidad(_ sender: UIStepper) {
         myCantidad.text = String(format: "%.2f", sender.value)
     }
+    
     @IBAction func permitirUnidadCustom(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0, 1:
@@ -51,6 +53,7 @@ class IME_CrearProductoDocumentoTVC: UITableViewController {
             myTipoMedidaLabel.text = sender.titleForSegment(at: sender.selectedSegmentIndex)! + ":"
         }
     }
+    
     @IBAction func activarExentos(_ sender: UISwitch) {
         if sender.isOn {
             if sender.tag == 0 {
@@ -72,6 +75,9 @@ class IME_CrearProductoDocumentoTVC: UITableViewController {
     }
     
     @IBAction func guardarCambiosAction(_ sender: UIBarButtonItem) {
+        if esActualizacion {
+            productoBase = producto?.productoBase
+        }
         if esAgregacion {
             producto = servicioProducto?.crearProducto()
         }
@@ -94,6 +100,8 @@ class IME_CrearProductoDocumentoTVC: UITableViewController {
         }
         if esAgregacion {
             goToDocumento()
+        } else if esActualizacion {
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -102,22 +110,44 @@ class IME_CrearProductoDocumentoTVC: UITableViewController {
         super.viewDidLoad()
         servicioProducto = API_ServicioProducto(contexto: contexto)
         cargarDatosPrevios()
+        myMedidaCustom.delegate = self
+        myPrecio.delegate = self
+        myCantidad.delegate = self
     }
     
     // MARK: - Funciones propias
     func cargarDatosPrevios() {
-        if let productoBaseDes = productoBase {
-            myCodigoProducto.text = productoBaseDes.codigo
-            myTituloProducto.text = productoBaseDes.titulo
-            myDescripcionProducto.text = productoBaseDes.descripcion
-            mySelectorMedida.selectedSegmentIndex = Int(productoBaseDes.tipoMedida)
-            myMedidaCustom.text = productoBaseDes.medidaCustom
-            myIVA.text = String(format: "%.2f", productoBaseDes.iva)
-            myIRPF.text = String(format: "%.2f", productoBaseDes.irpf)
-            myExentoIVA.isOn = productoBaseDes.exentoIva
-            myExentoIRPF.isOn = productoBaseDes.exentoIrpf
-            cargarUnidad(productoBaseDes)
+        if esActualizacion {
+            if let productoDes = producto {
+                myCodigoProducto.text = productoDes.productoBase?.codigo
+                myTituloProducto.text = productoDes.productoBase?.titulo
+                myDescripcionProducto.text = productoDes.productoBase?.descripcion
+                mySelectorMedida.selectedSegmentIndex = Int((productoDes.productoBase?.tipoMedida)!)
+                myMedidaCustom.text = productoDes.productoBase?.medidaCustom
+                myIVA.text = String(format: "%.2f", (productoDes.productoBase?.iva)!)
+                myIRPF.text = String(format: "%.2f", (productoDes.productoBase?.irpf)!)
+                myExentoIVA.isOn = (productoDes.productoBase?.exentoIva)!
+                myExentoIRPF.isOn = (productoDes.productoBase?.exentoIrpf)!
+                cargarUnidad(productoDes.productoBase!)
+                myCantidad.text = String(format: "%.2f", productoDes.cantidad)
+                myPrecio.text = String(format: "%.2f", productoDes.precio)
+                myStepper.value = productoDes.cantidad
+            }
+        } else {
+            if let productoBaseDes = productoBase {
+                myCodigoProducto.text = productoBaseDes.codigo
+                myTituloProducto.text = productoBaseDes.titulo
+                myDescripcionProducto.text = productoBaseDes.descripcion
+                mySelectorMedida.selectedSegmentIndex = Int(productoBaseDes.tipoMedida)
+                myMedidaCustom.text = productoBaseDes.medidaCustom
+                myIVA.text = String(format: "%.2f", productoBaseDes.iva)
+                myIRPF.text = String(format: "%.2f", productoBaseDes.irpf)
+                myExentoIVA.isOn = productoBaseDes.exentoIva
+                myExentoIRPF.isOn = productoBaseDes.exentoIrpf
+                cargarUnidad(productoBaseDes)
+            }
         }
+        
     }
     
     func cargarUnidad(_ producto: ProductoBase) {
@@ -187,12 +217,33 @@ class IME_CrearProductoDocumentoTVC: UITableViewController {
 extension IME_CrearProductoDocumentoTVC: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.tag == 10 {
+        switch textField.tag {
+        case 10:
             if textField.text != "" {
                 myTipoMedidaLabel.text = textField.text! + ":"
             }
-        } else if textField.tag == 20 {
-            myCantidad.text = String(format: "%.2f", textField.text!)
+        case 20:
+            if textField.text != "" {
+                let double = Double(textField.text!)
+                myCantidad.text = String(format: "%.2f", double!)
+            }
+        case 30:
+            if textField.text != "" {
+                let double = Double(textField.text!)
+                myPrecio.text = String(format: "%.2f", double!)
+            }
+        case 40:
+            if textField.text != "" {
+                let double = Double(textField.text!)
+                myIVA.text = String(format: "%.2f", double!)
+            }
+        case 50:
+            if textField.text != "" {
+                let double = Double(textField.text!)
+                myIRPF.text = String(format: "%.2f", double!)
+            }
+        default:
+            print()
         }
     }
 }

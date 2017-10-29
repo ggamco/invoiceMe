@@ -41,25 +41,22 @@ class IME_ListaClientesPrincipalTVC: UITableViewController {
     //MARK: - LIFE VC
     override func viewDidLoad() {
         super.viewDidLoad()
+        //ESTAS LINEAS ELIMINAN EL TITULO AL BACKBUTTON
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        //COLOCARLAS SIEMPRE EN EL PADRE
         
-        let indexNumbers = "A B C D E F G H I J K L M N Ñ O P Q R S T U V W X Y Z #"
-        indexOfNumbers = indexNumbers.components(separatedBy: " ")
     }
     
     //Usamos este metodo propio del ciclo de vida del VC para cargar datos siempre que vuelva a visualizarse
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //Cargamos las empresas almacenadas en CoreData
-        cargarEmpresasCD()
+        
         //Recargamos la tabla con los últimos datos
         self.tableView.reloadData()
         
-        if empresas?.count == 0 {
-            emptyTable(self.tableView)
-        } else {
-            resetTableUI(self.tableView)
-        }
+        
     }
     
     //MARK: - FUNCIONES PROPIAS
@@ -94,6 +91,16 @@ class IME_ListaClientesPrincipalTVC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        //Cargamos las empresas almacenadas en CoreData
+        cargarEmpresasCD()
+        let indexNumbers = "A B C D E F G H I J K L M N Ñ O P Q R S T U V W X Y Z #"
+        if empresas?.count == 0 {
+            emptyTable(tableView)
+            indexOfNumbers = []
+        } else {
+            resetTableUI(tableView)
+            indexOfNumbers = indexNumbers.components(separatedBy: " ")
+        }
         return indexOfNumbers.count
     }
 
@@ -130,7 +137,9 @@ class IME_ListaClientesPrincipalTVC: UITableViewController {
                 print(error.localizedDescription)
             }
             
-            
+            if let index = self.empresas?.enumerated().filter( { $0.element === empresa }).map({ $0.offset }).first {
+                self.empresas?.remove(at: index)
+            }
             //self.empresas?.remove(at: indexPath.row)
             self.diccionario[self.indexOfNumbers[indexPath.section]]!.remove(at: indexPath.row)
             

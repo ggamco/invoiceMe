@@ -55,13 +55,13 @@ class IME_DetalleProyectoVC: UIViewController, UITableViewDelegate, UITableViewD
         insertarIconoBTN()
         myTableView.delegate = self
         myTableView.dataSource = self
-        myTituloProyecto.text = proyecto?.nombre
-        myEmpresaNombre.text = proyecto?.cliente?.nombre
         servicioDocumento = ServicioDocumento(contexto: contexto)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        myTituloProyecto.text = proyecto?.nombre
+        myEmpresaNombre.text = proyecto?.cliente?.nombre
         if let documentosDes = proyecto?.documentos?.allObjects as? [Documento]{
             documentos = documentosDes
         }
@@ -182,7 +182,7 @@ class IME_DetalleProyectoVC: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44.0
+        return 60.0
     }
     
     @objc func verDocumento(_ index: IndexPath) {
