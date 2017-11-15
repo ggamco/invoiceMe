@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (4.5.1)
   - Bolts/Tasks (1.8.4)
+  - EPSignature (1.0.3)
   - Parse (1.15.3):
     - Bolts/Tasks (~> 1.8)
   - PhoneNumberKit (2.0.0):
@@ -15,6 +16,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - EPSignature
   - Parse
   - PhoneNumberKit (~> 2.0)
   - PKHUD
@@ -34,12 +36,13 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  EPSignature: 6c5c3ca674650a11b16c3cd5641a830bad4793f8
   Parse: cdc0f1f975ee8be0409e66f21b05df4ae067047c
   PhoneNumberKit: 073b3cef30c2a64ddcd623ea5953bc84bb5b3fc4
   PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwipeCellKit: 9fa65dd73e52e8fd139fec4d8f7d7cb44fa00559
 
-PODFILE CHECKSUM: 0cfa995ad49144c772e47ba1e5dcd47b31a4e724
+PODFILE CHECKSUM: cb9616b9f0346b829bf4160bf37d03399eb4b366
 
 COCOAPODS: 1.2.0
