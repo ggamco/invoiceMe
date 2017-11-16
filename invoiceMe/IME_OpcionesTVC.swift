@@ -52,22 +52,25 @@ class IME_OpcionesTVC: UITableViewController {
             if errorUno == nil {
                 if let _ = objBusquedaUno?.first{
                     //2º CONSULTA
-                    let queryFoto = PFQuery(className: "ImageProfile")
-                    queryFoto.whereKey("username", equalTo: (PFUser.current()?.username)!)
-                    queryFoto.findObjectsInBackground(block: { (objBusquedaDos, errorDos) in
-                        if errorDos == nil {
-                            if let objBusquedaDosDes = objBusquedaDos?.first {
-                                //3º CONSULTA
-                                let imageDataFile = objBusquedaDosDes["imageProfile"] as! PFFile
-                                imageDataFile.getDataInBackground(block: { (imageDataTres, errorTres) in
-                                    if let imageDataTresDes = imageDataTres{
-                                        let imageDataFinal = UIImage(data: imageDataTresDes)
-                                        self.myImagenPerfil.image = imageDataFinal
-                                    }
-                                })
+                    if let user = PFUser.current()?.username {
+                        let queryFoto = PFQuery(className: "ImageProfile")
+                        queryFoto.whereKey("username", equalTo: (user))
+                        queryFoto.findObjectsInBackground(block: { (objBusquedaDos, errorDos) in
+                            if errorDos == nil {
+                                if let objBusquedaDosDes = objBusquedaDos?.first {
+                                    //3º CONSULTA
+                                    let imageDataFile = objBusquedaDosDes["imageProfile"] as! PFFile
+                                    imageDataFile.getDataInBackground(block: { (imageDataTres, errorTres) in
+                                        if let imageDataTresDes = imageDataTres{
+                                            let imageDataFinal = UIImage(data: imageDataTresDes)
+                                            self.myImagenPerfil.image = imageDataFinal
+                                        }
+                                    })
+                                }
                             }
-                        }
-                    })
+                        })
+                    }
+                    
                 }
             }
         })

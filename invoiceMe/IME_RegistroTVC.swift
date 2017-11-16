@@ -36,30 +36,28 @@ class IME_RegistroTVC: UITableViewController {
             present(muestraAlertVC(titulo: "Atención", mensaje: "Por favor, rellene los campos solicitados."), animated: true, completion: nil)
         } else {
             HUD.show(.progress)
-            let newUser = PFUser()
-            newUser.password = myPassword.text
-            newUser.username = myCorreo.text
-            newUser.email = myCorreo.text
-            newUser.signUpInBackground(block: { (exitoso, errorRegistro) in
-                if errorRegistro != nil {
-                    HUD.hide(afterDelay: 0)
-                    self.present(muestraAlertVC(titulo: "Atención", mensaje: "\((errorRegistro?.localizedDescription)!)"), animated: true, completion: nil)
-                } else {
-                    self.signUpWithPhoto()
-                    UserDefaults.standard.setValue("REGISTERED", forKey: CONSTANTES.PREFS.REGISTERED)
-                    HUD.hide(afterDelay: 0)
-                    self.performSegue(withIdentifier: "fromRegistroTVC", sender: self)
-                    
-                    if let _ = self.registerDeviceOnAPI() {
+            if let _ = self.registerDeviceOnAPI() {
+                HUD.hide(afterDelay: 0)
+                self.present(muestraAlertVC(titulo: "Atención", mensaje: "Se ha producido un error durante el registro. Veulve a intentarlo más tarde.\nSiEl problema persiste contacte con soporte desde el AppleStore"), animated: true, completion: nil)
+            } else {
+                let newUser = PFUser()
+                newUser.password = myPassword.text
+                newUser.username = myCorreo.text
+                newUser.email = myCorreo.text
+                newUser.signUpInBackground(block: { (exitoso, errorRegistro) in
+                    if errorRegistro != nil {
                         HUD.hide(afterDelay: 0)
-                        self.present(muestraAlertVC(titulo: "Atención", mensaje: "Se ha producido un error durante el registro. Veulve a intentarlo más tarde.\nSiEl problema persiste contacte con soporte desde el AppleStore"), animated: true, completion: nil)
+                        self.present(muestraAlertVC(titulo: "Atención", mensaje: "\((errorRegistro?.localizedDescription)!)"), animated: true, completion: nil)
                     } else {
+                        if self.fotoSeleccionada{
+                            self.signUpWithPhoto()
+                        }
+                        UserDefaults.standard.setValue("REGISTERED", forKey: CONSTANTES.PREFS.REGISTERED)
                         HUD.hide(afterDelay: 0)
-                        UserDefaults.setValue("REGISTRADO_OK", forKey: CONSTANTES.PREFS.REGISTERED)
                         self.performSegue(withIdentifier: "fromRegistroTVC", sender: self)
                     }
-                }
-            })
+                })
+            }
         }
     }
     
@@ -146,18 +144,14 @@ class IME_RegistroTVC: UITableViewController {
     }
     
     func signUpWithPhoto() {
-        if !fotoSeleccionada {
-            self.present(muestraAlertVC(titulo: "Atención", mensaje: "Foto no seleccionada"), animated: true, completion: nil)
-        } else {
-            let imageProfile = PFObject(className: "ImageProfile")
-            let imageDataProfile = UIImageJPEGRepresentation(myImagenPerfil.image!, 0.3)
-            let imageProfileFile = PFFile(name: "userImageProfile.jpg", data: imageDataProfile!)
-            
-            imageProfile["imageProfile"] = imageProfileFile
-            imageProfile["username"] = PFUser.current()?.username
-            
-            imageProfile.saveInBackground()
-        }
+        let imageProfile = PFObject(className: "ImageProfile")
+        let imageDataProfile = UIImageJPEGRepresentation(myImagenPerfil.image!, 0.3)
+        let imageProfileFile = PFFile(name: "userImageProfile.jpg", data: imageDataProfile!)
+        
+        imageProfile["imageProfile"] = imageProfileFile
+        imageProfile["username"] = PFUser.current()?.username
+        
+        imageProfile.saveInBackground()
     }
     
     func registerDeviceOnAPI() -> Error? {
@@ -166,12 +160,16 @@ class IME_RegistroTVC: UITableViewController {
         
         let url = URL(string: CONSTANTES.URLS.URL_REGISTER_DEVICE)
         let paremeters: [String : String] = [
-            "deviceToken" : appDelegate.TOKEN_DEVICE
+            "tokenDevice" : appDelegate.TOKEN_DEVICE,
+            "appVersion" : CONSTANTES.API_DATA.APP_VERSION,
+            "user" : myCorreo.text!
         ]
         let headers: [String : String] = [
             "Authorization" : CONSTANTES.URLS.AUTH_CODE,
             "content-type": "application/json"
         ]
+        print("parametros: \(paremeters)")
+        print("headers: \(headers)")
         Alamofire.request(
             url!,
             method: .post,
@@ -182,6 +180,7 @@ class IME_RegistroTVC: UITableViewController {
                     print("Se ha producido un error en la autentificación y registro del dispositivo. \(error.localizedDescription)")
                     errorServicio = error
                 } else {
+                    let authDeviceToken = response.response?.allHeaderFields["Authorization"]
                     print("Registrado correctamente")
                 }
         }

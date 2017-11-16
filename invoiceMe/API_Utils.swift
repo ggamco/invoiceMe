@@ -12,10 +12,15 @@ let CONSTANTES = Constantes()
 let CUSTOM_PREFS = UserDefaults.standard
 
 struct Constantes {
+    let API_DATA = Api_Data()
     let COLORES = Colores()
     let PREFS = Preferencias()
     let DEVICE = DeviceSize()
     let URLS = Urls()
+}
+
+struct Api_Data {
+    let APP_VERSION = "1.0"
 }
 
 struct Colores {
